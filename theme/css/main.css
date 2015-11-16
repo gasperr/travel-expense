@@ -49,6 +49,14 @@
     font-size: 35px;
     display: inline-block;
 }
+.dashboard-portlet .header.left{
+    text-align: left;
+}
+
+.header > .title{
+    margin-left: 30px;
+}
+
 .dashboard-portlet .header .dropdown{
     display: inline-block;
 }
@@ -60,8 +68,21 @@
     overflow: scroll;
     clear: both;
 }
+.section.content-table td{
+    vertical-align: middle;
+}
 .section.content-table.status{
     height: 600px;
+}
+
+.currents tr td:nth-child(1), .status tr td:nth-child(1){
+    width: 25%;
+}
+.currents tr td:nth-child(5){
+    width: 90px;
+}
+.status tr td:nth-child(2){
+    width: 180px;
 }
 
 .section{
@@ -101,8 +122,19 @@
 .checkbox-button{
     margin-right: 10px !important;
 }
-.content-table .table tbody tr td .btn{
+.content-table .table .btn{
     horizontal-align: middle;
     display: block;
     margin:auto;
 }
+.content-table .table .btn.btn-sm{
+    margin-top: 1px;
+}
+
+input[type=search] {
+    height: 30px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+
