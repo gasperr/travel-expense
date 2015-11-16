@@ -3,8 +3,17 @@
 }
 
 .main-navbar{
-    border: 1px solid #000000;
+    border: 1px solid #1e5799;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
     /*background-color: #a6e1ec;*/
+
+    background: #1e5799; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #1e5799 0%, #207cca 9%, #7db9e8 63%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #1e5799 0%,#207cca 9%,#7db9e8 63%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #1e5799 0%,#207cca 9%,#7db9e8 63%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 .row .navbar{
@@ -14,6 +23,14 @@
 
 .btn > .main-btn{
     min-width: 110px;
+}
+
+.btn-default{
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 .float-right{
@@ -30,15 +47,28 @@
 
 .content-inner{
     margin: 10px 10px 10px 10px;
+    background: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 
 .dashboard-portlet{
-    border: 1px solid #222222;
+    border: 1px solid #1e5799;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
     min-height: 740px;
     max-height: 740px;
+
+    background: #1e5799; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #1e5799 0%, #207cca 9%, #7db9e8 63%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #1e5799 0%,#207cca 9%,#7db9e8 63%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #1e5799 0%,#207cca 9%,#7db9e8 63%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 .dashboard-portlet.finance{
-    border: 1px solid #222222;
+    /*border: 1px solid #222222;*/
     min-height: 700px;
     max-height: 700px;
 }
@@ -49,7 +79,6 @@
     margin-right: -15px;
 }
 .dashboard-portlet .header{
-    border: 1px solid #222222;
     height: 50px;
     line-height: 50px;
     text-align: center;
@@ -76,6 +105,9 @@
     min-height: 400px;
     overflow: scroll;
     clear: both;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 .section.content-table.standing{
     min-height: 670px;
@@ -167,10 +199,26 @@ input[type=search] {
     width: 100%;
     margin-top: 10px;
     line-height: normal;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;;
 }
+
+
 .header-addition{
     font-size: 30px;
-    background-color: #c1e2b3;
+
+    background: #7db9e8; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #7db9e8 99%, #7db9e8 99%, #7db9e8 100%, #207cca 100%, #1e5799 100%, #7db9e8 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #7db9e8 99%,#7db9e8 99%,#7db9e8 100%,#207cca 100%,#1e5799 100%,#7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #7db9e8 99%,#7db9e8 99%,#7db9e8 100%,#207cca 100%,#1e5799 100%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
     min-width: 300px;
     height: 50px;
     line-height: 50px;
@@ -187,6 +235,7 @@ input[type=search] {
     vertical-align: middle;
     margin-top: 5px;
     margin-left: 10px;
+    font-size: 16px;
 }
 
 .sum-price{
@@ -198,6 +247,13 @@ input[type=search] {
     width: 100%;
 }
 
+.glyphicon-pencil.add{
+    margin-right: 10px;
+}
+
+.search{
+    margin: 0 10px 0 10px;
+}
 
 
 
