@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel e-Xpense</title>
+
+    <link href='../../theme/css/bootstrap/bootstrap.min.css' rel='stylesheet'>
+    <link href='../../theme/css/main.css' rel='stylesheet'>
+
+
+    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+
+    <!-- jQuery -->
+    <!--<script src="/js/jquery/jquery.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="row main-navbar">
+        <div class="col-md-6 col-sm-6">
+            <div class="row navbar">
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <a href="#" class="btn btn-lg btn-default">
+                        <div class="main-btn">Nov zahtevek</div>
+                    </a>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <a href="#" class="btn btn-lg btn-default">
+                        <div class="main-btn">Moji nalogi</div>
+                    </a>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <a href="#" class="btn btn-lg btn-default">
+                        <div class="main-btn">Sporočila</div>
+                    </a>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <a href="#" class="btn btn-lg btn-default">
+                        <div class="main-btn">Arhiv</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6 col-sm-6">
+            <div class="row float-right">
+                <div class="col-md-7 col-sm-7 col-xs-7">
+                    <a href="#">
+                        <div class="main-logo">Logo</div>
+                    </a>
+                </div>
+                <div class="col-md-5 col-sm-5 col-xs-5">
+                    <div class="welcome">Dobrodošel, <></div>
+                    <a href="#" class="btn btn-xs btn-default">
+                        <div class="edit-profile-btn">Uredi profil</div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row dashboard-content">
+        <div class=" col-md-6">
+            <div class="dashboard-portlet left">
+                <div class="content-inner">
+                    <div class="header">
+                        <div class="title">Trenutni nalog - 562514</div>
+
+                        <div class="dropdown float-right">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Nemčija
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Nova gorica</a></li>
+                                <li><a href="#">Munchen</a></li>
+                                <li><a href="#">Austrlija</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td><strong>Lokacija: </strong>Nemčija</td>
+                                <td><strong>Odobril: </strong>Janez Novak</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Namen: </strong>Konferenca</td>
+                                <td><strong>Max stroški: </strong>1000€</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Termin: </strong>15.12.2015 - 16.12.2015</td>
+                                <td><strong>Opombe: </strong>N/A</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="content-table section">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Tip storitve</th>
+                                <th>Cena</th>
+                                <th>Opombe</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Prevoz z letalom</td>
+                                <td>150</td>
+                                <td>Economy class</td>
+                            </tr>
+                            <tr>
+                                <td>Prevoz z letališča</td>
+                                <td>50</td>
+                                <td>taxi</td>
+                            </tr>
+                            <tr>
+                                <td>Večerja v Pekiško mesto</td>
+                                <td>50</td>
+                                <td>večerja za 2</td>
+                            </tr>
+                            <tr>
+                                <td>Najem avtomobila</td>
+                                <td>150</td>
+                                <td>30€/dan</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="section float-right no-border no-margin">
+                        <button type="button" class="btn btn-success">+</button>
+                    </div>
+
+                    <div class="section border-top footer">
+                        <div class="buttons">
+                            <button type="button" class="btn btn-danger">Ponastavi</button>
+                            <button type="button" class="btn btn-primary">Uredi</button>
+                            <button type="button" class="btn btn-success">Oddaj</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class=" col-md-6">
+            <div class="dashboard-portlet right">
+                <div class="content-inner">
+                    <div class="header">
+                        <div class="title">Status</div>
+                    </div>
+
+                    <div class="sub-header section">
+                        <div class="float-left text"><strong>Zahtevki</strong></div>
+                        <div class="float-right">
+                            <span class="check"><input class="checkbox-button" type="checkbox" value="">Odobreni</span>
+                            <span class="check"><input class="checkbox-button" type="checkbox" value="">Zavrnjeni</span>
+                            <span class="check"><input class="checkbox-button" type="checkbox" value="">Čakajoči</span>
+                            <span class="check"><input class="checkbox-button" type="checkbox" value="">Zaključeni</span>
+                        </div>
+                    </div>
+
+                    <div class="content-table section status">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Opis</th>
+                                <th>Termin</th>
+                                <th>Status</th>
+                                <th>Drugo</th>
+                                <th style="text-align: center">Akcija</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Nemčija ICT</td>
+                                <td>15.11.15 - 12.12.16</td>
+                                <td>Odobren</td>
+                                <td>N/A</td>
+                                <td><button type="button" class="btn btn-primary">Odpri</button></td>
+                            </tr>
+                            <tr>
+                                <td>Nemčija ICT</td>
+                                <td>15.11.15 - 12.12.16</td>
+                                <td>Odobren</td>
+                                <td>N/A</td>
+                                <td><button type="button" class="btn btn-primary">Odpri</button></td>
+                            </tr>
+                            <tr>
+                                <td>Nemčija ICT</td>
+                                <td>15.11.15 - 12.12.16</td>
+                                <td>Odobren</td>
+                                <td>N/A</td>
+                                <td><button type="button" class="btn btn-primary">Odpri</button></td>
+                            </tr>
+                            <tr>
+                                <td>Nemčija ICT</td>
+                                <td>15.11.15 - 12.12.16</td>
+                                <td>Odobren</td>
+                                <td>N/A</td>
+                                <td><button type="button" class="btn btn-primary">Odpri</button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

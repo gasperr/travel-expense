@@ -1,0 +1,108 @@
+.main-container{
+    margin: 30px 30px;
+}
+
+.main-navbar{
+    border: 1px solid #000000;
+    /*background-color: #a6e1ec;*/
+}
+
+.row .navbar{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn > .main-btn{
+    min-width: 110px;
+}
+
+.float-right{
+    float: right;
+    margin-right: 30px;
+}
+.float-left{
+    float: left;
+    margin-left: 30px;
+}
+
+.content-inner{
+    margin: 10px 10px 10px 10px;
+}
+
+.dashboard-portlet{
+    border: 1px solid #222222;
+    min-height: 740px;
+}
+.dashboard-portlet.left{
+    margin-left: -15px;
+}
+.dashboard-portlet.right{
+    margin-right: -15px;
+}
+.dashboard-portlet .header{
+    border: 1px solid #222222;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+.dashboard-portlet .header .title{
+    font-size: 35px;
+    display: inline-block;
+}
+.dashboard-portlet .header .dropdown{
+    display: inline-block;
+}
+.dashboard-content{
+    margin-top: 10px;
+}
+.section.content-table{
+    min-height: 400px;
+    overflow: scroll;
+    clear: both;
+}
+.section.content-table.status{
+    height: 600px;
+}
+
+.section{
+    margin-top: 10px;
+    border: 1px solid #777777;
+    line-height: 50px;
+}
+.border-top{
+    border: 0px;
+    border-top: 1px solid #000000;
+}
+.section.footer{
+    clear: both;
+}
+.footer .buttons{
+    margin-left: 74%;
+    margin-top: 10px;
+}
+
+.no-border{
+    border: 0px !important;
+}
+.no-margin{
+    margin: 0px !important;
+}
+.sub-header{
+    height: 50px;
+    line-height: 50px;
+}
+.sub-header .text{
+    vertical-align: middle;
+    font-size: 20px;
+}
+.check{
+    margin-right: 15px;
+}
+.checkbox-button{
+    margin-right: 10px !important;
+}
+.content-table .table tbody tr td .btn{
+    horizontal-align: middle;
+    display: block;
+    margin:auto;
+}

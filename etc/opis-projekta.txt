@@ -1,0 +1,45 @@
+TYPES:
+	- user, managment, finance
+	
+USER:
+	- ZAHTEVKI
+		- pretekli nalogi
+			- neodobreni
+			- odobreni (ni več zahtevek ampak je nalog)
+		- trenutni zahtevki
+			- čakajoči na odobritev
+			- odobreni (ni več zahtevek ampak je nalog {link na nalogi})
+				
+					
+	- NALOGI
+		- on-going
+		- seznam vseh ongoing, ki jih lahko klikneš da jih urediš
+		- urejanje:
+			- vse razen podatkov ki so bili na zahtevku
+			- dodajanje stroškov (drop-down menu)
+		- možnost ODDAJ, ki odda v računovodstvo in napiše svoj TRR (iz profila oz ga vpraša če želi dati drugega)
+		
+MANAGMENT:
+	- ZAHTEVKI
+		- čakajoči na odobritev
+			- možnost urejanja, če USER dobi nazaj urejenega se ga na to opozori
+			- odobritev / zavrnitev
+		- odobreni
+			- on-going (on-the-fly pregled nad tem, kar USER dodaja)
+				- nezmožnost urejanja, nek shortcut na contact userja
+			- stari
+				- potrjeni s strani finances (neka klukica na 'starih')
+				
+
+FINANCE:
+	- NALOGI
+		- čakajoči na odobritev
+			- ODOBRI / ODOBRI LE NEKAJ (poklikaj kaj odobriš / koliko odobriš) / ZAVRNI
+			- ostalih stvari ne moreš urejat
+			- možnost hitrega kontakta managmenta / userja
+		- odobreni
+			
+			
+				
+		
+	
