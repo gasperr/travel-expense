@@ -95,6 +95,7 @@
     margin-left: 30px;
 }
 
+
 .dashboard-portlet .header .dropdown{
     display: inline-block;
 }
@@ -269,15 +270,26 @@ input[type=search] {
     height: 100%;
     background:rgba(255,255,255,0.5);
 
-    -webkit-filter: blur(7px);
-    filter: blur(7px);
+    /*-webkit-filter: blur(7px);*/
+    /*filter: blur(7px);*/
 }
 
 .popup {
     width: 70%;
     height: 50%;
-    border-right: 2px solid gray;
-    border-bottom : 2px solid gray;
+    border-right: 3px solid gray;
+    border-bottom : 3px solid gray;
+
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    
+
+
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
 }
 
@@ -294,5 +306,42 @@ input[type=search] {
 .invisible{
     visibility: hidden;
 }
+
+.popup .content-inner{
+    background: none;
+}
+
+
+.popup .title{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.form-group label{
+    margin-top: 15px;
+}
+
+.content-inner > .popup-header{
+    margin-top: 15px;
+}
+
+.date-left{
+    width: 40%;
+    margin-right: 0px;
+    float: left;
+}
+.date-right{
+    width: 40%;
+    margin-right: 0px;
+    float: right;
+}
+
+.clear{
+    clear: both;
+}
+
+
+
+
 
 

@@ -222,7 +222,67 @@
     </div>
 </div>
 
+//todo: responsive for popup
 
+<div class="background-popup invisible">
+    <div class="floating-popup popup">
+        <div class="container">
+            <div class="content-inner">
+                <div class="row popup-header">
+                    <span class="title">Nov zahtevek</span>
+                    <a><i class="title glyphicon glyphicon-remove-sign float-right"></i></a>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <form role="form">
+                            <div class="form-group no-margin">
+                                <label for="location">Lokacija:</label>
+                                <input type="text" class="form-control" id="location">
+                            </div>
+                            <div class="form-group no-margin">
+                                <div class="date-left">
+                                    <label for="date">Termin od:</label>
+                                    <input type="date" class="form-control" id="date">
+                                </div>
+                                <div class="date-right">
+                                    <label for="date2">do:</label>
+                                    <input type="date" class="form-control" id="date2">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <form role="form">
+                            <div class="form-group no-margin">
+                                <label for="cost">Predvicen strošek (€):</label>
+                                <input type="number" class="form-control" id="cost">
+                            </div>
+                            <div class="form-group no-margin">
+                                    <label for="dateandString">Datum, kraj in opis zadnjega odobrenega zahtevka:</label>
+                                    <input type="text" class="form-control" id="dateandString">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group clear no-margin">
+                            <label for="purpose">Opiši namen, razlog in kako lahko to koristi podjetju / tebi:</label>
+                            <textarea class="form-control" rows="7" id="purpose"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="section border-top footer">
+                    <div class="float-right no-margin">
+                        <button type="button" class="btn btn-danger">Ponastavi</button>
+                        <button type="button" class="btn btn-success">Oddaj</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>
