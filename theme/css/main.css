@@ -25,6 +25,17 @@
     min-width: 110px;
 }
 
+.main-navbar .selected {
+    border: 5px solid white;
+    background: #1e5799; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #1e5799 0%, #207cca 9%, #7db9e8 63%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #1e5799 0%,#207cca 9%,#7db9e8 63%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #1e5799 0%,#207cca 9%,#7db9e8 63%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    color: white;
+
+}
+
 .btn-default{
     background: rgb(255,255,255); /* Old browsers */
     background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%); /* FF3.6-15 */
@@ -353,6 +364,29 @@ input[type=search] {
 
 .content-table .summa{
     margin-left: 500px;
+}
+
+.legend{
+    margin-top: 20px;
+}
+
+.sub-legend{
+    margin-left: 20px;
+    margin-bottom: 0px;
+}
+
+.header.smaller > .title{
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.popup-portlet{
+    min-height: 350px;
+    overflow: scroll;
+}
+
+td[class="msg-content"][colspan="3"]{
+    padding-left: 40px;
 }
 
 

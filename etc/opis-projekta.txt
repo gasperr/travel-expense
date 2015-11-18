@@ -19,6 +19,8 @@ USER:
 			- dodajanje stroškov (drop-down menu)
 			- status na pregledu: nezaključen zaključen, plačan
 		- možnost ODDAJ, ki odda v računovodstvo in napiše svoj TRR (iz profila oz ga vpraša če želi dati drugega)
+		- pregled vseh nalogov
+			- odpri povezano odpre povezana sporočila in povezan nalog
 		
 MANAGMENT:
 	- ZAHTEVKI
