@@ -17,6 +17,7 @@ USER:
 		- urejanje:
 			- vse razen podatkov ki so bili na zahtevku
 			- dodajanje stroškov (drop-down menu)
+			- status na pregledu: nezaključen zaključen, plačan
 		- možnost ODDAJ, ki odda v računovodstvo in napiše svoj TRR (iz profila oz ga vpraša če želi dati drugega)
 		
 MANAGMENT:

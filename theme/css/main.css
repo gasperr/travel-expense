@@ -110,6 +110,10 @@
     -moz-border-radius: 10px;
     border-radius: 10px;
 }
+.content-table.smaller{
+    min-height: 200px;
+    overflow: scroll;
+}
 .section.content-table.standing{
     min-height: 670px;
     max-height: 670px;
@@ -276,7 +280,7 @@ input[type=search] {
 
 .popup {
     width: 70%;
-    height: 50%;
+    height: 500px;
     border-right: 3px solid gray;
     border-bottom : 3px solid gray;
 
@@ -291,6 +295,10 @@ input[type=search] {
     background: linear-gradient(135deg, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
+}
+
+.popup.bigger{
+    height: 750px;
 }
 
 .floating-popup {
@@ -315,6 +323,9 @@ input[type=search] {
 .popup .title{
     font-size: 30px;
     font-weight: bold;
+}
+.popup .title > .status{
+    color: green;
 }
 
 .form-group label{
