@@ -125,6 +125,9 @@
     min-height: 200px;
     overflow: scroll;
 }
+.content-table.msgs{
+    height: 700px;
+}
 .section.content-table.standing{
     min-height: 670px;
     max-height: 670px;

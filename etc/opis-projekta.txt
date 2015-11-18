@@ -21,6 +21,7 @@ USER:
 		- možnost ODDAJ, ki odda v računovodstvo in napiše svoj TRR (iz profila oz ga vpraša če želi dati drugega)
 		- pregled vseh nalogov
 			- odpri povezano odpre povezana sporočila in povezan nalog
+
 		
 MANAGMENT:
 	- ZAHTEVKI
@@ -41,7 +42,14 @@ FINANCE:
 			- ostalih stvari ne moreš urejat
 			- možnost hitrega kontakta managmenta / userja
 		- odobreni
-			
+
+
+SPOROČILA
+	- imajo vsi
+	- odpri povezaon odpre:
+		- pri userjih: nalog oz zahtevek, odvisno na kaj se referencira
+		- pri financah: popup nalog s možnostjo hitrega zaključka
+		- pri managmentu oboje skupaj
 			
 				
 		
