@@ -422,6 +422,10 @@ a[class*="trash-request"]{
     margin-right: 15px;
     color: #ac2925;
 }
+.unselected{
+    color: #000000;
+    background-color: transparent;
+}
 
 
 

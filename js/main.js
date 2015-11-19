@@ -109,7 +109,8 @@ var EXPENSE = {
                 var value = $(this).val();
                 $(this).parent().html('<td>'+value+'</td>');
             });
-            $(".completeEdit").toggleClass("hidden")
+            $(".completeEdit").toggleClass("hidden");
+            $("#editOrder").toggleClass("disabled");
         });
         $(".trash-request").click(function(){
            $(this).closest("tr").empty();
@@ -137,7 +138,44 @@ var EXPENSE = {
 
         });
         //my offers user
+        $(".order-filter-user").click(function(){
+            //get values
+            var allFilters = $(this).parent().parent().find("input[class*='order-filter-user']");
+            var zero = $(allFilters[0]).is(":checked");
+            var one = $(allFilters[1]).is(":checked");
+            var two = $(allFilters[2]).is(":checked");
+            var three = $(allFilters[3]).is(":checked");
 
+            $(this).next().toggleClass("unselected");
+
+            $(".section.status table tbody tr").each(function(){
+                if($(this).attr("status-data") == 0){
+                    zero ? $(this).removeClass("hidden"):$(this).addClass("hidden");
+                }
+                else if($(this).attr("status-data") == 1){
+                    one ? $(this).removeClass("hidden"):$(this).addClass("hidden");
+                }else if($(this).attr("status-data") == 2){
+                    two ? $(this).removeClass("hidden"):$(this).addClass("hidden");
+                }else if($(this).attr("status-data") == 3){
+                    three ? $(this).removeClass("hidden"):$(this).addClass("hidden");
+                }
+            });
+
+        });
+
+        //managment filter by keyword
+        $(".filterTableString").keypress(function(){
+            var val = $(this).val().toLowerCase();
+            var table = $(this).attr("id");
+
+            $("table[class*='"+table+"'] tbody tr").each(function(){
+                if(!($(this).html().toLowerCase().indexOf(val) > -1)){
+                    $(this).addClass("hidden");
+                }else{
+                    $(this).removeClass("hidden");
+                }
+            });
+        });
     }
 };
 

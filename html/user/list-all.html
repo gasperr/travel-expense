@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Travel e-Xpense</title>
 
-    <link href='../../theme/css/main.css' rel='stylesheet'>
     <link href='../../theme/css/bootstrap/bootstrap.min.css' rel='stylesheet'>
 
+    <link href='../../theme/css/main.css' rel='stylesheet'>
 
     <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
 
@@ -77,11 +77,19 @@
 
                     <!-- TODO: add clickable stuff-->
                     <div class="sub-header section border-top">
-                        <div class="float-left">
-                            <span class="check glyphicon glyphicon-ok alert-success"><input class="checkbox-button hidden" type="checkbox" value="">Odobreni</span>
-                            <span class="check glyphicon glyphicon-remove alert-danger"><input class="checkbox-button hidden" type="checkbox" value="">Zavrnjeni</span>
-                            <span class="check glyphicon glyphicon-euro alert-info"><input class="checkbox-button hidden" type="checkbox" value="">Izvršeni</span>
-                            <span class="check glyphicon glyphicon-road alert-warning"><input class="checkbox-button hidden" type="checkbox" value="">Aktivni</span>
+                        <div class="float-left table-filters">
+                            <input class="checkbox-button hidden order-filter-user" type="checkbox" id="odobren" checked>
+                            <label for="odobren" class="check glyphicon glyphicon-ok alert-success">Odobreni</label>
+
+                            <input class="checkbox-button hidden order-filter-user" type="checkbox" id="zavrnjen" checked>
+                            <label for="zavrnjen" class="check glyphicon glyphicon-remove alert-danger">Zavrnjeni</label>
+
+                            <input class="checkbox-button hidden order-filter-user" type="checkbox" id="izrvsen" checked>
+                            <label for="izrvsen" class="check glyphicon glyphicon-euro alert-info">Izvršeni</label>
+
+                            <input class="checkbox-button hidden order-filter-user" type="checkbox" id="aktivnen" checked>
+                            <label for="aktivnen" class="check glyphicon glyphicon-road alert-warning">Aktivni</label>
+
                         </div>
                     </div>
 
@@ -100,7 +108,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <tr status-data="2">
                                 <td>556489</td>
                                 <td>Nemčija ICT</td>
                                 <td>15.11.15 - 12.12.16</td>
@@ -111,7 +119,7 @@
                                 <td><a href="#" type="button" class="btn btn-primary open-order float-left no-margin">Odpri</a>
                                     <a href="#" type="button" class="btn btn-default open-connected-orders float-right no-margin">Odpri povezano</a></td>
                             </tr>
-                            <tr>
+                            <tr status-data="3">
                                 <td>556481</td>
                                 <td>Avstralija ICT</td>
                                 <td>15.11.15 - 12.12.16</td>
@@ -122,7 +130,7 @@
                                 <td><a href="#" type="button" class="btn btn-primary open-order float-left no-margin">Odpri</a>
                                     <a href="#" type="button" class="btn btn-default open-connected-orders float-right no-margin">Odpri povezano</a></td>
                             </tr>
-                            <tr>
+                            <tr status-data="1">
                                 <td>556481</td>
                                 <td>Avstralija ICT</td>
                                 <td>15.11.15 - 12.12.16</td>
@@ -133,7 +141,7 @@
                                 <td><a href="#" type="button" class="btn btn-primary open-order float-left no-margin">Odpri</a>
                                     <a href="#" type="button" class="btn btn-default open-connected-orders float-right no-margin">Odpri povezano</a></td>
                             </tr>
-                            <tr>
+                            <tr status-data="0">
                                 <td>556481</td>
                                 <td>Avstralija ICT</td>
                                 <td>15.11.15 - 12.12.16</td>
