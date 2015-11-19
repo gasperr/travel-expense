@@ -339,7 +339,7 @@ input[type=search] {
 }
 
 .invisible{
-    visibility: hidden;
+    display: none;
 }
 
 .popup .content-inner{
@@ -398,6 +398,7 @@ input[type=search] {
 
 .popup-portlet{
     min-height: 350px;
+    max-height: 350px;
     overflow: scroll;
 }
 .popup-portlet.msg{

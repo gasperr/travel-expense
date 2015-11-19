@@ -14,6 +14,7 @@
     <!--<script src="/js/jquery/jquery.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/main.js"></script>
 </head>
 <body>
 
@@ -21,10 +22,16 @@
     <div class="row main-navbar">
         <div class="col-md-7 col-sm-7">
             <div class="row navbar">
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                    <a href="#" class="btn btn-lg btn-default">
-                        <div class="main-btn">Nov zahtevek</div>
-                    </a>
+                <div class="btn-group col-md-3 col-sm-3 col-xs-6">
+                    <button type="button" class="main-btn btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <span class="main-btn">Domov</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="user/dashboard.html">User</a></li>
+                        <li><a href="managment/dashboard.html">Managment</a></li>
+                        <li><a href="finance/dashboard.html">Finance</a></li>
+                    </ul>
                 </div>
 
                 <div class="col-md-3 col-sm-3 col-xs-6">
@@ -73,32 +80,18 @@
                     <div class="content-table section msgs">
                         <table class="table">
                             <thead>
-                            <th>Pošiljatelj</th>
-                            <th>Zadeva</th>
-                            <th>Datum</th>
-                            <th></th>
+                            <th style="width: 30%;">Pošiljatelj</th>
+                            <th style="width: 20%;">Zadeva</th>
+                            <th style="width: 30%;">Datum</th>
+                            <th style="width: 5%;"></th>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><i class="glyphicon glyphicon-chevron-down small"></i> Janez Novak, managment</td>
+                            <tr class="collapsable">
+                                <td><i class="glyphicon glyphicon-chevron-up small"></i> Janez Novak, managment</td>
                                 <td>Vpliv</td>
                                 <td>12.11.2012</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-sm">Odpri povezano</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><i class="glyphicon glyphicon-chevron-down small"></i> re: Janez Novak, managment
-                                </td>
-                                <td>Vpliv</td>
-                                <td>12.11.2012</td>
-                            </tr>
-                            <tr class="info">
-                                <td><i class="glyphicon glyphicon-chevron-up alert-info small"></i> Računovodstvo</td>
-                                <td>Zaključek</td>
-                                <td>15.01.2013</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-sm">Odpri povezano</button>
+                                    <a class="btn btn-primary btn-sm open-connected">Odpri povezano</a>
                                 </td>
                             </tr>
                             <tr>
@@ -107,26 +100,70 @@
                                     mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
                                     consequat massa quis enim. </p></td>
                             </tr>
-                            <tr>
-                                <td><i class="glyphicon glyphicon-chevron-down small"></i> Mojca Norvak, managment</td>
+                            <tr class="collapsable">
+                                <td><i class="glyphicon glyphicon-chevron-up small"></i> re: Janez Novak, managment
+                                </td>
                                 <td>Vpliv</td>
                                 <td>12.11.2012</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="msg-content"><p>Povračilo stroškov je bilo izvršeno. enean massa.
+                                    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+                                    mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
+                                    consequat massa quis enim. </p></td>
+                            </tr>
+                            <tr class="collapsable">
+                                <td><i class="glyphicon glyphicon-chevron-up small"></i> Računovodstvo</td>
+                                <td>Zaključek</td>
+                                <td>15.01.2013</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-sm">Odpri povezano</button>
+                                    <a class="btn btn-primary btn-sm open-connected">Odpri povezano</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><i class="glyphicon glyphicon-chevron-down small"></i> Računovodstvo</td>
+                                <td colspan="3" class="msg-content"><p>Povračilo stroškov je bilo izvršeno. enean massa.
+                                    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+                                    mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
+                                    consequat massa quis enim. </p></td>
+                            </tr>
+                            <tr class="collapsable">
+                                <td><i class="glyphicon glyphicon-chevron-up small"></i> Mojca Norvak, managment</td>
+                                <td>Vpliv</td>
+                                <td>12.11.2012</td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm open-connected">Odpri povezano</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="msg-content"><p>Povračilo stroškov je bilo izvršeno. enean massa.
+                                    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+                                    mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
+                                    consequat massa quis enim. </p></td>
+                            </tr>
+                            <tr class="collapsable">
+                                <td><i class="glyphicon glyphicon-chevron-up small"></i> Računovodstvo</td>
                                 <td>Pojasnitev</td>
                                 <td>12.11.2012</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-sm">Odpri povezano</button>
+                                    <a class="btn btn-primary btn-sm open-connected">Odpri povezano</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><i class="glyphicon glyphicon-chevron-down small"></i> re: Računovodstvo</td>
+                                <td colspan="3" class="msg-content"><p>Povračilo stroškov je bilo izvršeno. enean massa.
+                                    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+                                    mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
+                                    consequat massa quis enim. </p></td>
+                            </tr>
+                            <tr class="collapsable">
+                                <td><i class="glyphicon glyphicon-chevron-up small"></i> re: Računovodstvo</td>
                                 <td>Vpliv</td>
                                 <td>12.11.2012</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="msg-content"><p>Povračilo stroškov je bilo izvršeno. enean massa.
+                                    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+                                    mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
+                                    consequat massa quis enim. </p></td>
                             </tr>
                             </tbody>
                         </table>
@@ -137,13 +174,13 @@
     </div>
 </div>
 
-<div class="background-popup invisible">
+<div class="background-popup hidden" id="connected">
     <div class="floating-popup popup medium">
         <div class="container">
             <div class="content-inner">
                 <div class="row popup-header">
                     <span class="title">Povezano - </span>Računovodstvo: zaključek
-                    <a><i class="title glyphicon glyphicon-remove-sign float-right"></i></a>
+                    <a class="close-popup"><i class="title glyphicon glyphicon-remove-sign float-right"></i></a>
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
@@ -151,10 +188,10 @@
                             <div class="content-table section msgs-corr">
                                 <table class="table table-bordered">
                                     <tbody>
-                                    <tr>
+                                    <tr class="collapsable">
                                         <th><i class="glyphicon glyphicon-chevron-down small"></i> Zahtevek</th>
                                     </tr>
-                                    <tr class="hidden">
+                                    <tr>
                                         <td class="corresponding-info">
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
@@ -187,8 +224,8 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr class="info">
-                                        <th><i class="glyphicon glyphicon-chevron-up alert-info small"></i> Nalog</th>
+                                    <tr class="collapsable">
+                                        <th><i class="glyphicon glyphicon-chevron-down small"></i> Nalog</th>
                                     </tr>
                                     <tr>
                                         <td class="corresponding-info">
@@ -292,7 +329,6 @@
         </div>
     </div>
 
-</div>
 </div>
 
 

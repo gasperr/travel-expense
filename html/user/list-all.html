@@ -14,6 +14,7 @@
     <!--<script src="/js/jquery/jquery.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/main.js"></script>
 </head>
 <body>
 
@@ -22,8 +23,8 @@
         <div class="col-md-7 col-sm-7">
             <div class="row navbar">
                 <div class="col-md-3 col-sm-3 col-xs-6">
-                    <a href="#" class="btn btn-lg btn-default">
-                        <div class="main-btn">Nov zahtevek</div>
+                    <a href="dashboard.html" class="btn btn-lg btn-default">
+                        <div class="main-btn">Domov</div>
                     </a>
                 </div>
 
@@ -34,7 +35,7 @@
                 </div>
 
                 <div class="col-md-3 col-sm-3 col-xs-6">
-                    <a href="#" class="btn btn-lg btn-default">
+                    <a href="../messages.html" class="btn btn-lg btn-default">
                         <div class="main-btn">Sporočila</div>
                     </a>
                 </div>
@@ -95,7 +96,7 @@
                                 <th>Zapravljeno</th>
                                 <th>Max</th>
                                 <th>Izvršeno dne:</th>
-                                <th></th>
+                                <th width="220px"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -107,7 +108,8 @@
                                 <td>1500 €</td>
                                 <td>2000 €</td>
                                 <td>20.12.2015</td>
-                                <td><button type="button" class="btn btn-primary">Odpri povezano</button></td>
+                                <td><a href="#" type="button" class="btn btn-primary open-order float-left no-margin">Odpri</a>
+                                    <a href="#" type="button" class="btn btn-default open-connected-orders float-right no-margin">Odpri povezano</a></td>
                             </tr>
                             <tr>
                                 <td>556481</td>
@@ -117,7 +119,8 @@
                                 <td>15000 €</td>
                                 <td>512 €</td>
                                 <td>N/A</td>
-                                <td><button type="button" class="btn btn-primary">Odpri povezano</button></td>
+                                <td><a href="#" type="button" class="btn btn-primary open-order float-left no-margin">Odpri</a>
+                                    <a href="#" type="button" class="btn btn-default open-connected-orders float-right no-margin">Odpri povezano</a></td>
                             </tr>
                             <tr>
                                 <td>556481</td>
@@ -127,7 +130,8 @@
                                 <td>N/A</td>
                                 <td>N/A</td>
                                 <td>N/A</td>
-                                <td><button type="button" class="btn btn-primary">Odpri povezano</button></td>
+                                <td><a href="#" type="button" class="btn btn-primary open-order float-left no-margin">Odpri</a>
+                                    <a href="#" type="button" class="btn btn-default open-connected-orders float-right no-margin">Odpri povezano</a></td>
                             </tr>
                             <tr>
                                 <td>556481</td>
@@ -137,7 +141,8 @@
                                 <td>15000 €</td>
                                 <td>0 €</td>
                                 <td>N/A</td>
-                                <td><button type="button" class="btn btn-primary">Odpri povezano</button></td>
+                                <td><a href="#" type="button" class="btn btn-primary open-order float-left no-margin">Odpri</a>
+                                    <a href="#" type="button" class="btn btn-default open-connected-orders float-right no-margin">Odpri povezano</a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -171,97 +176,10 @@
         </div>
     </div>
 </div>
-<div class="background-popup invisible">
-    <div class="floating-popup popup">
-        <div class="container">
-            <div class="content-inner">
-                <div class="row popup-header">
-                    <span class="title">Povezano z nalogom #544568</span>
-                    <a><i class="title glyphicon glyphicon-remove-sign float-right"></i></a>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                        <div>
-                            <div class="content-inner">
-                                <div class="header smaller">
-                                    <span class="title">Korenspondenca</span>
-                                </div>
-                                <div class="section popup-portlet">
-                                    <table class="table">
-                                        <thead>
-                                            <th>Pošiljatelj</th>
-                                            <th>Zadeva</th>
-                                            <th>Datum</th>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td><i class="glyphicon glyphicon-chevron-down small"></i> Janez Novak, managment</td>
-                                            <td>Vpliv</td>
-                                            <td>12.11.2012</td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="glyphicon glyphicon-chevron-down small"></i> re: Janez Novak, managment</td>
-                                            <td>Vpliv</td>
-                                            <td>12.11.2012</td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="glyphicon glyphicon-chevron-up alert-info small"></i> Računovodstvo</td>
-                                            <td>Zaključek</td>
-                                            <td>15.01.2013</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="3" class="msg-content"><p>Povračilo stroškov je bilo izvršeno. enean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. </p></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+<div class="background-popup hidden" id="connected-order">
 
-
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                        <div>
-                            <div class="content-inner">
-                                <div class="header smaller">
-                                    <span class="title">Zahtevek</span>
-                                </div>
-                                <div class="section popup-portlet">
-                                    <table class="table">
-                                        <tbody>
-                                        <tr>
-                                            <td><strong>Lokacija: </strong>Nemčija</td>
-                                            <td><strong>Pred. strošek: </strong>1500€</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Termin od: </strong>12.12.2015</td>
-                                            <td><strong>do: </strong>21.12.2015</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2"><strong>Datum & kraj zadnjega zaht.: </strong>12.01.2014 Avstralija</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2"><strong>Opis: </strong>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede </td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Pregledan dne: </strong>12.12.2015</td>
-                                            <td><strong>s strani: </strong>Janeza Novaka</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
 </div>
+
 
 
 
