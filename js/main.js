@@ -6,6 +6,7 @@ var EXPENSE = {
         EXPENSE.closePopup();
         EXPENSE.openPopup();
         EXPENSE.handleTableOpenClose();
+        EXPENSE.userInteractionHandler();
 
 
 
@@ -17,7 +18,7 @@ var EXPENSE = {
 
         });
         $(".open-order").click(function(){
-            $("#connected-order").load("view-order.html");
+            $("#connected-order").load("../view-order.html");
             $("#connected-order").toggleClass("hidden");
         });
         $(".open-connected").click(function(){
@@ -59,6 +60,29 @@ var EXPENSE = {
             closesTr.find("i[class*='glyphicon']").toggleClass("glyphicon-chevron-down glyphicon-chevron-up");
             closesTr.next().slideToggle();
         });
+    },
+    userInteractionHandler: function() {
+            $("#addNewService").click(function(){
+                var table = $("#orderServices");
+                var inputService = "<input type='text' class='tableInput serviceInput' placeholder='Tip storitve'</input>";
+                var inputPrice = "<input type='number' class='tableInput priceInput' placeholder='Cena'</input>";
+                var inputNotes = "<input type='text' class='noteInput' placeholder='Opombe'</input>";
+                var addBtn = '<button type="button" class="btn-xs btn-success glyphicon glyphicon-plus float-right insertService"></button>'
+                var inputFieldsHtml = "<tr id='addingEntry'> <td>"+inputService+"</td> <td>"+inputPrice+"</td> <td>"+inputNotes+addBtn+"</td> </tr>";
+                table.append(inputFieldsHtml);
+            });
+            $("#orderServices").on("click", ".insertService", function(){
+                var table = $("#orderServices");
+                var service = $(".serviceInput").val();
+                var price = $(".priceInput").val();
+                var note = $(".noteInput").val();
+                $("#addingEntry").remove();
+                var htmlEntry = '<tr> <td>'+service+'</td> <td>'+price+'</td> <td>'+note+'</td> </tr>'
+                table.append(htmlEntry);
+            })
+
+
+
     }
 };
 

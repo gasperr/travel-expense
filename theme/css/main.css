@@ -411,8 +411,8 @@ td[class="msg-content"][colspan="3"]{
     padding-left: 40px;
 }
 
-th[class="corresponding-info"]{
-
+.tableInput{
+    width: 100%;
 }
 
 
