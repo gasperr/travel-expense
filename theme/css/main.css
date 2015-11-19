@@ -66,6 +66,30 @@
     -moz-border-radius: 10px;
     border-radius: 10px;
 }
+.content-inner.map{
+    height: 700px;
+}
+.map-header{
+    margin: 10px 10px 10px 10px;
+    color: white;
+}
+.map-checkbox{
+    min-height: 20px;
+    padding: 19px;
+    color: #ffffff;
+    font-size: 20px;
+
+}
+
+@media screen and (max-width: 1200px) {
+    .map-checkbox{
+        padding: 10px;
+        color: #ffffff;
+        font-size: 12px;
+
+    }
+
+}
 
 .dashboard-portlet{
     border: 1px solid #1e5799;
@@ -431,6 +455,27 @@ a[class*="trash-request"]{
     color: #000000;
     background-color: transparent;
 }
+
+.logo{
+    background: url(sprites.png) no-repeat;
+}
+
+.logo{
+    background-position: -117px -28px ;
+    width: 401px;
+    height: 68px;
+    float: left;
+    margin-right: 150px;
+}
+
+
+
+.welcome{
+    float: right;
+    margin-top: 25px;
+}
+
+
 
 
 

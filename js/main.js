@@ -181,7 +181,9 @@ var EXPENSE = {
         });
     },
     googleAutoComplete: function(){
-        EXPENSE.googleAutocomplete = new google.maps.places.Autocomplete((document.getElementById('location')), { types: ['geocode'] });
+        if(document.getElementById('location') != null){
+            EXPENSE.googleAutocomplete = new google.maps.places.Autocomplete((document.getElementById('location')), { types: ['geocode'] });
+        }
     }
 };
 
