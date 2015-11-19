@@ -145,7 +145,7 @@
                     <div class="section border-top footer">
                         <div class="buttons">
                             <button type="button" class="btn btn-danger">Ponastavi</button>
-                            <button type="button" class="btn btn-primary">Uredi</button>
+                            <button type="button" class="btn btn-primary" id="editOrder">Uredi</button>
                             <button type="button" class="btn btn-success">Oddaj</button>
                         </div>
                     </div>
@@ -163,11 +163,10 @@
 
                     <div class="sub-header section border-top">
                         <div class="float-left text"><strong>Zahtevki</strong></div>
-                        <div class="float-right">
-                            <span class="check"><input class="checkbox-button" type="checkbox" value="">Odobreni</span>
-                            <span class="check"><input class="checkbox-button" type="checkbox" value="">Zavrnjeni</span>
-                            <span class="check"><input class="checkbox-button" type="checkbox" value="">Čakajoči</span>
-                            <span class="check"><input class="checkbox-button" type="checkbox" value="">Zaključeni</span>
+                        <div class="float-right table-filters">
+                            <span class="check"><input class="checkbox-button request-filter-user" checked type="checkbox">Odobreni</span>
+                            <span class="check"><input class="checkbox-button request-filter-user" checked type="checkbox">Zavrnjeni</span>
+                            <span class="check"><input class="checkbox-button request-filter-user" checked type="checkbox">Čakajoči</span>
                         </div>
                     </div>
 
@@ -179,37 +178,42 @@
                                 <th>Termin</th>
                                 <th>Status</th>
                                 <th>Drugo</th>
-                                <th style="text-align: center">Akcija</th>
+                                <!-- todo chnage to css-->
+                                <th style="text-align: center; width: 130px">Akcija</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Nemčija ICT</td>
+                            <tr status-data="0">
+                                <td>Nemčija ICT1</td>
                                 <td>15.11.15 - 12.12.16</td>
                                 <td>Odobren</td>
                                 <td>N/A</td>
-                                <td><button type="button" class="btn btn-primary">Odpri</button></td>
+                                <td><button type="button" class="btn btn-primary open-request float-left">Odpri</button>
+                                    <a href="#" data-toggle="tooltip" title="Pošlji v arhiv" class="glyphicon glyphicon-new-window float-right trash-request"></a></td>
                             </tr>
-                            <tr>
-                                <td>Nemčija ICT</td>
+                            <tr status-data="1">
+                                <td>Nemčija ICT2</td>
                                 <td>15.11.15 - 12.12.16</td>
-                                <td>Odobren</td>
+                                <td>Zavrnjen</td>
                                 <td>N/A</td>
-                                <td><button type="button" class="btn btn-primary">Odpri</button></td>
+                                <td><button type="button" class="btn btn-primary open-request float-left">Odpri</button>
+                                    <a href="#" data-toggle="tooltip" title="Pošlji v arhiv" class="glyphicon glyphicon-new-window float-right trash-request"></a></td>
                             </tr>
-                            <tr>
-                                <td>Nemčija ICT</td>
+                            <tr status-data="3">
+                                <td>Nemčija ICT3</td>
                                 <td>15.11.15 - 12.12.16</td>
-                                <td>Odobren</td>
+                                <td>Čakajoč</td>
                                 <td>N/A</td>
-                                <td><button type="button" class="btn btn-primary">Odpri</button></td>
+                                <td><button type="button" class="btn btn-primary open-request float-left">Odpri</button>
+                                    <a href="#" data-toggle="tooltip" title="Pošlji v arhiv" class="glyphicon glyphicon-new-window float-right trash-request"></a></td>
                             </tr>
-                            <tr>
-                                <td>Nemčija ICT</td>
+                            <tr status-data="0">
+                                <td>Nemčija ICT4</td>
                                 <td>15.11.15 - 12.12.16</td>
                                 <td>Odobren</td>
                                 <td>N/A</td>
-                                <td><button type="button" class="btn btn-primary">Odpri</button></td>
+                                <td><button type="button" class="btn btn-primary open-request float-left">Odpri</button>
+                                    <a href="#" data-toggle="tooltip" title="Pošlji v arhiv" class="glyphicon glyphicon-new-window float-right trash-request"></a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -224,6 +228,7 @@
 </div>
 
 <!--todo: responsive for popup-->
+<!--todo: google autocomplete -->
 
 <div class="background-popup hidden" id="add-new-popup">
     <div class="floating-popup popup">
@@ -283,6 +288,10 @@
         </div>
 
     </div>
+</div>
+
+<div class="background-popup hidden" id="open-request-popup">
+
 </div>
 
 </body>
