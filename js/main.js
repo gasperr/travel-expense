@@ -2,12 +2,15 @@
  * Created by gandrejc on 18.11..
  */
 var EXPENSE = {
+    googleAutocomplete: "" ,
+
     init: function () {
         EXPENSE.closePopup();
         EXPENSE.openPopup();
         EXPENSE.handleTableOpenClose();
         EXPENSE.userInteractionHandler();
         EXPENSE.tableFiltering();
+        EXPENSE.googleAutoComplete();
 
 
     },
@@ -176,13 +179,24 @@ var EXPENSE = {
                 }
             });
         });
+    },
+    googleAutoComplete: function(){
+        EXPENSE.googleAutocomplete = new google.maps.places.Autocomplete((document.getElementById('location')), { types: ['geocode'] });
     }
 };
+
 
 /* RUN ON READY */
 $(document).ready(function () {
 
     EXPENSE.init();
+
+    jQuery('.toggle-nav').click(function(e) {
+        jQuery(this).toggleClass('active');
+        jQuery('.menu ul').toggleClass('active');
+
+        e.preventDefault();
+    });
 
 });
 
