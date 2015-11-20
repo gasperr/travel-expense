@@ -131,7 +131,7 @@ var EXPENSE = {
             setTimeout(function(){
                 console.log($(this));
                 $($("button[class*='disabled']").parent().parent()).hide();
-            }, 1000);
+            }, 1500);
 
         });
     },
