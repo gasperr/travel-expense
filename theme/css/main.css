@@ -162,6 +162,7 @@
 }
 .content-table.msgs{
     height: 700px;
+    max-height: none;
 }
 .section.content-table.standing{
     min-height: 670px;
@@ -444,7 +445,7 @@ td[class="msg-content"][colspan="3"]{
     width: 100%;
 }
 
-.status table button[class*="open-request"]{
+.status table button[class*="open-request user"]{
     margin-left: 15px;
 }
 a[class*="trash-request"]{
@@ -473,6 +474,12 @@ a[class*="trash-request"]{
 .welcome{
     float: right;
     margin-top: 25px;
+}
+
+.managment-request-btn{
+    width: 48%;
+    margin-right: 10px;
+    margin-right: 10px;
 }
 
 

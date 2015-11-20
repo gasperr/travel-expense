@@ -11,6 +11,7 @@ var EXPENSE = {
         EXPENSE.userInteractionHandler();
         EXPENSE.tableFiltering();
         EXPENSE.googleAutoComplete();
+        EXPENSE.managmentInteractionHandler();
 
 
     },
@@ -110,13 +111,28 @@ var EXPENSE = {
         $("#orderServices").parent(".content-table.section").on("click", ".completeEdit", function(){
             $("#orderServices").find(".adding").each(function () {
                 var value = $(this).val();
-                $(this).parent().html('<td>'+value+'</td>');
+                $(this).parent().html(value);
             });
-            $(".completeEdit").toggleClass("hidden");
+            $(".completeEdit").remove();
             $("#editOrder").toggleClass("disabled");
         });
         $(".trash-request").click(function(){
            $(this).closest("tr").empty();
+        });
+    },
+    managmentInteractionHandler: function(){
+        $(".approve-mngmt").click(function(){
+           $(this).fadeOut("slow", function(){
+               var replc = $('<button type="button" class="approve-mngmt btn btn-sm btn-success disabled"><i class="glyphicon glyphicon-ok"></i> </button>');
+               $(this).replaceWith(replc);
+
+           });
+
+            setTimeout(function(){
+                console.log($(this));
+                $($("button[class*='disabled']").parent().parent()).hide();
+            }, 1000);
+
         });
     },
     tableFiltering: function(){
