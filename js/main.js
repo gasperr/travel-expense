@@ -131,6 +131,16 @@ var EXPENSE = {
         $(".trash-request").click(function(){
            $(this).closest("tr").empty();
         });
+
+        $("#add-new-popup").on("click", "#complete-new-request", function(){
+            $(".add-new").each(function(){
+
+                if(!$(this).val()){
+                    $(this).addClass("non-valid-input").attr("placeholder", "Obvezno polje");
+                }
+            })
+
+        })
     },
     managmentInteractionHandler: function(){
         $(".approve-mngmt").click(function(){

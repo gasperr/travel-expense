@@ -234,16 +234,16 @@
                         <form role="form">
                             <div class="form-group no-margin">
                                 <label for="location">Lokacija:</label>
-                                <input type="text" class="form-control" id="location" placeholder="" onfocus="geolocate()">
+                                <input type="text" class="form-control add-new" id="location" placeholder="">
                             </div>
                             <div class="form-group no-margin">
                                 <div class="date-left">
                                     <label for="date">Termin od:</label>
-                                    <input type="date" class="form-control" id="date">
+                                    <input type="date" class="form-control add-new" id="date">
                                 </div>
                                 <div class="date-right">
                                     <label for="date2">do:</label>
-                                    <input type="date" class="form-control" id="date2">
+                                    <input type="date" class="form-control add-new" id="date2">
                                 </div>
                             </div>
                         </form>
@@ -252,11 +252,11 @@
                         <form role="form">
                             <div class="form-group no-margin">
                                 <label for="cost">Predviden strošek (€):</label>
-                                <input type="number" class="form-control" id="cost">
+                                <input type="number" class="form-control add-new" id="cost">
                             </div>
                             <div class="form-group no-margin">
                                     <label for="dateandString">Datum, kraj in opis zadnjega odobrenega zahtevka:</label>
-                                    <input type="text" class="form-control" id="dateandString">
+                                    <input type="text" class="form-control add-new" id="dateandString">
                             </div>
                         </form>
                     </div>
@@ -265,14 +265,14 @@
                     <div class="col-md-12">
                         <div class="form-group clear no-margin">
                             <label for="purpose">Opiši namen, razlog in kako lahko to koristi podjetju / tebi:</label>
-                            <textarea class="form-control" rows="7" id="purpose"></textarea>
+                            <textarea class="form-control add-new" rows="7" id="purpose"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="section border-top footer">
                     <div class="float-right no-margin">
                         <button type="button" class="btn btn-danger">Ponastavi</button>
-                        <button type="button" class="btn btn-success">Oddaj</button>
+                        <button type="button" class="btn btn-success" id="complete-new-request">Oddaj</button>
                     </div>
                 </div>
             </div>
