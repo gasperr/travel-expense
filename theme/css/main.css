@@ -457,21 +457,11 @@ a[class*="trash-request"]{
     background-color: transparent;
 }
 
-.logo{
-    background: url(sprites.png) no-repeat;
-}
+
 
 .logo{
-    background-position: -117px -28px ;
-    width: 401px;
-    height: 68px;
-    float: left;
-    margin-right: 150px;
-}
-
-.logo{
-    background: url(sprites.png) no-repeat;
-}
+     background: url(sprites.png) no-repeat;
+ }
 
 .logo{
     background-position: -14px -11px ;
@@ -480,11 +470,6 @@ a[class*="trash-request"]{
     float: left;
     margin-right: 150px;
 }
-
-
-
-
-
 
 .welcome{
     float: right;
@@ -496,6 +481,36 @@ a[class*="trash-request"]{
     margin-right: 10px;
     margin-right: 10px;
 }
+
+.non-valid-input{
+    border: 1px solid #b92c28;
+}
+
+@media screen and (max-width: 1700px) {
+    .logo{
+        background-position: -14px -11px ;
+        width: 401px;
+        height: 68px;
+        float: left;
+        margin-right: 50px;
+    }
+}
+@media screen and (max-width: 1500px) {
+    .logo{
+        background-position: -14px -11px ;
+        width: 401px;
+        height: 68px;
+        float: left;
+        margin-right: 50px;
+    }
+}
+
+
+
+
+
+
+
 
 
 

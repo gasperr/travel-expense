@@ -89,9 +89,21 @@ var EXPENSE = {
             var service = $(".serviceInput").val();
             var price = $(".priceInput").val();
             var note = $(".noteInput").val();
-            $("#addingEntry").remove();
-            var htmlEntry = '<tr> <td>' + service + '</td> <td>' + price + '</td> <td>' + note + '</td> </tr>'
-            table.append(htmlEntry);
+
+            var valid = true;
+            if(!service){
+                valid = false;
+                $(".serviceInput").addClass("non-valid-input").attr("placeholder", "Obvezno polje");
+            }
+            if(!price){
+                valid = false;
+                $(".priceInput").addClass("non-valid-input").attr("placeholder", "Obvezno polje");
+            }
+            if(valid){
+                $("#addingEntry").remove();
+                var htmlEntry = '<tr> <td>' + service + '</td> <td>' + price + '</td> <td>' + note + '</td> </tr>'
+                table.append(htmlEntry);
+            }
         });
         $("#editOrder").click(function () {
             $(this).toggleClass("disabled");
