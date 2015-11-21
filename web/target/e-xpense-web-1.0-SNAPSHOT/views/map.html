@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Travel e-Xpense</title>
+
+    <link href='../css/bootstrap/bootstrap.min.css' rel='stylesheet'>
+    <link href='../css/main.css' rel='stylesheet'>
+
+
+    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script src="../js/map.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+<div class="main-container">
+    <div class="row main-navbar">
+        <nav class="menu navbar">
+            <ul class="active">
+                <li class="current-item"><a href="#" class="btn btn-lg btn-default" id="home">
+                    <div class="main-btn">Domov</div>
+                </a></li>
+                <li><a href="user/list-all.html" class="btn btn-lg btn-default">
+                    <div class="main-btn">Moji nalogi</div>
+                </a></li>
+                <li><a href="messages.html" class="btn btn-lg btn-default">
+                    <div class="main-btn">Sporočila</div>
+                </a></li>
+                <li><a href="#" class="btn btn-lg btn-default">
+                    <div class="main-btn">Arhiv</div>
+                </a></li>
+                <li><a data-toggle="tooltip" title="Pomoč na poti" class="btn btn-lg btn-default" id="globe" href="map.html">
+                    <i class="glyphicon glyphicon-globe blue"></i>
+
+                </a></li>
+
+            </ul>
+
+
+
+            <a class="toggle-nav" href="#">&#9776;</a>
+
+            <div class="profile">
+                <div class="logo"></div>
+                <a href="../index.html" class="btn btn-xs btn-default">
+                    <div class="edit-profile-btn">Odjava</div>
+                </a>
+
+            </div>
+        </nav>
+    </div>
+
+
+
+    <div class="row dashboard-content">
+
+            <div class="col-md-10 col-lg-10 col-sm-10">
+                <div class="dashboard-portlet">
+                    <div class="map-header">
+                        <h2><i class="glyphicon glyphicon-globe"></i> Pomoč na poti</h2>
+
+                    </div>
+                    <div class="content-inner map" id="zemljevid">
+
+                    </div>
+                </div>
+                <!--/span-->
+
+            </div>
+            <div class="box col-md-2 col-lg-2 col-sm-2">
+                <div class="dashboard-portlet">
+                    <div class="map-header" >
+                        <h2> Možnosti</h2>
+
+                    </div>
+                    <div class="box-content box" id="moznosti">
+                        <div class="input-group-vertical">
+
+                            <div class="map-checkbox">
+                                <input type="checkbox" id="insurance_agency" checked class="check">
+                                Zavarovalnice
+                            </div>
+
+                            <div class="map-checkbox">
+                                <input type="checkbox" id="airport" checked class="check">
+                                Letališče
+                            </div>
+
+                            <div class="map-checkbox">
+                                <input type="checkbox" id="bus_station" checked class="check">
+                                Avtobusne postaje
+                            </div>
+
+                            <div class="map-checkbox">
+                                <input type="checkbox" id="car_dealercar_rental" checked class="check">
+                                Prodaja / izposoja avtomobilov
+                            </div>
+
+                            <div class="map-checkbox">
+                                <input type="checkbox" id="car_repair" checked class="check">
+                                Popravilo avtomobilov
+                            </div>
+
+                            <div class="map-checkbox">
+                                <input type="checkbox" id="parking" checked class="check">
+                                Parking
+                            </div>
+
+                            <br>
+                            Radij [m]
+                            <input class="form-control" id="radius" value="500">
+
+
+                        </div><!-- /input-group -->
+                    </div>
+                </div>
+                <!--/span-->
+
+            </div>
+
+
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

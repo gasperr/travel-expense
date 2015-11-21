@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel e-Xpense</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href='../../css/bootstrap/bootstrap.min.css' rel='stylesheet'>
+    <link href='../../css/main.css' rel='stylesheet'>
+
+
+    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/main.js"></script>
+
+
+</head>
+<body>
+
+<div class="main-container">
+    <div class="row main-navbar">
+        <nav class="menu navbar">
+            <ul class="active">
+                <li class="current-item"><a href="../finance/dashboard.html" class="btn btn-lg btn-default" id="new-order">
+                    <div class="main-btn">Finance</div>
+                </a></li>
+                <li><a href="../messages.html" class="btn btn-lg btn-default">
+                    <div class="main-btn">Sporočila</div>
+                </a></li>
+                <li><a href="../statistics.html" class="btn btn-lg btn-default">
+                    <div class="main-btn">Statistika</div>
+                </a></li>
+                <li><a href="#" class="btn btn-lg btn-default">
+                    <div class="main-btn">Arhiv</div>
+                </a></li>
+                <li><a data-toggle="tooltip" title="Pomoč na poti" class="btn btn-lg btn-default" id="globe"
+                       href="map.html">
+                    <i class="glyphicon glyphicon-globe blue"></i>
+
+                </a></li>
+
+            </ul>
+
+
+            <a class="toggle-nav" href="#">&#9776;</a>
+
+            <div class="profile">
+                <div class="logo"></div>
+                <a href="../../index.html" class="btn btn-xs btn-default">
+                    <div class="edit-profile-btn">Odjava</div>
+                </a>
+
+            </div>
+        </nav>
+    </div>
+
+    <div class="row dashboard-content">
+        <div class=" col-md-6">
+            <div class="dashboard-portlet left">
+                <div class="content-inner">
+                    <div class="header left">
+                        <div class="title">Čakajoči zahtevki</div>
+                    </div>
+
+                    <div class="no-border search">
+                        <input type=search results=5 placeholder="Najdi specifičnega..." class="filterTableString"
+                               id="requests">
+                    </div>
+
+                    <div class="content-table section status">
+                        <table class="table table-bordered requests">
+                            <thead>
+                            <tr>
+                                <th> Opis</th>
+                                <th> Termin</th>
+                                <th> Uporabnik</th>
+                                <th> Okvirno</th>
+                                <th> Akcija</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Nemčija ICT</td>
+                                <td>15.12.2015 - 12.01.2015</td>
+                                <td>Janez Krmink</td>
+                                <td>1000€</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-primary open-request">Odpri</button>
+                                    <button type="button" class="approve-mngmt btn btn-sm btn-default">Potrdi</button>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nemčija ICT</td>
+                                <td>15.12.2015 - 12.01.2015</td>
+                                <td>Janez Novak</td>
+                                <td>1000€</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-primary open-request">Odpri</button>
+                                    <button type="button" class="approve-mngmt btn btn-sm btn-default">Potrdi</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nemčija ICT</td>
+                                <td>15.12.2015 - 12.01.2015</td>
+                                <td>Janez Novak</td>
+                                <td>1000€</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-primary open-request">Odpri</button>
+                                    <button type="button" class="approve-mngmt btn btn-sm btn-default">Potrdi</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nemčija ICT</td>
+                                <td>15.12.2015 - 12.01.2015</td>
+                                <td>Janez Novak</td>
+                                <td>1000€</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-primary open-request">Odpri</button>
+                                    <button type="button" class="approve-mngmt btn btn-sm btn-default">Potrdi</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nemčija ICT</td>
+                                <td>15.12.2015 - 12.01.2015</td>
+                                <td>Janez Novak</td>
+                                <td>1000€</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-primary open-request">Odpri</button>
+                                    <button type="button" class="approve-mngmt btn btn-sm btn-default">Potrdi</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nemčija ICT</td>
+                                <td>15.12.2015 - 12.01.2015</td>
+                                <td>Janez Novak</td>
+                                <td>1000€</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-primary open-request">Odpri</button>
+                                    <button type="button" class="approve-mngmt btn btn-sm btn-default">Potrdi</button>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class=" col-md-6">
+            <div class="dashboard-portlet right">
+                <div class="content-inner">
+                    <div class="header left">
+                        <div class="title">Pregled nad trenutnimi nalogi</div>
+                    </div>
+
+                    <div class="no-border search">
+                        <input type=search results=5 placeholder="Najdi med trenutnimi nalogi..."
+                               class="filterTableString" id="orders">
+                    </div>
+
+                    <div class="content-table section status">
+                        <table class="table table-bordered currents orders">
+                            <thead>
+                            <tr>
+                                <th> Opis</th>
+                                <th>Termin</th>
+                                <th>Uporabnik</th>
+                                <th> Odobril</th>
+                                <th>Tr. strošek</th>
+                                <th> Akcija</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Nemčija ICT</td>
+                                <td>15.12.2015 - 12.01.2015</td>
+                                <td>Janez Novak</td>
+                                <td>Rok Novokrneki</td>
+                                <td>559€</td>
+                                <td>
+                                    <a href="#" type="button" class="btn btn-primary open-order">Odpri</a>
+                                </td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="background-popup hidden" id="open-request-popup">
+
+</div>
+<div class="background-popup hidden" id="connected-order">
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Travel e-Xpense</title>
+
+    <link href='../../css/bootstrap/bootstrap.min.css' rel='stylesheet'>
+    <link href='../../css/main.css' rel='stylesheet'>
+
+
+    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+
+    <!-- jQuery -->
+    <!--<script src="/js/jquery/jquery.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="../../js/main.js"></script>
+
+</head>
+<body>
+
+<div class="main-container">
+    <div class="row main-navbar">
+        <div class="row main-navbar">
+            <nav class="menu navbar">
+                <ul class="active">
+                    <li class="current-item"><a href="../statistics.html" class="btn btn-lg btn-default">
+                        <div class="main-btn">Statistika</div>
+                    </a></li>
+                    <li><a href="../messages.html" class="btn btn-lg btn-default">
+                        <div class="main-btn">Sporočila</div>
+                    </a></li>
+                    <li><a href="#" class="btn btn-lg btn-default">
+                        <div class="main-btn">Arhiv</div>
+                    </a></li>
+                    <li><a data-toggle="tooltip" title="Pomoč na poti" class="btn btn-lg btn-default" id="globe"
+                           href="../map.html">
+                        <i class="glyphicon glyphicon-globe blue"></i>
+
+                    </a></li>
+
+                </ul>
+
+
+                <a class="toggle-nav" href="#">&#9776;</a>
+
+                <div class="profile">
+                    <div class="logo"></div>
+                    <a href="../../index.html" class="btn btn-xs btn-default">
+                        <div class="edit-profile-btn">Odjava</div>
+                    </a>
+
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row dashboard-content">
+        <div>
+            <div class="col-md-9 finance-head">
+                <h1 class="float-left finance">V postopku...</h1>
+
+                <div class="no-margin header-addition">
+                    ID: 5211215
+                </div>
+
+            </div>
+            <div class="col-md-3 standing-header">
+                <h1 class="float-left">Čakajoči</h1>
+                <a href="#"><h2 class="float-right glyphicon glyphicon-refresh"></h2></a>
+            </div>
+        </div>
+        <div class=" col-md-9">
+            <div class="dashboard-portlet left finance">
+                <div class="content-inner">
+                    <div class="section">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td><strong>Lokacija: </strong>Nemčija</td>
+                                <td><strong>Odobril: </strong>Janez Novak</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Namen: </strong>Konferenca</td>
+                                <td><strong>Max stroški: </strong>1000€</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Termin: </strong>15.12.2015 - 16.12.2015</td>
+                                <td><strong>Opombe: </strong>N/A</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="content-table section">
+                        <table class="table table-bordered finance">
+                            <thead>
+                            <tr>
+                                <th>Tip storitve</th>
+                                <th>Opombe</th>
+                                <th>Cena</th>
+                                <th>Označi</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Prevoz z letalom</td>
+                                <td>Economy class</td>
+                                <td>
+                                    150
+                                    <a href="#" class="glyphicon glyphicon-edit float-right"></a>
+                                </td>
+                                <td><input class="checkbox-button" type="checkbox" value=""></td>
+                            </tr>
+                            <tr>
+                                <td>Prevoz z letalom</td>
+                                <td>Economy class</td>
+                                <td>
+                                    150
+                                    <a href="#" class="glyphicon glyphicon-edit float-right"></a>
+                                </td>
+                                <td><input class="checkbox-button" type="checkbox" value=""></td>
+                            </tr>
+                            <tr>
+                                <td>Prevoz z letalom</td>
+                                <td>Economy class</td>
+                                <td>
+                                    150
+                                    <a href="#" class="glyphicon glyphicon-edit float-right"></a>
+                                </td>
+                                <td><input class="checkbox-button" type="checkbox" value=""></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="row no-border">
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4">
+                            <span class="sum-price section no-border float-right">
+                             <strong>Skupaj: </strong>&nbsp;&nbsp;&nbsp;&nbsp; 550 €
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="section no-border footer">
+
+
+                    <div class="row no-border footer">
+                        <div class="col-md-8">
+                            <div class="no-border float-left web-search">
+                                <!--todo remove from inline-->
+                                <input id="google-search" type=search results=5 placeholder="Preveri ceno na spletu . . ." onkeydown="if (event.keyCode == 13 || event.which == 13) { window.open('http://www.google.com/search?q=' + encodeURIComponent(document.getElementById('google-search').value));}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="float-right">
+                                <button type="button" class="btn btn-danger">Ponastavi</button>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        Pošlji v pregled <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Potrjevalcu naloga</a></li>
+                                        <li><a href="#">Nosilcu naloga</a></li>
+                                    </ul>
+                                </div>
+                                <button type="button" class="btn btn-success btn-lg">Potrdi</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class=" col-md-3">
+            <div class="dashboard-portlet right finance">
+                <div class="content-inner">
+                    <div class="content-table section standing">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>ID</th>
+                                <th>Datum</th>
+                                <th>Skupno</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs" onclick="EXPENSE.financeInteractionHandler()"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr class="success">
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td>V postopku...</td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td>5211215</td>
+                                <td>22.12.2015</td>
+                                <td>1524 €</td>
+                                <td></td>
+
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
