@@ -2,6 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Travel e-Xpense</title>
 
     <link href='../../theme/css/bootstrap/bootstrap.min.css' rel='stylesheet'>
@@ -21,53 +22,41 @@
 
 <div class="main-container">
     <div class="row main-navbar">
-        <div class="col-md-9 col-sm-9">
-            <div class="row navbar">
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                    <a href="#" class="btn btn-lg btn-default">
-                        <div class="main-btn">Statistika</div>
-                    </a>
-                </div>
-
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                    <a href="../messages.html" class="btn btn-lg btn-default">
+        <div class="row main-navbar">
+            <nav class="menu navbar">
+                <ul class="active">
+                    <li class="current-item"><a href="#" class="btn btn-lg btn-default" id="new-order">
+                        <div class="main-btn">Nov zahtevek</div>
+                    </a></li>
+                    <li><a href="list-all.html" class="btn btn-lg btn-default">
+                        <div class="main-btn">Moji nalogi</div>
+                    </a></li>
+                    <li><a href="../messages.html" class="btn btn-lg btn-default">
                         <div class="main-btn">Sporočila</div>
-                    </a>
-                </div>
-
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                    <a href="#" class="btn btn-lg btn-default">
+                    </a></li>
+                    <li><a href="#" class="btn btn-lg btn-default">
                         <div class="main-btn">Arhiv</div>
-                    </a>
-                </div>
+                    </a></li>
+                    <li><a data-toggle="tooltip" title="Pomoč na poti" class="btn btn-lg btn-default" id="globe"
+                           href="map.html">
+                        <i class="glyphicon glyphicon-globe blue"></i>
 
-                <div class="col-md-3 col-sm-3 col-xs-3">
-                    <div class="finance-menu-info">
-                        <strong>Letni maximum:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.000.000 €
-                        <br/>
-                        <strong>Dosedanji stroški:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5.012.225 €
+                    </a></li>
+
+                </ul>
+
+
+                <a class="toggle-nav" href="#">&#9776;</a>
+
+                <div class="profile">
+                    <div class="logo"></div>
+                    <div class="welcome">Dobrodošel, <>
+                        <a href="#" class="btn btn-xs btn-default">
+                            <div class="edit-profile-btn">Uredi profil</div>
+                        </a>
                     </div>
                 </div>
-            </div>
-
-        </div>
-
-
-        <div class="col-md-3 col-sm-3">
-            <div class="row float-right">
-                <div class="col-md-7 col-sm-7 col-xs-7">
-                    <a href="#">
-                        <div class="main-logo">Logo</div>
-                    </a>
-                </div>
-                <div class="col-md-5 col-sm-5 col-xs-5">
-                    <div class="welcome">Dobrodošel, <></div>
-                    <a href="#" class="btn btn-xs btn-default">
-                        <div class="edit-profile-btn">Uredi profil</div>
-                    </a>
-                </div>
-
-            </div>
+            </nav>
         </div>
     </div>
 

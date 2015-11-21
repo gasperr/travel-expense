@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Travel e-Xpense</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href='../../theme/css/bootstrap/bootstrap.min.css' rel='stylesheet'>
     <link href='../../theme/css/main.css' rel='stylesheet'>
@@ -21,51 +22,40 @@
 
 <div class="main-container">
     <div class="row main-navbar">
-        <div class="col-md-6 col-sm-6">
-            <div class="row navbar">
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                    <a href="#" class="btn btn-lg btn-default">
-                        <div class="main-btn">Finance</div>
-                    </a>
-                </div>
+        <nav class="menu navbar">
+            <ul class="active">
+                <li class="current-item"><a href="#" class="btn btn-lg btn-default" id="new-order">
+                    <div class="main-btn">Nov zahtevek</div>
+                </a></li>
+                <li><a href="list-all.html" class="btn btn-lg btn-default">
+                    <div class="main-btn">Moji nalogi</div>
+                </a></li>
+                <li><a href="../messages.html" class="btn btn-lg btn-default">
+                    <div class="main-btn">Sporočila</div>
+                </a></li>
+                <li><a href="#" class="btn btn-lg btn-default">
+                    <div class="main-btn">Arhiv</div>
+                </a></li>
+                <li><a data-toggle="tooltip" title="Pomoč na poti" class="btn btn-lg btn-default" id="globe"
+                       href="map.html">
+                    <i class="glyphicon glyphicon-globe blue"></i>
 
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                    <a href="#" class="btn btn-lg btn-default">
-                        <div class="main-btn">Sporočila</div>
-                    </a>
-                </div>
+                </a></li>
 
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                    <a href="#" class="btn btn-lg btn-default">
-                        <div class="main-btn">Statistika</div>
-                    </a>
-                </div>
-
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                    <a href="#" class="btn btn-lg btn-default">
-                        <div class="main-btn">Arhiv</div>
-                    </a>
-                </div>
-            </div>
-        </div>
+            </ul>
 
 
-        <div class="col-md-6 col-sm-6">
-            <div class="row float-right">
-                <div class="col-md-7 col-sm-7 col-xs-7">
-                    <a href="#">
-                        <div class="main-logo">Logo</div>
-                    </a>
-                </div>
-                <div class="col-md-5 col-sm-5 col-xs-5">
-                    <div class="welcome">Dobrodošel, <></div>
+            <a class="toggle-nav" href="#">&#9776;</a>
+
+            <div class="profile">
+                <div class="logo"></div>
+                <div class="welcome">Dobrodošel, <>
                     <a href="#" class="btn btn-xs btn-default">
                         <div class="edit-profile-btn">Uredi profil</div>
                     </a>
                 </div>
-
             </div>
-        </div>
+        </nav>
     </div>
 
     <div class="row dashboard-content">
@@ -77,7 +67,8 @@
                     </div>
 
                     <div class="no-border search">
-                        <input type=search results=5 placeholder="Najdi specifičnega..." class="filterTableString" id="requests">
+                        <input type=search results=5 placeholder="Najdi specifičnega..." class="filterTableString"
+                               id="requests">
                     </div>
 
                     <div class="content-table section status">
@@ -171,7 +162,8 @@
                     </div>
 
                     <div class="no-border search">
-                        <input type=search results=5 placeholder="Najdi med trenutnimi nalogi..." class="filterTableString" id="orders">
+                        <input type=search results=5 placeholder="Najdi med trenutnimi nalogi..."
+                               class="filterTableString" id="orders">
                     </div>
 
                     <div class="content-table section status">

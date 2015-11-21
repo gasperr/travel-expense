@@ -12,9 +12,51 @@ var EXPENSE = {
         EXPENSE.tableFiltering();
         EXPENSE.googleAutoComplete();
         EXPENSE.managmentInteractionHandler();
+        EXPENSE.homeRedirect();
+
+
+        $('#dodajDemoLogin').change(function() {
+            $("#kreirajSporocilo").html("");
+            var podatki = $(this).val().split(",");
+            $("#upime").val(podatki[0]);
+            $("#inputPassword3").val(podatki[1]);
+        });
 
 
     },
+    homeRedirect: function(){
+        $("#home").click(function(){
+            var user_type = localStorage.getItem("user_type");
+            console.log(user_type);
+            window.location.href=user_type+"/dashboard.html";
+        })
+    },
+
+    login: function(){
+        var username=$("#upime").val();
+        var password=$("#inputPassword3").val();
+
+        var upimena = ["Peter Demolis", "Rok Nerovac", "Ana Konda"];
+        var gesla = ["managment", "user", "finance"]
+
+
+        for(var i in upimena){
+            if(upimena[i] === username && gesla[i] === password){
+                window.location.href="html/"+gesla[i]+"/dashboard.html";
+
+                localStorage.setItem('user_type', password);
+                return true;
+            }
+        }
+        $("#inputPassword3").val("");
+        $("#passGroup").removeClass("form-group").addClass("form-group has-error");
+        $("#usernameGroup").removeClass("form-group").addClass("form-group has-error");
+        $("#kreirajSporocilo").html("<span class='obvestilo label label-danger fade-in'>Uporabnisko ime in geslo se bodisi ne ujemaata ali pa uporabnik ne obstaja.</span>");
+
+        return false;
+
+    },
+
     openPopup: function () {
         $(".open-connected-orders").click(function () {
             $("#connected-order").load("connected-order.html");
@@ -236,6 +278,9 @@ $(document).ready(function () {
         jQuery('.menu ul').toggleClass('active');
 
         e.preventDefault();
+    });
+    jQuery('.menu.navbar ul li').click(function(e) {
+        jQuery('.menu ul').toggleClass('active');
     });
 
 });

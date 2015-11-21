@@ -330,7 +330,7 @@ input[type=search] {
 }
 
 .popup {
-    /*width: 70%;*/
+    width: 90%;
     height: 500px;
     border-right: 3px solid gray;
     border-bottom : 3px solid gray;
@@ -383,6 +383,10 @@ input[type=search] {
 }
 .popup .title > .status{
     color: green;
+}
+
+.popup .section{
+    width: 90%;
 }
 
 .form-group label{
@@ -486,6 +490,10 @@ a[class*="trash-request"]{
     border: 1px solid #b92c28;
 }
 
+
+
+/*RESPONSIVE*/
+
 @media screen and (max-width: 1700px) {
     .logo{
         background-position: -14px -11px ;
@@ -504,6 +512,53 @@ a[class*="trash-request"]{
         margin-right: 50px;
     }
 }
+@media screen and (max-width: 768px) {
+    .logo{
+        background-position: -14px -11px ;
+        width: 401px;
+        height: 68px;
+        float: left;
+        margin-right: 50px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .logo{
+        width: 0px;
+        height: 0px;
+    }
+
+    .dashboard-portlet .header .title{
+        font-size: 15px;
+    }
+
+    .dashboard-portlet .header {
+        height: 50px;
+        line-height: normal;
+        text-align: center;
+    }
+
+    .header > .title{
+        margin: 0px;
+    }
+
+    .footer .buttons {
+        margin-left: 6%;
+        margin-top: 10px;
+    }
+    .popup{
+        overflow: scroll;
+        height: 350px;
+    }
+    .popup.bigger{
+        height: 350px;
+    }
+}
+
+
+
+
+
+
 
 
 
