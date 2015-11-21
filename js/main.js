@@ -2,7 +2,7 @@
  * Created by gandrejc on 18.11..
  */
 var EXPENSE = {
-    googleAutocomplete: "" ,
+    googleAutocomplete: "",
 
     init: function () {
         EXPENSE.closePopup();
@@ -13,9 +13,10 @@ var EXPENSE = {
         EXPENSE.googleAutoComplete();
         EXPENSE.managmentInteractionHandler();
         EXPENSE.homeRedirect();
+        EXPENSE.financeInteractionHandler();
 
 
-        $('#dodajDemoLogin').change(function() {
+        $('#dodajDemoLogin').change(function () {
             $("#kreirajSporocilo").html("");
             var podatki = $(this).val().split(",");
             $("#upime").val(podatki[0]);
@@ -24,25 +25,25 @@ var EXPENSE = {
 
 
     },
-    homeRedirect: function(){
-        $("#home").click(function(){
+    homeRedirect: function () {
+        $("#home").click(function () {
             var user_type = localStorage.getItem("user_type");
             console.log(user_type);
-            window.location.href=user_type+"/dashboard.html";
+            window.location.href = user_type + "/dashboard.html";
         })
     },
 
-    login: function(){
-        var username=$("#upime").val();
-        var password=$("#inputPassword3").val();
+    login: function () {
+        var username = $("#upime").val();
+        var password = $("#inputPassword3").val();
 
         var upimena = ["Peter Demolis", "Rok Nerovac", "Ana Konda"];
         var gesla = ["managment", "user", "finance"]
 
 
-        for(var i in upimena){
-            if(upimena[i] === username && gesla[i] === password){
-                window.location.href="html/"+gesla[i]+"/dashboard.html";
+        for (var i in upimena) {
+            if (upimena[i] === username && gesla[i] === password) {
+                window.location.href = "html/" + gesla[i] + "/dashboard.html";
 
                 localStorage.setItem('user_type', password);
                 return true;
@@ -133,15 +134,15 @@ var EXPENSE = {
             var note = $(".noteInput").val();
 
             var valid = true;
-            if(!service){
+            if (!service) {
                 valid = false;
                 $(".serviceInput").addClass("non-valid-input").attr("placeholder", "Obvezno polje");
             }
-            if(!price){
+            if (!price) {
                 valid = false;
                 $(".priceInput").addClass("non-valid-input").attr("placeholder", "Obvezno polje");
             }
-            if(valid){
+            if (valid) {
                 $("#addingEntry").remove();
                 var htmlEntry = '<tr> <td>' + service + '</td> <td>' + price + '</td> <td>' + note + '</td> </tr>'
                 table.append(htmlEntry);
@@ -162,7 +163,7 @@ var EXPENSE = {
 
             addButtonTo.append('<button type="button" class="btn-xs btn-info glyphicon glyphicon-ok completeEdit float-right"></button>');
         });
-        $("#orderServices").parent(".content-table.section").on("click", ".completeEdit", function(){
+        $("#orderServices").parent(".content-table.section").on("click", ".completeEdit", function () {
             $("#orderServices").find(".adding").each(function () {
                 var value = $(this).val();
                 $(this).parent().html(value);
@@ -170,58 +171,73 @@ var EXPENSE = {
             $(".completeEdit").remove();
             $("#editOrder").toggleClass("disabled");
         });
-        $(".trash-request").click(function(){
-           $(this).closest("tr").empty();
+        $(".trash-request").click(function (e) {
+            $(this).closest("tr").empty();
+            e.preventDefault();
         });
 
-        $("#add-new-popup").on("click", "#complete-new-request", function(){
-            $(".add-new").each(function(){
+        $("#add-new-popup").on("click", "#complete-new-request", function () {
+            $(".add-new").each(function () {
 
-                if(!$(this).val()){
+                if (!$(this).val()) {
                     $(this).addClass("non-valid-input").attr("placeholder", "Obvezno polje");
                 }
             })
 
         })
     },
-    managmentInteractionHandler: function(){
-        $(".approve-mngmt").click(function(){
-           $(this).fadeOut("slow", function(){
-               var replc = $('<button type="button" class="approve-mngmt btn btn-sm btn-success disabled"><i class="glyphicon glyphicon-ok"></i> </button>');
-               $(this).replaceWith(replc);
+    managmentInteractionHandler: function () {
+        $(".approve-mngmt").click(function () {
+            $(this).fadeOut("slow", function () {
+                var replc = $('<button type="button" class="approve-mngmt btn btn-sm btn-success disabled"><i class="glyphicon glyphicon-ok"></i> </button>');
+                $(this).replaceWith(replc);
 
-           });
+            });
 
-            setTimeout(function(){
+            setTimeout(function () {
                 console.log($(this));
                 $($("button[class*='disabled']").parent().parent()).hide();
             }, 1500);
 
         });
     },
-    tableFiltering: function(){
+    financeInteractionHandler: function () {
+
+        $(".left.finance > .content-inner").fadeOut("slow");
+        $(".left.finance > .content-inner").fadeIn("slow");
+
+        $(".glyphicon-refresh").click(function () {
+            $(this).addClass("box_rotate box_transition");
+            setTimeout(function () {
+                $(".glyphicon-refresh").removeClass("box_rotate box_transition");
+            }, 1000);
+        });
+
+    },
+
+    tableFiltering: function () {
         //user dashboard status table filtering
-        $(".request-filter-user").click(function(){
+        $(".request-filter-user").click(function () {
             //get values
             var allFilters = $(this).parent().parent().find("input[class*='request-filter-user']");
             var zero = $(allFilters[0]).is(":checked");
             var one = $(allFilters[1]).is(":checked");
             var two = $(allFilters[2]).is(":checked");
 
-            $(".section.status table tbody tr").each(function(){
-               if($(this).attr("status-data") == 0){
-                    zero ? $(this).removeClass("hidden"):$(this).addClass("hidden");
-               }
-               else if($(this).attr("status-data") == 1){
-                    one ? $(this).removeClass("hidden"):$(this).addClass("hidden");
-               }else{
-                   two ? $(this).removeClass("hidden"):$(this).addClass("hidden");
-               }
+            $(".section.status table tbody tr").each(function () {
+                if ($(this).attr("status-data") == 0) {
+                    zero ? $(this).removeClass("hidden") : $(this).addClass("hidden");
+                }
+                else if ($(this).attr("status-data") == 1) {
+                    one ? $(this).removeClass("hidden") : $(this).addClass("hidden");
+                } else {
+                    two ? $(this).removeClass("hidden") : $(this).addClass("hidden");
+                }
             });
 
         });
         //my offers user
-        $(".order-filter-user").click(function(){
+        $(".order-filter-user").click(function () {
             //get values
             var allFilters = $(this).parent().parent().find("input[class*='order-filter-user']");
             var zero = $(allFilters[0]).is(":checked");
@@ -231,38 +247,38 @@ var EXPENSE = {
 
             $(this).next().toggleClass("unselected");
 
-            $(".section.status table tbody tr").each(function(){
-                if($(this).attr("status-data") == 0){
-                    zero ? $(this).removeClass("hidden"):$(this).addClass("hidden");
+            $(".section.status table tbody tr").each(function () {
+                if ($(this).attr("status-data") == 0) {
+                    zero ? $(this).removeClass("hidden") : $(this).addClass("hidden");
                 }
-                else if($(this).attr("status-data") == 1){
-                    one ? $(this).removeClass("hidden"):$(this).addClass("hidden");
-                }else if($(this).attr("status-data") == 2){
-                    two ? $(this).removeClass("hidden"):$(this).addClass("hidden");
-                }else if($(this).attr("status-data") == 3){
-                    three ? $(this).removeClass("hidden"):$(this).addClass("hidden");
+                else if ($(this).attr("status-data") == 1) {
+                    one ? $(this).removeClass("hidden") : $(this).addClass("hidden");
+                } else if ($(this).attr("status-data") == 2) {
+                    two ? $(this).removeClass("hidden") : $(this).addClass("hidden");
+                } else if ($(this).attr("status-data") == 3) {
+                    three ? $(this).removeClass("hidden") : $(this).addClass("hidden");
                 }
             });
 
         });
 
         //managment filter by keyword
-        $(".filterTableString").keypress(function(){
+        $(".filterTableString").keypress(function () {
             var val = $(this).val().toLowerCase();
             var table = $(this).attr("id");
 
-            $("table[class*='"+table+"'] tbody tr").each(function(){
-                if(!($(this).html().toLowerCase().indexOf(val) > -1)){
+            $("table[class*='" + table + "'] tbody tr").each(function () {
+                if (!($(this).html().toLowerCase().indexOf(val) > -1)) {
                     $(this).addClass("hidden");
-                }else{
+                } else {
                     $(this).removeClass("hidden");
                 }
             });
         });
     },
-    googleAutoComplete: function(){
-        if(document.getElementById('location') != null){
-            EXPENSE.googleAutocomplete = new google.maps.places.Autocomplete((document.getElementById('location')), { types: ['geocode'] });
+    googleAutoComplete: function () {
+        if (document.getElementById('location') != null) {
+            EXPENSE.googleAutocomplete = new google.maps.places.Autocomplete((document.getElementById('location')), {types: ['geocode']});
         }
     }
 };
@@ -273,13 +289,13 @@ $(document).ready(function () {
 
     EXPENSE.init();
 
-    jQuery('.toggle-nav').click(function(e) {
+    jQuery('.toggle-nav').click(function (e) {
         jQuery(this).toggleClass('active');
         jQuery('.menu ul').toggleClass('active');
 
         e.preventDefault();
     });
-    jQuery('.menu.navbar ul li').click(function(e) {
+    jQuery('.menu.navbar ul li').click(function (e) {
         jQuery('.menu ul').toggleClass('active');
     });
 

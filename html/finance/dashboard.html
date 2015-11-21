@@ -16,6 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="../../js/main.js"></script>
 
 </head>
 <body>
@@ -25,11 +26,8 @@
         <div class="row main-navbar">
             <nav class="menu navbar">
                 <ul class="active">
-                    <li class="current-item"><a href="#" class="btn btn-lg btn-default" id="new-order">
-                        <div class="main-btn">Nov zahtevek</div>
-                    </a></li>
-                    <li><a href="list-all.html" class="btn btn-lg btn-default">
-                        <div class="main-btn">Moji nalogi</div>
+                    <li class="current-item"><a href="#" class="btn btn-lg btn-default">
+                        <div class="main-btn">Statistika</div>
                     </a></li>
                     <li><a href="../messages.html" class="btn btn-lg btn-default">
                         <div class="main-btn">Sporočila</div>
@@ -38,7 +36,7 @@
                         <div class="main-btn">Arhiv</div>
                     </a></li>
                     <li><a data-toggle="tooltip" title="Pomoč na poti" class="btn btn-lg btn-default" id="globe"
-                           href="map.html">
+                           href="../map.html">
                         <i class="glyphicon glyphicon-globe blue"></i>
 
                     </a></li>
@@ -50,11 +48,10 @@
 
                 <div class="profile">
                     <div class="logo"></div>
-                    <div class="welcome">Dobrodošel, <>
-                        <a href="#" class="btn btn-xs btn-default">
-                            <div class="edit-profile-btn">Uredi profil</div>
-                        </a>
-                    </div>
+                    <a href="../../index.html" class="btn btn-xs btn-default">
+                        <div class="edit-profile-btn">Odjava</div>
+                    </a>
+
                 </div>
             </nav>
         </div>
@@ -202,7 +199,7 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs"></button> </td>
+                                <td><button class="glyphicon glyphicon-menu-left btn-primary btn-xs" onclick="EXPENSE.financeInteractionHandler()"></button> </td>
                                 <td>5211215</td>
                                 <td>22.12.2015</td>
                                 <td>1524 €</td>

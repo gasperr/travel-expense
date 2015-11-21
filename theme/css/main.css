@@ -7,6 +7,7 @@
 
 .navbar{
     margin: 0px;
+    width: 200px;
 }
 
 .main-navbar{
@@ -149,10 +150,12 @@
     -moz-border-radius: 10px;
     border-radius: 10px;
 }
-.section.content-table.msgs-corr{
-    min-height: 500px;
-    max-height: 500px;
+
+.popup .section.content-table{
+    overflow: hidden;
+    max-height: none;
 }
+
 .content-table.smaller{
     min-height: 200px;
     overflow: scroll;
@@ -329,9 +332,28 @@ input[type=search] {
     /*filter: blur(7px);*/
 }
 
+.loading {
+    background: rgba(255,255,255,0.9);
+}
+
+.box_rotate {
+    -webkit-transform: rotate(720deg);  /* Chrome, Safari 3.1+ */
+    -moz-transform: rotate(720deg);  /* Firefox 3.5-15 */
+    -ms-transform: rotate(720deg);  /* IE 9 */
+    -o-transform: rotate(720deg);  /* Opera 10.50-12.00 */
+    transform: rotate(720deg);  /* Firefox 16+, IE 10+, Opera 12.50+ */
+}
+.box_transition {
+    -webkit-transition: all 0.3s ease-out;  /* Chrome 1-25, Safari 3.2+ */
+    -moz-transition: all 0.3s ease-out;  /* Firefox 4-15 */
+    -o-transition: all 0.3s ease-out;  /* Opera 10.50–12.00 */
+    transition: all 0.3s ease-out;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+}
+
 .popup {
     width: 90%;
     height: 500px;
+    overflow: scroll;
     border-right: 3px solid gray;
     border-bottom : 3px solid gray;
 
@@ -380,13 +402,14 @@ input[type=search] {
 .popup .title{
     font-size: 30px;
     font-weight: bold;
+    margin-left: 40px;
 }
 .popup .title > .status{
     color: green;
 }
 
 .popup .section{
-    width: 90%;
+    /*width: 90%;*/
 }
 
 .form-group label{
@@ -551,6 +574,15 @@ a[class*="trash-request"]{
     }
     .popup.bigger{
         height: 350px;
+    }
+    .finance-head{
+        margin-top: 50px;
+    }
+    .header-addition{
+        min-width: initial;
+    }
+    .web-search {
+        width: auto;
     }
 }
 
