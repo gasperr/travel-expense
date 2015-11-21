@@ -7320,7 +7320,7 @@ jQuery.extend({
 				return;
 			}
 
-			// State is "done" now
+			// Month is "done" now
 			state = 2;
 
 			// Clear timeout if it exists

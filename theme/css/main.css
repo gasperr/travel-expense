@@ -7,7 +7,6 @@
 
 .navbar{
     margin: 0px;
-    width: 200px;
 }
 
 .main-navbar{
@@ -513,6 +512,38 @@ a[class*="trash-request"]{
     border: 1px solid #b92c28;
 }
 
+/*STATISTICS*/
+
+path {  stroke: #fff; }
+path:hover {  opacity:0.9; }
+rect:hover {  fill:blue; }
+.axis {  font: 10px sans-serif; }
+.legend tr{    border-bottom:1px solid grey; }
+.legend tr:first-child{    border-top:1px solid grey; }
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.x.axis path {  display: none; }
+.legend{
+    margin-bottom:76px;
+    display:inline-block;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+.legend td{
+    padding:4px 5px;
+    vertical-align:bottom;
+}
+.legendFreq, .legendPerc{
+    align:right;
+    width:50px;
+}
+
 
 
 /*RESPONSIVE*/
@@ -537,12 +568,13 @@ a[class*="trash-request"]{
 }
 @media screen and (max-width: 768px) {
     .logo{
-        background-position: -14px -11px ;
-        width: 401px;
-        height: 68px;
-        float: left;
-        margin-right: 50px;
+        width: 0px;
+        height: 0px;
     }
+    .finance-head{
+        margin-top: 40px;
+    }
+
 }
 @media screen and (max-width: 480px) {
     .logo{
@@ -583,6 +615,11 @@ a[class*="trash-request"]{
     }
     .web-search {
         width: auto;
+    }
+}
+@media screen and (max-width: 910px){
+    .navbar{
+        width: 200px;
     }
 }
 
