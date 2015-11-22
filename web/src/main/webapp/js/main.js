@@ -209,7 +209,47 @@ var EXPENSE = {
                 }
             })
 
-        })
+        });
+
+        $("#readqr").click(function(){
+            //try with: https://www4.uwm.edu/sois/qrcode/images/qrcode_bsisit_large_1.gif
+            $("#qr-camera-div").toggleClass("hidden").promise().done(function(){
+                $(".qr-button > button").addClass("disabled");
+                $('#qr-reader').html5_qrcode(function(data){
+                        $(".qr-result").html(data);
+                        $(".qr-button > button").removeClass("disabled");
+
+
+                    },
+                    function(error){
+                        $(".qr-result").html(error);
+                        if(!$(".qr-button > button").hasClass("disabled")){
+                            $(".qr-button > button").addClass("disabled");
+                        }
+                    }, function(videoError){
+                        $(".qr-result").html(videoError);
+                        if(!$(".qr-button > button").hasClass("disabled")){
+                            $(".qr-button > button").addClass("disabled");
+                        }
+                    }
+                );
+            });
+
+            $(".qr-button > button").click(function(){
+                if(!$(this).hasClass("disabled")){
+                    var table = $("#orderServices");
+                    var qr_read = $(".qr-result").html();
+                    var htmlEntry = '<tr> <td>' + qr_read + '</td> <td>N/A</td> <td>QR Auto Read</td> </tr>';
+                    table.append(htmlEntry)
+                }
+            });
+
+            $(".close-qr").click(function(){
+                $('#qr-reader').html5_qrcode_stop();
+                $(this).closest(".background-popup").toggleClass("hidden");
+            });
+
+        });
     },
     managmentInteractionHandler: function () {
         $(".approve-mngmt").click(function () {

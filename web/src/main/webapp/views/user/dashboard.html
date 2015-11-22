@@ -15,6 +15,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/html5-qrcode.min.js"></script>
     <script src="../../js/main.js"></script>
 </head>
 <body>
@@ -129,6 +130,7 @@
 
                     </div>
                     <div class="section float-right no-border no-margin">
+                        <button type="button" class="glyphicon glyphicon-qrcode btn btn-primary" id="readqr"></button>
                         <button type="button" class="btn btn-success glyphicon glyphicon-pencil add" id="addNewService"></button>
                     </div>
 
@@ -281,6 +283,19 @@
 </div>
 
 <div class="background-popup hidden" id="open-request-popup">
+
+</div>
+<div class="background-popup hidden" id="qr-camera-div">
+    <div class="qr-wrapper">
+        <div class="float-right no-margin"><i class="glyphicon glyphicon-remove alert-danger close-qr"></i> </div>
+        <div id="qr-reader" class="qr-box">
+
+        </div>
+        <div class="qr-result">asddsa</div>
+        <div class="qr-button float-right"><button type="button" class="btn btn-success btn-xs">Dodaj</button>
+
+        </div>
+    </div>
 
 </div>
 
