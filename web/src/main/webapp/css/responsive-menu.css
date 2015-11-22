@@ -17,7 +17,7 @@
 }
 
 .menu li {
-    margin:0px 50px 0px 0px;
+    margin:0 50px 0 0;
     float:left;
     list-style:none;
     font-size:17px;
@@ -70,9 +70,9 @@
         width:100%;
         position:absolute;
         top:120%;
-        left:0px;
+        left:0;
         padding:10px 18px;
-        box-shadow:0px 1px 1px rgba(0,0,0,0.15);
+        box-shadow:0 1px 1px rgba(0,0,0,0.15);
         border-radius:3px;background: #1e5799; /* Old browsers */
         background: -moz-linear-gradient(-45deg, #1e5799 0%, #207cca 9%, #7db9e8 63%); /* FF3.6-15 */
         background: -webkit-linear-gradient(-45deg, #1e5799 0%,#207cca 9%,#7db9e8 63%); /* Chrome10-25,Safari5.1-6 */
@@ -81,10 +81,10 @@
     }
 
     .menu ul:after {
-        width:0px;
-        height:0px;
+        width:0;
+        height:0;
         position:absolute;
-        top:0%;
+        top:0;
         left:22px;
         content:'';
         transform:translate(0%, -100%);
@@ -94,7 +94,7 @@
     }
 
     .menu li {
-        margin:5px 0px 5px 0px;
+        margin:5px 0 5px 0;
         float:none;
         display:block;
     }
@@ -107,14 +107,14 @@
         padding:20px;
         float:left;
         display:inline-block;
-        box-shadow:0px 1px 1px rgba(0,0,0,0.15);
+        box-shadow:0 1px 1px rgba(0,0,0,0.15);
         border-radius:3px;
         background: rgb(255,255,255); /* Old browsers */
         background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%); /* FF3.6-15 */
         background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Chrome10-25,Safari5.1-6 */
         background: linear-gradient(135deg, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-        text-shadow:0px 1px 0px rgba(0,0,0,0.5);
+        text-shadow:0 1px 0 rgba(0,0,0,0.5);
         color:#777;
         font-size:20px;
         transition:color linear 0.15s;
