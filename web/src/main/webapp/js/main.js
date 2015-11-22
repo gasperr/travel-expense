@@ -94,6 +94,13 @@ var EXPENSE = {
         $("#new-order").click(function () {
             $("#add-new-popup").toggleClass("hidden");
         });
+
+        $(".send-to-review li a").click(function(e){
+            console.log(e);
+            $("#to-review").load("send-to-review.html");
+            $("#to-review").toggleClass("hidden");
+            e.preventDefault();
+        });
     },
     closePopup: function () {
         $(".close-popup").click(function () {
@@ -107,6 +114,10 @@ var EXPENSE = {
         $("#open-request-popup").on("click", ".glyphicon-remove-sign", function () {
             $(this).closest(".background-popup").toggleClass("hidden");
             $("#open-request-popup").empty();
+        });
+        $("#to-review").on("click", ".glyphicon-remove-sign", function () {
+            $(this).closest(".background-popup").toggleClass("hidden");
+            $("#to-review").empty();
         });
     },
     handleTableOpenClose: function () {
