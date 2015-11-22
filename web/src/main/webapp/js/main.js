@@ -239,10 +239,10 @@ var EXPENSE = {
             var two = $(allFilters[2]).is(":checked");
 
             $(".section.status table tbody tr").each(function () {
-                if ($(this).attr("status-data") == 0) {
+                if ($(this).attr("data-status") == 0) {
                     zero ? $(this).removeClass("hidden") : $(this).addClass("hidden");
                 }
-                else if ($(this).attr("status-data") == 1) {
+                else if ($(this).attr("data-status") == 1) {
                     one ? $(this).removeClass("hidden") : $(this).addClass("hidden");
                 } else {
                     two ? $(this).removeClass("hidden") : $(this).addClass("hidden");
@@ -262,14 +262,14 @@ var EXPENSE = {
             $(this).next().toggleClass("unselected");
 
             $(".section.status table tbody tr").each(function () {
-                if ($(this).attr("status-data") == 0) {
+                if ($(this).attr("data-status") == 0) {
                     zero ? $(this).removeClass("hidden") : $(this).addClass("hidden");
                 }
-                else if ($(this).attr("status-data") == 1) {
+                else if ($(this).attr("data-status") == 1) {
                     one ? $(this).removeClass("hidden") : $(this).addClass("hidden");
-                } else if ($(this).attr("status-data") == 2) {
+                } else if ($(this).attr("data-status") == 2) {
                     two ? $(this).removeClass("hidden") : $(this).addClass("hidden");
-                } else if ($(this).attr("status-data") == 3) {
+                } else if ($(this).attr("data-status") == 3) {
                     three ? $(this).removeClass("hidden") : $(this).addClass("hidden");
                 }
             });

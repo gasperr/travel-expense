@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,7 @@
 
     <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
@@ -173,7 +173,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr status-data="0">
+                            <tr data-status="0">
                                 <td>Nemčija ICT1</td>
                                 <td>15.11.15 - 12.12.16</td>
                                 <td>Odobren</td>
@@ -181,7 +181,7 @@
                                 <td><button type="button" class="btn btn-primary open-request user float-left">Odpri</button>
                                     <a href="#" data-toggle="tooltip" title="Pošlji v arhiv" class="glyphicon glyphicon-new-window float-right trash-request"></a></td>
                             </tr>
-                            <tr status-data="1">
+                            <tr data-status="1">
                                 <td>Nemčija ICT2</td>
                                 <td>15.11.15 - 12.12.16</td>
                                 <td>Zavrnjen</td>
@@ -189,7 +189,7 @@
                                 <td><button type="button" class="btn btn-primary open-request user float-left">Odpri</button>
                                     <a href="#" data-toggle="tooltip" title="Pošlji v arhiv" class="glyphicon glyphicon-new-window float-right trash-request"></a></td>
                             </tr>
-                            <tr status-data="3">
+                            <tr data-status="3">
                                 <td>Nemčija ICT3</td>
                                 <td>15.11.15 - 12.12.16</td>
                                 <td>Čakajoč</td>
@@ -197,7 +197,7 @@
                                 <td><button type="button" class="btn btn-primary open-request user float-left">Odpri</button>
                                     <a href="#" data-toggle="tooltip" title="Pošlji v arhiv" class="glyphicon glyphicon-new-window float-right trash-request"></a></td>
                             </tr>
-                            <tr status-data="0">
+                            <tr data-status="0">
                                 <td>Nemčija ICT4</td>
                                 <td>15.11.15 - 12.12.16</td>
                                 <td>Odobren</td>
@@ -230,25 +230,25 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
-                        <form role="form">
+                        <form>
                             <div class="form-group no-margin">
                                 <label for="location">Lokacija:</label>
                                 <input type="text" class="form-control add-new" id="location" placeholder="">
                             </div>
                             <div class="form-group no-margin">
                                 <div class="date-left">
-                                    <label for="date">Termin od:</label>
-                                    <input type="date" class="form-control add-new" id="date">
+                                    <label for="date">Od<span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+                                    <input type="date" id="date" name="startdate" min="2013-03-27" max="2013-05-07" />
                                 </div>
                                 <div class="date-right">
-                                    <label for="date2">do:</label>
-                                    <input type="date" class="form-control add-new" id="date2">
+                                    <label for="date2">Od<span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+                                    <input type="date" id="date2" name="enddate" min="2013-03-27" max="2013-05-07" />
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="col-md-6 col-sm-6">
-                        <form role="form">
+                        <form>
                             <div class="form-group no-margin">
                                 <label for="cost">Predviden strošek (€):</label>
                                 <input type="number" class="form-control add-new" id="cost">
@@ -285,4 +285,5 @@
 </div>
 
 </body>
+
 </html>

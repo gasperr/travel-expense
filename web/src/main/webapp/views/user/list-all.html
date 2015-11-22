@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,39 +20,41 @@
 <body>
 
 <div class="main-container">
-    <div class="row main-navbar"><nav class="menu navbar">
-        <ul class="active">
-            <li class="current-item"><a href="dashboard.html" class="btn btn-lg btn-default">
-                <div class="main-btn">Domov</div>
-            </a></li>
-            <li><a href="list-all.html" class="btn btn-lg btn-default">
-                <div class="main-btn">Moji nalogi</div>
-            </a></li>
-            <li><a href="../messages.html" class="btn btn-lg btn-default">
-                <div class="main-btn">Sporočila</div>
-            </a></li>
-            <li><a href="#" class="btn btn-lg btn-default">
-                <div class="main-btn">Arhiv</div>
-            </a></li>
-            <li><a data-toggle="tooltip" title="Pomoč na poti" class="btn btn-lg btn-default" id="globe" href="../map.html">
-                <i class="glyphicon glyphicon-globe blue"></i>
+    <div class="row main-navbar">
+        <nav class="menu navbar">
+            <ul class="active">
+                <li class="current-item"><a href="dashboard.html" class="btn btn-lg btn-default">
+                    <div class="main-btn">Domov</div>
+                </a></li>
+                <li><a href="list-all.html" class="btn btn-lg btn-default">
+                    <div class="main-btn">Moji nalogi</div>
+                </a></li>
+                <li><a href="../messages.html" class="btn btn-lg btn-default">
+                    <div class="main-btn">Sporočila</div>
+                </a></li>
+                <li><a href="#" class="btn btn-lg btn-default">
+                    <div class="main-btn">Arhiv</div>
+                </a></li>
+                <li><a data-toggle="tooltip" title="Pomoč na poti" class="btn btn-lg btn-default" id="globe"
+                       href="../map.html">
+                    <i class="glyphicon glyphicon-globe blue"></i>
 
-            </a></li>
+                </a></li>
 
-        </ul>
+            </ul>
 
 
+            <a class="toggle-nav" href="#">&#9776;</a>
 
-        <a class="toggle-nav" href="#">&#9776;</a>
-
-        <div class="profile">
-            <div class="logo"></div>
+            <div class="profile">
+                <div class="logo"></div>
                 <a href="#" class="btn btn-xs btn-default">
                     <div class="edit-profile-btn">Odjava</div>
                 </a>
+
             </div>
-        </div>
-    </nav></div>
+        </nav>
+    </div>
 
     <div class="row dashboard-content">
         <div class=" col-md-12 col-sm-12">
@@ -65,16 +67,21 @@
                     <!-- TODO: add clickable stuff-->
                     <div class="sub-header section border-top">
                         <div class="float-left table-filters">
-                            <input class="checkbox-button hidden order-filter-user" type="checkbox" id="odobren" checked>
+                            <input class="checkbox-button hidden order-filter-user" type="checkbox" id="odobren"
+                                   checked>
                             <label for="odobren" class="check glyphicon glyphicon-ok alert-success">Odobreni</label>
 
-                            <input class="checkbox-button hidden order-filter-user" type="checkbox" id="zavrnjen" checked>
-                            <label for="zavrnjen" class="check glyphicon glyphicon-remove alert-danger">Zavrnjeni</label>
+                            <input class="checkbox-button hidden order-filter-user" type="checkbox" id="zavrnjen"
+                                   checked>
+                            <label for="zavrnjen"
+                                   class="check glyphicon glyphicon-remove alert-danger">Zavrnjeni</label>
 
-                            <input class="checkbox-button hidden order-filter-user" type="checkbox" id="izrvsen" checked>
+                            <input class="checkbox-button hidden order-filter-user" type="checkbox" id="izrvsen"
+                                   checked>
                             <label for="izrvsen" class="check glyphicon glyphicon-euro alert-info">Izvršeni</label>
 
-                            <input class="checkbox-button hidden order-filter-user" type="checkbox" id="aktivnen" checked>
+                            <input class="checkbox-button hidden order-filter-user" type="checkbox" id="aktivnen"
+                                   checked>
                             <label for="aktivnen" class="check glyphicon glyphicon-road alert-warning">Aktivni</label>
 
                         </div>
@@ -91,53 +98,61 @@
                                 <th>Zapravljeno</th>
                                 <th>Max</th>
                                 <th>Izvršeno dne:</th>
-                                <th width="220px"></th>
+                                <th class="action-th"></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr status-data="2">
+                            <tr data-status="2">
                                 <td>556489</td>
                                 <td>Nemčija ICT</td>
                                 <td>15.11.15 - 12.12.16</td>
-                                <td>Izvšren <i class="glyphicon glyphicon-eur alert-info"></i> </td>
+                                <td>Izvšren <i class="glyphicon glyphicon-eur alert-info"></i></td>
                                 <td>1500 €</td>
                                 <td>2000 €</td>
                                 <td>20.12.2015</td>
-                                <td><a href="#" type="button" class="btn btn-primary open-order float-left no-margin">Odpri</a>
-                                    <a href="#" type="button" class="btn btn-default open-connected-orders float-right no-margin">Odpri povezano</a></td>
+                                <td><a href="#" class="btn btn-primary open-order float-left no-margin">Odpri</a>
+                                    <a href="#"
+                                       class="btn btn-default open-connected-orders float-right no-margin">Odpri
+                                        povezano</a></td>
                             </tr>
-                            <tr status-data="3">
+                            <tr data-status="3">
                                 <td>556481</td>
                                 <td>Avstralija ICT</td>
                                 <td>15.11.15 - 12.12.16</td>
-                                <td>Aktiven  <i class="glyphicon glyphicon-road alert-warning"></i> </td>
+                                <td>Aktiven <i class="glyphicon glyphicon-road alert-warning"></i></td>
                                 <td>15000 €</td>
                                 <td>512 €</td>
                                 <td>N/A</td>
-                                <td><a href="#" type="button" class="btn btn-primary open-order float-left no-margin">Odpri</a>
-                                    <a href="#" type="button" class="btn btn-default open-connected-orders float-right no-margin">Odpri povezano</a></td>
+                                <td><a href="#"  class="btn btn-primary open-order float-left no-margin">Odpri</a>
+                                    <a href="#"
+                                       class="btn btn-default open-connected-orders float-right no-margin">Odpri
+                                        povezano</a></td>
                             </tr>
-                            <tr status-data="1">
+                            <tr data-status="1">
                                 <td>556481</td>
                                 <td>Avstralija ICT</td>
                                 <td>15.11.15 - 12.12.16</td>
-                                <td>Zavrnjen  <i class="glyphicon glyphicon-remove alert-danger"></i> </td>
+                                <td>Zavrnjen <i class="glyphicon glyphicon-remove alert-danger"></i></td>
                                 <td>N/A</td>
                                 <td>N/A</td>
                                 <td>N/A</td>
-                                <td><a href="#" type="button" class="btn btn-primary open-order float-left no-margin">Odpri</a>
-                                    <a href="#" type="button" class="btn btn-default open-connected-orders float-right no-margin">Odpri povezano</a></td>
+                                <td><a href="#"  class="btn btn-primary open-order float-left no-margin">Odpri</a>
+                                    <a href="#"
+                                       class="btn btn-default open-connected-orders float-right no-margin">Odpri
+                                        povezano</a></td>
                             </tr>
-                            <tr status-data="0">
+                            <tr data-status="0">
                                 <td>556481</td>
                                 <td>Avstralija ICT</td>
                                 <td>15.11.15 - 12.12.16</td>
-                                <td>Odobren  <i class="glyphicon glyphicon-ok alert-success"></i> </td>
+                                <td>Odobren <i class="glyphicon glyphicon-ok alert-success"></i></td>
                                 <td>15000 €</td>
                                 <td>0 €</td>
                                 <td>N/A</td>
-                                <td><a href="#" type="button" class="btn btn-primary open-order float-left no-margin">Odpri</a>
-                                    <a href="#" type="button" class="btn btn-default open-connected-orders float-right no-margin">Odpri povezano</a></td>
+                                <td><a href="#"  class="btn btn-primary open-order float-left no-margin">Odpri</a>
+                                    <a href="#"
+                                       class="btn btn-default open-connected-orders float-right no-margin">Odpri
+                                        povezano</a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -174,8 +189,6 @@
 <div class="background-popup hidden" id="connected-order">
 
 </div>
-
-
 
 
 </body>
