@@ -241,6 +241,8 @@ var EXPENSE = {
                     var qr_read = $(".qr-result").html();
                     var htmlEntry = '<tr> <td>' + qr_read + '</td> <td>N/A</td> <td>QR Auto Read</td> </tr>';
                     table.append(htmlEntry)
+                    $('#qr-reader').html5_qrcode_stop();
+                    $(this).closest(".background-popup").toggleClass("hidden");
                 }
             });
 
