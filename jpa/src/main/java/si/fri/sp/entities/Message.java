@@ -4,19 +4,20 @@ import si.fri.sp.entities.generic.BasicResource;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @Author Gasper Andrejc, created on 04/jan/2016
  */
 @Entity
-@NamedQueries({@NamedQuery(name="Message.findAll", query="SELECT o FROM MessageEntity o where o.archived = :archived"),
-        @NamedQuery(name="Message.getUserOutgoing", query = "SELECT m FROM MessageEntity m JOIN m.fromUser u where u.id = :uid and m.archived = :archived"),
-        @NamedQuery(name="Message.getUserIncoming", query = "SELECT m FROM MessageEntity m JOIN m.toUser u where u.id = :uid and m.archived = :archived"),
-        @NamedQuery(name="Message.getByZahtevek", query = "SELECT m FROM MessageEntity m JOIN m.zahtevekRelated u where u.id = :uid and m.archived = :archived"),
-        @NamedQuery(name="Message.getByNalog", query = "SELECT m FROM MessageEntity m JOIN m.nalogRelated u where u.id = :uid and m.archived = :archived")
+@NamedQueries({@NamedQuery(name="Message.findAll", query="SELECT o FROM Message o where o.archived = :archived"),
+        @NamedQuery(name="Message.getUserOutgoing", query = "SELECT m FROM Message m JOIN m.fromUser u where u.id = :uid and m.archived = :archived"),
+        @NamedQuery(name="Message.getUserIncoming", query = "SELECT m FROM Message m JOIN m.toUser u where u.id = :uid and m.archived = :archived"),
+        @NamedQuery(name="Message.getByZahtevek", query = "SELECT m FROM Message m JOIN m.zahtevekRelated u where u.id = :uid and m.archived = :archived"),
+        @NamedQuery(name="Message.getByNalog", query = "SELECT m FROM Message m JOIN m.nalogRelated u where u.id = :uid and m.archived = :archived")
 })
 @Table(name = "message")
-public class MessageEntity extends BasicResource implements Serializable {
+public class Message extends BasicResource implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -45,9 +46,13 @@ public class MessageEntity extends BasicResource implements Serializable {
 
     private boolean archived;
 
+    private Date date;
+
+    private String subject;
 
 
-    public MessageEntity() {
+
+    public Message() {
     }
 
     public int getId() {
@@ -66,6 +71,13 @@ public class MessageEntity extends BasicResource implements Serializable {
         this.archived = archived;
     }
 
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
 
     public String getContent() {
         return content;
@@ -84,6 +96,14 @@ public class MessageEntity extends BasicResource implements Serializable {
         this.nalogRelated = nalogRelated;
     }
 
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public Zahtevek getZahtevekRelated() {
         return zahtevekRelated;

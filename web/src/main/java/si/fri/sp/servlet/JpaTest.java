@@ -1,6 +1,6 @@
 package si.fri.sp.servlet;
 
-import si.fri.sp.entities.MessageEntity;
+import si.fri.sp.entities.Message;
 import si.fri.sp.entities.Nalog;
 import si.fri.sp.entities.User;
 import si.fri.sp.entities.Zahtevek;
@@ -98,7 +98,7 @@ public class JpaTest extends HttpServlet{
         nalogEntity2.setStatus(NalogStatus.ACTIVE);
         //nalogServiceLocal.create(nalogEntity2);
 
-        MessageEntity messageEntity = new MessageEntity();
+        Message messageEntity = new Message();
         messageEntity.setContent("message one");
         messageEntity.setFromUser(userServiceLocal.read(3));
         messageEntity.setToUser(userServiceLocal.read(5));
@@ -106,7 +106,7 @@ public class JpaTest extends HttpServlet{
         messageEntity.setZahtevekRelated(zahtevekServiceLocal.read(2));
         //messageServiceLocal.create(messageEntity);
 
-        MessageEntity messageEntity1 = new MessageEntity();
+        Message messageEntity1 = new Message();
         messageEntity1.setContent("message two");
         messageEntity1.setFromUser(userServiceLocal.read(5));
         messageEntity1.setToUser(userServiceLocal.read(3));
@@ -114,7 +114,7 @@ public class JpaTest extends HttpServlet{
         messageEntity1.setZahtevekRelated(zahtevekServiceLocal.read(2));
         //messageServiceLocal.create(messageEntity1);
 
-        MessageEntity messageEntity2 = new MessageEntity();
+        Message messageEntity2 = new Message();
         messageEntity2.setContent("message three");
         messageEntity2.setFromUser(userServiceLocal.read(5));
         messageEntity2.setToUser(userServiceLocal.read(3));
@@ -122,11 +122,11 @@ public class JpaTest extends HttpServlet{
         messageEntity2.setZahtevekRelated(zahtevekServiceLocal.read(2));
         //messageServiceLocal.create(messageEntity2);
         pw.println("related to nalog 2");
-        for(MessageEntity inc : messageServiceLocal.getRelatedToNalog(2, false)){
+        for(Message inc : messageServiceLocal.getRelatedToNalog(2, false)){
             pw.println(inc.getContent());
         }
         pw.println("all unarchived messages");
-        for(MessageEntity out : messageServiceLocal.readFromTo(-1,- 1, false)){
+        for(Message out : messageServiceLocal.readFromTo(-1,- 1, false)){
             pw.println(out.getContent());
         }
 

@@ -51,7 +51,11 @@ public class UserDashboard implements Serializable {
     }
 
     private void initZahtevki(){
-        myZahtevki = applicationCache.getUserZahtevek(currentUser, false);
+        try {
+            myZahtevki = applicationCache.getUserZahtevek(currentUser, false);
+        } catch (Exception e) {
+            LOGGER.error("Error trying to fetch user's zahtevki", e);
+        }
     }
 
     public String getDate(Date date){

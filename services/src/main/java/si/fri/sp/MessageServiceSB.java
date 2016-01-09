@@ -1,6 +1,6 @@
 package si.fri.sp;
 
-import si.fri.sp.entities.MessageEntity;
+import si.fri.sp.entities.Message;
 import si.fri.sp.interfaces.MessageServiceLocal;
 
 import javax.ejb.Local;
@@ -21,7 +21,7 @@ public class MessageServiceSB implements MessageServiceLocal {
     @PersistenceContext(unitName = "expense-persistence")
     EntityManager em;
 
-    public void create(MessageEntity ent) {
+    public void create(Message ent) {
         if(ent != null){
             em.persist(ent);
         }else{
@@ -29,7 +29,7 @@ public class MessageServiceSB implements MessageServiceLocal {
         }
     }
 
-    public void update(MessageEntity ent) {
+    public void update(Message ent) {
         if(ent != null){
             em.merge(ent);
         }else{
@@ -37,7 +37,7 @@ public class MessageServiceSB implements MessageServiceLocal {
         }
     }
 
-    public void delete(MessageEntity ent) {
+    public void delete(Message ent) {
         if(ent != null){
             em.remove(read(ent.getId()));
         }else{
@@ -45,53 +45,53 @@ public class MessageServiceSB implements MessageServiceLocal {
         }
     }
 
-    public MessageEntity read(int entId) {
-        MessageEntity ue = em.find(MessageEntity.class, entId);
+    public Message read(int entId) {
+        Message ue = em.find(Message.class, entId);
         if(ue != null){
             return ue;
         }
         return null;
     }
 
-    public List<MessageEntity> readFromTo(int start, int end, boolean archived) {
+    public List<Message> readFromTo(int start, int end, boolean archived) {
         Query q = em.createNamedQuery("Message.findAll");
         q.setParameter("archived", archived);
         if (start != -1 && end != -1) {
             q.setFirstResult(start);
             q.setMaxResults(end);
         }
-        return (List<MessageEntity>)q.getResultList();
+        return (List<Message>)q.getResultList();
     }
 
 
-    public List<MessageEntity> getRelatedToNalog(int nalogId, boolean archived) {
+    public List<Message> getRelatedToNalog(int nalogId, boolean archived) {
         Query q = em.createNamedQuery("Message.getByNalog");
         q.setParameter("archived", archived);
         q.setParameter("uid", nalogId);
-        return (List<MessageEntity>) q.getResultList();
+        return (List<Message>) q.getResultList();
     }
 
 
-    public List<MessageEntity> getRelatedToZahtevek(int zahtevekId, boolean archived) {
+    public List<Message> getRelatedToZahtevek(int zahtevekId, boolean archived) {
         Query q = em.createNamedQuery("Message.getByZahtevek");
         q.setParameter("archived", archived);
         q.setParameter("uid", zahtevekId);
-        List<MessageEntity> rtrns = q.getResultList();
-        return (List<MessageEntity>) q.getResultList();
+        List<Message> rtrns = q.getResultList();
+        return (List<Message>) q.getResultList();
     }
 
-    public List<MessageEntity> getUsersOutgoing(int userId, boolean archived) {
+    public List<Message> getUsersOutgoing(int userId, boolean archived) {
         Query q = em.createNamedQuery("Message.getUserOutgoing");
         q.setParameter("archived", archived);
         q.setParameter("uid", userId);
-        return (List<MessageEntity>) q.getResultList();
+        return (List<Message>) q.getResultList();
     }
 
 
-    public List<MessageEntity> getUsersIncoming(int userId, boolean archived) {
+    public List<Message> getUsersIncoming(int userId, boolean archived) {
         Query q = em.createNamedQuery("Message.getUserIncoming");
         q.setParameter("archived", archived);
         q.setParameter("uid", userId);
-        return (List<MessageEntity>) q.getResultList();
+        return (List<Message>) q.getResultList();
     }
 }

@@ -70,21 +70,26 @@
                             <div class="sub-header section border-top">
                                 <div class="float-left table-filters">
                                     <input class="checkbox-button hidden order-filter-user" type="checkbox" id="odobren"
-                                           checked="" />
-                                    <label for="odobren" class="check glyphicon glyphicon-ok alert-success">Odobreni</label>
+                                           checked=""/>
+                                    <label for="odobren"
+                                           class="check glyphicon glyphicon-ok alert-success">Odobreni</label>
 
-                                    <input class="checkbox-button hidden order-filter-user" type="checkbox" id="zavrnjen"
-                                           checked="" />
+                                    <input class="checkbox-button hidden order-filter-user" type="checkbox"
+                                           id="zavrnjen"
+                                           checked=""/>
                                     <label for="zavrnjen"
                                            class="check glyphicon glyphicon-remove alert-danger">Zavrnjeni</label>
 
                                     <input class="checkbox-button hidden order-filter-user" type="checkbox" id="izrvsen"
-                                           checked="" />
-                                    <label for="izrvsen" class="check glyphicon glyphicon-euro alert-info">Izvršeni</label>
+                                           checked=""/>
+                                    <label for="izrvsen"
+                                           class="check glyphicon glyphicon-euro alert-info">Izvršeni</label>
 
-                                    <input class="checkbox-button hidden order-filter-user" type="checkbox" id="aktivnen"
-                                           checked="" />
-                                    <label for="aktivnen" class="check glyphicon glyphicon-road alert-warning">Aktivni</label>
+                                    <input class="checkbox-button hidden order-filter-user" type="checkbox"
+                                           id="aktivnen"
+                                           checked=""/>
+                                    <label for="aktivnen"
+                                           class="check glyphicon glyphicon-road alert-warning">Aktivni</label>
 
                                 </div>
                             </div>
@@ -103,23 +108,34 @@
                                         <th class="action-th"></th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <ui:repeat value="#{listAllNalogi.allNalogi}" var="nalog">
-                                        <tr data-status="#{nalog.status.ordinal()}">
-                                            <td>#{nalog.id}</td>
-                                            <td>#{nalog.location}</td>
-                                            <td>#{listAllNalogi.getDate(nalog.fromDate)} - #{listAllNalogi.getDate(nalog.toDate)}</td>
-                                            <td>#{nalog.status.stringValue}</td>
-                                            <td>#{nalog.spent} €</td>
-                                            <td>#{nalog.zahtevek.costs} €</td>
-                                            <td>#{listAllNalogi.getDate(nalog.executedOn)}</td>
-                                            <td><a href="#" class="btn btn-primary open-order float-left no-margin">Odpri</a>
-                                                <a href="#"
-                                                   class="btn btn-default open-connected-orders float-right no-margin">Odpri
-                                                    povezano</a></td>
-                                        </tr>
-                                    </ui:repeat>
-                                    </tbody>
+                                    <h:form>
+                                        <tbody>
+                                        <ui:repeat value="#{listAllNalogi.allNalogi}" var="nalog">
+                                            <tr data-status="#{nalog.status.ordinal()}">
+                                                <td>#{nalog.id}</td>
+                                                <td>#{nalog.location}</td>
+                                                <td>#{listAllNalogi.getDate(nalog.fromDate)} - #{listAllNalogi.getDate(nalog.toDate)}</td>
+                                                <td>#{nalog.status.stringValue}</td>
+                                                <td>#{nalog.spent} €</td>
+                                                <td>#{nalog.zahtevek.costs} €</td>
+                                                <td>#{listAllNalogi.getDate(nalog.executedOn)}</td>
+                                                <td><h:commandLink type="submit"
+                                                                   class="btn btn-primary open-request user float-left"
+                                                                   value="Odpri">
+                                                    <f:ajax render="open-nalog-popup"
+                                                            listener="#{listAllNalogi.openNalog(nalog)}"/>
+                                                </h:commandLink>
+                                                <h:commandLink type="submit"
+                                                               class="btn btn-default open-request user float-right no-margin"
+                                                               value="Odpri povezano">
+                                                    <f:ajax render="open-connected-nalog-popup"
+                                                            listener="#{listAllNalogi.openConnectedSelectedNalog(nalog)}"/>
+                                                </h:commandLink>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+                                        </tbody>
+                                    </h:form>
                                 </table>
 
                             </div>
@@ -151,5 +167,16 @@
                 </div>
             </div>
         </div>
+
+        <h:panelGroup id="open-nalog-popup">
+            <h:panelGroup rendered="#{not empty listAllNalogi.selectedNalog}" styleClass="background-popup">
+                <ui:include src="../view-order.xhtml"/>
+            </h:panelGroup>
+        </h:panelGroup>
+        <h:panelGroup id="open-connected-nalog-popup">
+            <h:panelGroup rendered="#{not empty listAllNalogi.connectedSelectedNalog}" styleClass="background-popup">
+                <ui:include src="connected-order.xhtml"/>
+            </h:panelGroup>
+        </h:panelGroup>
     </h:body>
 </f:view>

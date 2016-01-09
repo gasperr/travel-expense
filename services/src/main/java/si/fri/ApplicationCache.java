@@ -1,5 +1,8 @@
 package si.fri;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import si.fri.sp.entities.Message;
 import si.fri.sp.entities.Nalog;
 import si.fri.sp.entities.User;
 import si.fri.sp.entities.Zahtevek;
@@ -23,6 +26,8 @@ import java.util.Map;
 @ApplicationScoped
 public class ApplicationCache implements Serializable {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationCache.class);
+
     @EJB
     private UserServiceLocal userServiceLocal;
 
@@ -42,6 +47,25 @@ public class ApplicationCache implements Serializable {
     private Map<Integer, Zahtevek> zahtevekCache = new HashMap<>();
     private Map<Integer, List<Zahtevek>> zahtevekUserCache = new HashMap<>();
 
+    private Map<Integer, List<Message>> nalogMessageCache = new HashMap<>();
+
+    public List<Message> getMessageByNalog(Nalog nalog) throws Exception{
+        if(nalog != null){
+            if(nalogMessageCache.containsKey(nalog.getId())){
+                return nalogMessageCache.get(nalog.getId());
+            }else{
+                List<Message> msgs = messageServiceLocal.getRelatedToNalog(nalog.getId(), true);
+                msgs.addAll(messageServiceLocal.getRelatedToNalog(nalog.getId(), false));
+                if(!msgs.isEmpty()){
+                    nalogMessageCache.put(nalog.getId(), msgs);
+                }
+                return msgs;
+            }
+        }else{
+            throw new Exception("Wanting to access cache with null value");
+        }
+    }
+
     public Nalog getNalog(Integer id){
         if(nalogCache.containsKey(id)){
             return nalogCache.get(id);
@@ -55,17 +79,21 @@ public class ApplicationCache implements Serializable {
             }
         }
     }
-    public List<Nalog> getUserNalogs(User user, boolean archived){
-        if(nalogUserCache.containsKey(user.getId())){
-            return nalogUserCache.get(user.getId());
-        }else{
-            List<Nalog> nalogs = nalogServiceLocal.getAllByUserId(user.getId(), archived);
-            if(!nalogs.isEmpty()){
-                nalogUserCache.put(user.getId(), nalogs);
-                return nalogs;
+    public List<Nalog> getUserNalogs(User user, boolean archived) throws Exception{
+        if(user != null){
+            if(nalogUserCache.containsKey(user.getId())){
+                return nalogUserCache.get(user.getId());
             }else{
-                return new ArrayList<>();
+                List<Nalog> nalogs = nalogServiceLocal.getAllByUserId(user.getId(), archived);
+                if(!nalogs.isEmpty()){
+                    nalogUserCache.put(user.getId(), nalogs);
+                    return nalogs;
+                }else{
+                    return new ArrayList<>();
+                }
             }
+        }else{
+            throw new Exception("Wanting to access cache with null value");
         }
     }
     public Zahtevek getZahtevek(Integer id){
@@ -81,17 +109,21 @@ public class ApplicationCache implements Serializable {
             }
         }
     }
-    public List<Zahtevek> getUserZahtevek(User user, boolean archived){
-        if(zahtevekUserCache.containsKey(user.getId())){
-            return zahtevekUserCache.get(user.getId());
-        }else{
-            List<Zahtevek> zahteveks = zahtevekServiceLocal.getAllByUserId(user.getId(), archived);
-            if(!zahteveks.isEmpty()){
-                zahtevekUserCache.put(user.getId(), zahteveks);
-                return zahteveks;
+    public List<Zahtevek> getUserZahtevek(User user, boolean archived) throws Exception{
+        if(user != null){
+            if(zahtevekUserCache.containsKey(user.getId())){
+                return zahtevekUserCache.get(user.getId());
             }else{
-                return new ArrayList<>();
+                List<Zahtevek> zahteveks = zahtevekServiceLocal.getAllByUserId(user.getId(), archived);
+                if(!zahteveks.isEmpty()){
+                    zahtevekUserCache.put(user.getId(), zahteveks);
+                    return zahteveks;
+                }else{
+                    return new ArrayList<>();
+                }
             }
+        }else{
+            throw new Exception("Wanting to access cache with null value");
         }
     }
 

@@ -62,7 +62,7 @@ public class Nalog extends BasicResource implements Serializable {
     private User owner;
 
     @OneToMany(mappedBy = "nalogRelated", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private List<MessageEntity> relatedMessage;
+    private List<Message> relatedMessage;
 
     @OneToMany(mappedBy = "nalog", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<ServiceEntity> services;
@@ -196,9 +196,9 @@ public class Nalog extends BasicResource implements Serializable {
         this.owner = owner;
     }
 
-    public List<MessageEntity> getRelatedMessage() {
+    public List<Message> getRelatedMessage() {
         if(relatedMessage == null){
-            relatedMessage = new ArrayList<MessageEntity>();
+            relatedMessage = new ArrayList<Message>();
         }
         return relatedMessage;
     }

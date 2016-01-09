@@ -4,7 +4,7 @@
 
     <persistence-unit name="expense-persistence" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/sp_vaje</jta-data-source>
-        <class>si.fri.sp.entities.MessageEntity</class>
+        <class>si.fri.sp.entities.Message</class>
         <class>si.fri.sp.entities.Nalog</class>
         <class>si.fri.sp.entities.ServiceEntity</class>
         <class>si.fri.sp.entities.User</class>

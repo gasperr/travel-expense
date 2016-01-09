@@ -52,7 +52,7 @@ public class Zahtevek extends BasicResource implements Serializable {
     private User owner;
 
     @OneToMany(mappedBy = "zahtevekRelated", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private List<MessageEntity> relatedMessage;
+    private List<Message> relatedMessage;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "nalog")
@@ -151,9 +151,9 @@ public class Zahtevek extends BasicResource implements Serializable {
         this.nalog = nalog;
     }
 
-    public List<MessageEntity> getRelatedMessage() {
+    public List<Message> getRelatedMessage() {
         if(relatedMessage == null){
-            relatedMessage = new ArrayList<MessageEntity>();
+            relatedMessage = new ArrayList<Message>();
         }
         return relatedMessage;
     }

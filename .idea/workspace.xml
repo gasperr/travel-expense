@@ -2,38 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b8992e8-f378-44c1-944e-73a77a342d25" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/services/src/main/java/si/fri/ApplicationCache.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/ListAllNalogi.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/UserDashboard.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/src/main/java/si/fri/sp/utils/Utils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/src/main/webapp/views/user/dashboard.xhtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/src/main/webapp/views/user/list-all.xhtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/src/main/webapp/views/view-order.xhtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/src/main/webapp/views/view-request.xhtml" />
-      <change type="MOVED" beforePath="C:\development\java\expense\jpa\src\main\java\si\fri\sp\entities\NalogEntity.java" afterPath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/Nalog.java" />
-      <change type="MOVED" beforePath="C:\development\java\expense\jpa\src\main\java\si\fri\sp\entities\UserEntity.java" afterPath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/User.java" />
-      <change type="MOVED" beforePath="C:\development\java\expense\jpa\src\main\java\si\fri\sp\entities\ZahtevekEntity.java" afterPath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/Zahtevek.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/src/main/webapp/views/user/connected-order.xhtml" />
+      <change type="MOVED" beforePath="C:\development\java\expense\jpa\src\main\java\si\fri\sp\entities\MessageEntity.java" afterPath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/Message.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/src/main/java/si/fri/ApplicationCache.java" afterPath="$PROJECT_DIR$/services/src/main/java/si/fri/ApplicationCache.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/src/main/java/si/fri/sp/servlet/JpaTest.java" afterPath="$PROJECT_DIR$/web/src/main/java/si/fri/sp/servlet/JpaTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/MessageEntity.java" afterPath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/MessageEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/ListAllNalogi.java" afterPath="$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/ListAllNalogi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/MessageServiceLocal.java" afterPath="$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/MessageServiceLocal.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/src/main/java/si/fri/sp/MessageServiceSB.java" afterPath="$PROJECT_DIR$/services/src/main/java/si/fri/sp/MessageServiceSB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/NalogServiceLocal.java" afterPath="$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/NalogServiceLocal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/src/main/java/si/fri/sp/NalogServiceSB.java" afterPath="$PROJECT_DIR$/services/src/main/java/si/fri/sp/NalogServiceSB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/enums/NalogStatus.java" afterPath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/enums/NalogStatus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/ServiceEntity.java" afterPath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/ServiceEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/generic/ServiceEntryPoint.java" afterPath="$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/generic/ServiceEntryPoint.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/src/main/java/si/fri/sp/ServiceServiceSB.java" afterPath="$PROJECT_DIR$/services/src/main/java/si/fri/sp/ServiceServiceSB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/UserServiceLocal.java" afterPath="$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/UserServiceLocal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/src/main/java/si/fri/sp/UserServiceSB.java" afterPath="$PROJECT_DIR$/services/src/main/java/si/fri/sp/UserServiceSB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/ZahtevekServiceLocal.java" afterPath="$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/ZahtevekServiceLocal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/src/main/java/si/fri/sp/ZahtevekServiceSB.java" afterPath="$PROJECT_DIR$/services/src/main/java/si/fri/sp/ZahtevekServiceSB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/enums/ZahtevekStatus.java" afterPath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/enums/ZahtevekStatus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/src/main/webapp/js/main.js" afterPath="$PROJECT_DIR$/web/src/main/webapp/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/Nalog.java" afterPath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/Nalog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/User.java" afterPath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/UserDashboard.java" afterPath="$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/UserDashboard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/enums/UserType.java" afterPath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/enums/UserType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/src/main/java/si/fri/sp/utils/Utils.java" afterPath="$PROJECT_DIR$/web/src/main/java/si/fri/sp/utils/Utils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/Zahtevek.java" afterPath="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/Zahtevek.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/src/main/webapp/views/user/list-all.xhtml" afterPath="$PROJECT_DIR$/web/src/main/webapp/views/user/list-all.xhtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpa/src/main/resources/META-INF/persistence.xml" afterPath="$PROJECT_DIR$/jpa/src/main/resources/META-INF/persistence.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/pom.xml" afterPath="$PROJECT_DIR$/web/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/src/main/webapp/views/view-request.html" afterPath="$PROJECT_DIR$/web/src/main/webapp/views/view-request.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/src/main/webapp/views/view-order.xhtml" afterPath="$PROJECT_DIR$/web/src/main/webapp/views/view-order.xhtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="expense.iws" />
@@ -119,11 +103,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="view-order.xhtml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/view-order.xhtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.423077">
+              <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="list-all.xhtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/user/list-all.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.115385">
-              <caret line="110" column="91" selection-start-line="110" selection-start-column="91" selection-end-line="110" selection-end-column="91" />
+            <state vertical-scroll-proportion="-26.0">
+              <caret line="175" column="52" selection-start-line="175" selection-start-column="26" selection-end-line="175" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5397351">
+              <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="connected-order.xhtml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/user/connected-order.xhtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-28.615385">
+              <caret line="107" column="11" selection-start-line="107" selection-start-column="11" selection-end-line="107" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="connected-order.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/user/connected-order.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.7272725">
+              <caret line="25" column="63" selection-start-line="25" selection-start-column="60" selection-end-line="25" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list-all.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/user/list-all.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.5">
+              <caret line="188" column="41" selection-start-line="188" selection-start-column="41" selection-end-line="188" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -133,11 +167,33 @@
         <entry file="file://$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/ListAllNalogi.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+              <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1113#1114#0" expanded="true" />
-                <element signature="e#1160#1161#0" expanded="true" />
+                <element signature="e#1367#1368#0" expanded="true" />
+                <element signature="e#1404#1405#0" expanded="true" />
+                <element signature="e#1590#1591#0" expanded="true" />
+                <element signature="e#1640#1641#0" expanded="true" />
+                <element signature="e#1839#1840#0" expanded="true" />
+                <element signature="e#1875#1876#0" expanded="true" />
+                <element signature="e#1932#1933#0" expanded="true" />
+                <element signature="e#1982#1983#0" expanded="true" />
+                <element signature="e#2030#2031#0" expanded="true" />
+                <element signature="e#2075#2076#0" expanded="true" />
+                <element signature="e#2589#2590#0" expanded="true" />
+                <element signature="e#2636#2637#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApplicationCache.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/services/src/main/java/si/fri/ApplicationCache.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="126" column="9" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -147,79 +203,11 @@
         <entry file="file://$PROJECT_DIR$/web/src/main/java/si/fri/sp/utils/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view-order.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/view-order.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="109" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view-order.xhtml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/view-order.xhtml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-77.80769">
-              <caret line="119" column="14" selection-start-line="119" selection-start-column="14" selection-end-line="119" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApplicationCache.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/services/src/main/java/si/fri/ApplicationCache.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="61" column="55" selection-start-line="61" selection-start-column="55" selection-end-line="61" selection-end-column="55" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NalogServiceSB.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/services/src/main/java/si/fri/sp/NalogServiceSB.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Nalog.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/Nalog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="72" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="72" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserDashboard.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/UserDashboard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7504078">
-              <caret line="49" column="42" selection-start-line="49" selection-start-column="42" selection-end-line="49" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1088#1089#0" expanded="true" />
-                <element signature="e#1147#1148#0" expanded="true" />
+                <element signature="e#639#903#0" expanded="true" />
+                <element signature="e#902#903#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -250,13 +238,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/web/src/main/webapp/views/map.html" />
-        <option value="$PROJECT_DIR$/web/src/main/webapp/views/statistics.html" />
         <option value="$PROJECT_DIR$/web/src/main/webapp/views/archive.html" />
         <option value="$PROJECT_DIR$/jpa/pom.xml" />
         <option value="$PROJECT_DIR$/jpa/src/main/resources/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/enums/Status.java" />
-        <option value="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/enums/UserType.java" />
         <option value="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/generic/BasicResource.java" />
         <option value="$PROJECT_DIR$/interfaces/pom.xml" />
         <option value="$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/ServiceEntryPoint.java" />
@@ -275,10 +260,8 @@
         <option value="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/enums/ZahtevekStatus.java" />
         <option value="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/ServiceEntity.java" />
         <option value="$PROJECT_DIR$/web/pom.xml" />
-        <option value="$PROJECT_DIR$/web/src/main/webapp/js/main.js" />
         <option value="$PROJECT_DIR$/web/src/main/webapp/views/view-request.html" />
         <option value="$PROJECT_DIR$/web/src/main/webapp/views/view-request.xhtml" />
-        <option value="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/MessageEntity.java" />
         <option value="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/Zahtevek.java" />
         <option value="$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/generic/ServiceEntryPoint.java" />
         <option value="$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/ZahtevekServiceLocal.java" />
@@ -288,19 +271,24 @@
         <option value="$PROJECT_DIR$/services/src/main/java/si/fri/sp/ServiceServiceSB.java" />
         <option value="$PROJECT_DIR$/services/src/main/java/si/fri/sp/UserServiceSB.java" />
         <option value="$PROJECT_DIR$/web/src/main/java/si/fri/sp/servlet/JpaTest.java" />
-        <option value="$PROJECT_DIR$/services/src/main/java/si/fri/ApplicationCache.java" />
         <option value="$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/ListAll.java" />
         <option value="$PROJECT_DIR$/web/src/main/webapp/views/user/dashboard.xhtml" />
-        <option value="$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/UserDashboard.java" />
         <option value="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/enums/NalogStatus.java" />
-        <option value="$PROJECT_DIR$/web/src/main/java/si/fri/sp/utils/Utils.java" />
         <option value="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/User.java" />
         <option value="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/Nalog.java" />
         <option value="$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/NalogServiceLocal.java" />
         <option value="$PROJECT_DIR$/services/src/main/java/si/fri/sp/NalogServiceSB.java" />
-        <option value="$PROJECT_DIR$/web/src/main/webapp/views/user/list-all.xhtml" />
-        <option value="$PROJECT_DIR$/web/src/main/webapp/views/view-order.xhtml" />
+        <option value="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/MessageEntity.java" />
+        <option value="$PROJECT_DIR$/services/src/main/java/si/fri/ApplicationCache.java" />
+        <option value="$PROJECT_DIR$/web/src/main/java/si/fri/sp/utils/Utils.java" />
         <option value="$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/ListAllNalogi.java" />
+        <option value="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/Message.java" />
+        <option value="$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/enums/UserType.java" />
+        <option value="$PROJECT_DIR$/web/src/main/webapp/views/view-order.xhtml" />
+        <option value="$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/UserDashboard.java" />
+        <option value="$PROJECT_DIR$/web/src/main/webapp/views/user/list-all.xhtml" />
+        <option value="$PROJECT_DIR$/web/src/main/webapp/views/user/connected-order.xhtml" />
+        <option value="$PROJECT_DIR$/web/src/main/webapp/js/main.js" />
       </list>
     </option>
   </component>
@@ -332,7 +320,7 @@
     <option name="x" value="86" />
     <option name="y" value="-8" />
     <option name="width" value="1842" />
-    <option name="height" value="1096" />
+    <option name="height" value="1092" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -965,7 +953,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../vitaly-backbone" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ixtlan-zvem" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -1348,7 +1336,7 @@
       <workItem from="1448360105233" duration="1339000" />
       <workItem from="1451930685039" duration="15042000" />
       <workItem from="1452337169408" duration="6226000" />
-      <workItem from="1452344507913" duration="12679000" />
+      <workItem from="1452344507913" duration="17796000" />
     </task>
     <task id="LOCAL-00001" summary="Moved to java project">
       <created>1448146258170</created>
@@ -1416,14 +1404,20 @@
       <option name="project" value="LOCAL" />
       <updated>1451949013390</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Starting with jsf implementation, added userdashboard backing bean">
+      <created>1452357238941</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1452357238941</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57333000" />
+    <option name="totallyTimeSpent" value="62450000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="86" y="-8" width="1842" height="1096" extended-state="6" />
+    <frame x="86" y="-8" width="1842" height="1092" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1446,10 +1440,11 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34861407" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31663114" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34796575" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31663114" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1457,7 +1452,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24971941" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1521,7 +1515,8 @@
     <MESSAGE value="Edited porocilo and connected newly created archive page on the menu" />
     <MESSAGE value="Slight change to porocilo and archive bug fixed" />
     <MESSAGE value="Init backend stuff, added JPA implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Init backend stuff, added JPA implementation" />
+    <MESSAGE value="Starting with jsf implementation, added userdashboard backing bean" />
+    <option name="LAST_COMMIT_MESSAGE" value="Starting with jsf implementation, added userdashboard backing bean" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1531,12 +1526,6 @@
           <line>24</line>
           <properties />
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/UserDashboard.java</url>
-          <line>41</line>
-          <properties />
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="15" />
@@ -1548,38 +1537,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/enums/UserType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14945056">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/generic/BasicResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="59" selection-start-line="7" selection-start-column="59" selection-end-line="7" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfaces/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/UserServiceLocal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="70" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interfaces/src/main/java/si/fri/sp/interfaces/ServiceServiceLocal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1653,8 +1610,8 @@
         <state vertical-scroll-proportion="0.10879121">
           <caret line="101" column="21" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
           <folding>
-            <element signature="e#2979#2980#0" expanded="true" />
-            <element signature="e#3009#3010#0" expanded="true" />
+            <element signature="e#2979#2980#0" expanded="false" />
+            <element signature="e#3009#3010#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1752,23 +1709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/MessageEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="152" selection-start-line="15" selection-start-column="152" selection-end-line="15" selection-end-column="152" />
-          <folding>
-            <element signature="e#1724#1725#0" expanded="true" />
-            <element signature="e#1749#1750#0" expanded="true" />
-            <element signature="e#1782#1783#0" expanded="true" />
-            <element signature="e#1810#1811#0" expanded="true" />
-            <element signature="e#1845#1846#0" expanded="true" />
-            <element signature="e#1876#1877#0" expanded="true" />
-            <element signature="e#1925#1926#0" expanded="true" />
-            <element signature="e#1965#1966#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/src/main/java/si/fri/sp/ServiceServiceSB.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1801,14 +1741,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="214" column="55" selection-start-line="214" selection-start-column="53" selection-end-line="214" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/html5-schema/html5/block.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47692308">
@@ -1822,43 +1754,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="18" selection-end-column="5" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/enums/NalogStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="15" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/user/list-all.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.730769">
-          <caret line="21" column="1" selection-start-line="21" selection-start-column="0" selection-end-line="187" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/user/dashboard.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6545453">
-          <caret line="84" column="88" selection-start-line="84" selection-start-column="88" selection-end-line="84" selection-end-column="88" />
-          <folding>
-            <element signature="n#div#1;n#h:body#0;n#f:view#0;n#!!top" expanded="false" />
-            <marker date="1452353128654" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="21" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1888,16 +1783,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/src/main/java/si/fri/ApplicationCache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="55" selection-start-line="61" selection-start-column="55" selection-end-line="61" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/src/main/java/si/fri/sp/NalogServiceSB.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1916,42 +1801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/Nalog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="72" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/user/list-all.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385">
-          <caret line="110" column="91" selection-start-line="110" selection-start-column="91" selection-end-line="110" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/main/java/si/fri/sp/utils/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/view-request.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78364563">
-          <caret line="96" column="14" selection-start-line="0" selection-start-column="0" selection-end-line="99" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/view-order.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
@@ -1960,10 +1809,128 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/user/dashboard.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13117547">
+          <caret line="279" column="8" selection-start-line="279" selection-start-column="8" selection-end-line="283" selection-end-column="23" />
+          <folding>
+            <element signature="n#div#1;n#h:body#0;n#f:view#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/Nalog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="118" column="17" selection-start-line="118" selection-start-column="17" selection-end-line="118" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2944#2945#0" expanded="true" />
+            <element signature="e#2973#2974#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/view-request.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.807693">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="18" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/lang/IllegalArgumentException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="6" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/src/main/java/si/fri/ApplicationCache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="126" column="9" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="73" column="32" selection-start-line="73" selection-start-column="32" selection-end-line="73" selection-end-column="32" />
+          <folding>
+            <element signature="e#1879#1880#0" expanded="true" />
+            <element signature="e#1910#1911#0" expanded="true" />
+            <element signature="e#1959#1960#0" expanded="true" />
+            <element signature="e#1999#2000#0" expanded="true" />
+            <element signature="e#2063#2064#0" expanded="true" />
+            <element signature="e#2109#2110#0" expanded="true" />
+            <element signature="e#2147#2148#0" expanded="true" />
+            <element signature="e#2502#2503#0" expanded="true" />
+            <element signature="e#2529#2530#0" expanded="true" />
+            <element signature="e#2567#2568#0" expanded="true" />
+            <element signature="e#2599#2600#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/enums/NalogStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20640177">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="19" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/enums/UserType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22516556">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpa/src/main/java/si/fri/sp/entities/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="79" column="17" selection-start-line="79" selection-start-column="17" selection-end-line="79" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1915#1916#0" expanded="true" />
+            <element signature="e#1942#1943#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/UserDashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4558499">
+          <caret line="56" column="67" selection-start-line="56" selection-start-column="67" selection-end-line="56" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/java/si/fri/sp/utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#639#903#0" expanded="true" />
+            <element signature="e#902#903#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/view-order.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-77.80769">
-          <caret line="119" column="14" selection-start-line="119" selection-start-column="14" selection-end-line="119" selection-end-column="14" />
+        <state vertical-scroll-proportion="-12.423077">
+          <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
           <folding />
         </state>
       </provider>
@@ -1971,24 +1938,62 @@
     <entry file="file://$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/ListAllNalogi.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+          <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1113#1114#0" expanded="true" />
-            <element signature="e#1160#1161#0" expanded="true" />
+            <element signature="e#1367#1368#0" expanded="true" />
+            <element signature="e#1404#1405#0" expanded="true" />
+            <element signature="e#1590#1591#0" expanded="true" />
+            <element signature="e#1640#1641#0" expanded="true" />
+            <element signature="e#1839#1840#0" expanded="true" />
+            <element signature="e#1875#1876#0" expanded="true" />
+            <element signature="e#1932#1933#0" expanded="true" />
+            <element signature="e#1982#1983#0" expanded="true" />
+            <element signature="e#2030#2031#0" expanded="true" />
+            <element signature="e#2075#2076#0" expanded="true" />
+            <element signature="e#2589#2590#0" expanded="true" />
+            <element signature="e#2636#2637#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/main/java/si/fri/sp/user/UserDashboard.java">
+    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/user/connected-order.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7504078">
-          <caret line="49" column="42" selection-start-line="49" selection-start-column="42" selection-end-line="49" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1088#1089#0" expanded="true" />
-            <element signature="e#1147#1148#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-7.7272725">
+          <caret line="25" column="63" selection-start-line="25" selection-start-column="60" selection-end-line="25" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/user/list-all.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.5">
+          <caret line="188" column="41" selection-start-line="188" selection-start-column="41" selection-end-line="188" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/user/list-all.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-26.0">
+          <caret line="175" column="52" selection-start-line="175" selection-start-column="26" selection-end-line="175" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/views/user/connected-order.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-28.615385">
+          <caret line="107" column="11" selection-start-line="107" selection-start-column="11" selection-end-line="107" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/webapp/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5397351">
+          <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

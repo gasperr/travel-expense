@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <ui:param name="zahtevek" value="#{listAllNalogi.connectedSelectedNalog.zahtevek}"/>
+    <ui:param name="selected" value="#{listAllNalogi.connectedSelectedNalog}"/>
+
+    <!--@elvariable id="zahtevek" type="si.fri.sp.entities.Zahtevek"-->
+    <!--@elvariable id="selected" type="si.fri.sp.entities.Nalog"-->
+
+    <h:form prependId="false">
+        <div class="floating-popup popup">
+            <div class="container">
+                <div class="content-inner">
+                    <div class="row popup-header">
+                        <span class="title">Povezano z nalogom ##{selected.id}</span>
+                        <h:commandLink class="close-popup"><i
+                                class="title glyphicon glyphicon-remove-sign float-right"></i>
+                            <f:ajax render="open-connected-nalog-popup" listener="#{listAllNalogi.closeConnectedSelectedNalog()}"/>
+                        </h:commandLink>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div>
+                                <div class="content-inner">
+                                    <div class="header smaller">
+                                        <span class="title">Korenspondenca</span>
+                                    </div>
+                                    <div class="section popup-portlet">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>Pošiljatelj</th>
+                                                <th>Zadeva</th>
+                                                <th>Datum</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <ui:repeat value="#{listAllNalogi.getConnectedMessages()}" var="msg">
+                                                <tr class="collapsable">
+                                                    <td><i class="glyphicon glyphicon-chevron-down small"></i> #{msg.fromUser.name} #{msg.fromUser.surname}, #{msg.fromUser.type.stringValue}</td>
+                                                    <td>#{msg.subject}</td>
+                                                    <td>#{listAllNalogi.getDate(msg.date)}</td>
+                                                </tr>
+                                                <tr style="display: none;">
+                                                    <td colspan="3" class="msg-content"><p>#{msg.content}</p></td>
+                                                </tr>
+                                            </ui:repeat>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div>
+                                <div class="content-inner">
+                                    <div class="header smaller">
+                                        <span class="title">Zahtevek</span>
+                                    </div>
+                                    <div class="section popup-portlet">
+                                        <table class="table">
+                                            <tbody>
+                                            <tr>
+                                                <td><strong>Lokacija: </strong>#{zahtevek.location}</td>
+                                                <td><strong>Pred. strošek: </strong>#{zahtevek.costs} €</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Termin od: </strong>#{listAllNalogi.getDate(zahtevek.fromDate)}</td>
+                                                <td><strong>do: </strong>#{listAllNalogi.getDate(zahtevek.toDate)}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><strong>Datum, kraj zadnjega zaht.: </strong>TODOa</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><strong>Opis: </strong>#{zahtevek.content}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Pregledan s strani: </strong>#{zahtevek.reviewedBy.name} #{zahtevek.reviewedBy.surname}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </h:form>
+
+    <script>
+        $("#open-connected-nalog-popup").on("click", "tr", function () {
+            console.log("WORKING YO");
+            var $target = $(event.target);
+            var closesTr = $target.closest("tr[class*='collapsable']");
+            closesTr.toggleClass("info");
+            closesTr.find("i[class*='glyphicon']").toggleClass("glyphicon-chevron-down glyphicon-chevron-up");
+            closesTr.next().slideToggle();
+        });
+    </script>
+
+</ui:composition>

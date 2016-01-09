@@ -6,9 +6,7 @@ import si.fri.sp.entities.generic.BasicResource;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -47,10 +45,10 @@ public class User extends BasicResource implements Serializable {
     Set<Nalog> nalogi;
 
     @OneToMany(mappedBy = "toUser", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    Set<MessageEntity> messagesIncoming;
+    Set<Message> messagesIncoming;
 
     @OneToMany(mappedBy = "fromUser", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    Set<MessageEntity> messagesOutgoing;
+    Set<Message> messagesOutgoing;
 
     public User() {
     }
@@ -94,16 +92,16 @@ public class User extends BasicResource implements Serializable {
         return this.reviewedZahtevki;
     }
 
-    public Set<MessageEntity> getMessagesIncoming() {
+    public Set<Message> getMessagesIncoming() {
         if(this.messagesIncoming == null){
-            this.messagesIncoming = new HashSet<MessageEntity>();
+            this.messagesIncoming = new HashSet<Message>();
         }
         return messagesIncoming;
     }
 
-    public Set<MessageEntity> getMessagesOutgoing() {
+    public Set<Message> getMessagesOutgoing() {
         if(this.messagesOutgoing == null){
-            this.messagesOutgoing = new HashSet<MessageEntity>();
+            this.messagesOutgoing = new HashSet<Message>();
         }
         return messagesOutgoing;
     }
