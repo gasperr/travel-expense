@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <title>Travel e-Xpense</title>
+
+        <link href='../css/bootstrap/bootstrap.min.css' rel='stylesheet'></link>
+        <link href='../css/main.css' rel='stylesheet'></link>
+
+
+        <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+
+        <script type="text/javascript"
+                src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/html5-qrcode.min.js"></script>
+        <script src="../js/main.js"></script>
+    </h:head>
+    <h:body>
+        <div class="main-container">
+            <div class="row main-navbar">
+                <nav class="menu navbar">
+                    <ul class="active">
+                        <li class="current-item"><a href="#" class="btn btn-lg btn-default" id="home">
+                            <div class="main-btn">Domov</div>
+                        </a></li>
+                        <li><a href="user/list-all.html" class="btn btn-lg btn-default">
+                            <div class="main-btn">Moji nalogi</div>
+                        </a></li>
+                        <li><a href="messages.html" class="btn btn-lg btn-default">
+                            <div class="main-btn">Sporočila</div>
+                        </a></li>
+                        <li><a href="archive.html" class="btn btn-lg btn-default">
+                            <div class="main-btn">Arhiv</div>
+                        </a></li>
+                        <li><a data-toggle="tooltip" title="Pomoč na poti" class="btn btn-lg btn-default" id="globe"
+                               href="map.html">
+                            <i class="glyphicon glyphicon-globe blue"></i>
+
+                        </a></li>
+
+                    </ul>
+
+
+                    <a class="toggle-nav" href="#">&#9776;</a>
+
+                    <div class="profile">
+                        <div class="logo"></div>
+                        <a href="../../index.html" class="btn btn-xs btn-default">
+                            <div class="edit-profile-btn">Odjava</div>
+                        </a>
+
+                    </div>
+                </nav>
+
+            </div>
+
+            <div class="row dashboard-content">
+
+                <div class="box col-md-2 col-lg-2 col-sm-3">
+                    <div class="dashboard-portlet">
+                        <div class="map-header">
+                            <h2> Filtriranje</h2>
+
+                        </div>
+                        <div class="box-content box" id="moznosti">
+                            <div class="input-group-vertical">
+
+                                <div class="map-checkbox check">
+                                    <input type="checkbox" checked="" class="request-filter-user"/>
+                                    Nalogi
+                                </div>
+
+                                <div class="map-checkbox check">
+                                    <input type="checkbox" checked="" class="request-filter-user"/>
+                                    Zahtevki
+                                </div>
+
+                                <div class="map-checkbox check">
+                                    <input type="checkbox" checked="" class="request-filter-user"/>
+                                    Sporočila
+                                </div>
+                                <div class="no-border search">
+                                    <input type="search" placeholder="Po ključni besedi.." class="filterTableString"
+                                           id="archiveTable"/>
+                                </div>
+
+
+                            </div>
+                            <!-- /input-group -->
+                        </div>
+                    </div>
+                    <!--/span-->
+
+                </div>
+                <div class="col-md-10 col-lg-10 col-sm-9">
+                    <div class="dashboard-portlet">
+                        <div class="map-header">
+                            <h2><i class="glyphicon glyphicon-compressed"></i> Arhiv</h2>
+
+                        </div>
+                        <div class="content-inner">
+                            <div class="content-table section msgs status">
+                                <table class="archiveTable table">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 50%;">Ključne besede</th>
+                                        <th style="width: 15%;">Tip</th>
+                                        <th style="width: 20%;">Datum</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <ui:repeat value="#{archive.archivedMessages}" var="msg">
+                                        <tr class="collapsable" data-status="2">
+                                            <td>
+                                                <i class="glyphicon glyphicon-chevron-up small"></i> #{msg.toUser.name}, #{msg.subject}
+                                            </td>
+                                            <td>Sporočilo</td>
+                                            <td>#{archive.getDate(msg.date)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" class="msg-content"><p>#{msg.content}</p></td>
+                                        </tr>
+                                    </ui:repeat>
+
+                                    <ui:repeat value="#{archive.archivedZahtevki}" var="zahtevek">
+                                        <tr class="collapsable" data-status="1">
+                                            <td>
+                                                <i class="glyphicon glyphicon-chevron-up small"></i> #{zahtevek.location}
+                                            </td>
+                                            <td>Zahtevek</td>
+                                            <td>#{archive.getDate(zahtevek.toDate)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="corresponding-info" colspan="4">
+                                                <div class="section">
+                                                    <table class="table">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td><strong>Lokacija: </strong>#{zahtevek.location}</td>
+                                                            <td><strong>Pred. strošek: </strong>#{zahtevek.costs} €
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <strong>Termin od: </strong>#{messaging.getDate(zahtevek.fromDate)}
+                                                            </td>
+                                                            <td>
+                                                                <strong>do: </strong>#{messaging.getDate(zahtevek.toDate)}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                <strong>Datum, kraj zadnjega
+                                                                    zaht.: </strong>TODO
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                <strong>Opis: </strong>#{zahtevek.content}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <strong>Pregledan s strani: </strong>#{zahtevek.reviewedBy.name} #{zahtevek.reviewedBy.surname}
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </ui:repeat>
+
+                                    <ui:repeat value="#{archive.archivedNalogi}" var="nalog">
+                                        <tr class="collapsable" data-status="0">
+                                            <td>
+                                                <i class="glyphicon glyphicon-chevron-up small"></i> #{nalog.location}, #{nalog.purpose}
+                                            </td>
+                                            <td>Nalog</td>
+                                            <td>#{archive.getDate(nalog.toDate)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="corresponding-info">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <div class="section">
+                                                            <table class="table">
+                                                                <tbody>
+                                                                <tr>
+                                                                    <td><strong>Lokacija: </strong>#{nalog.location}</td>
+                                                                    <td>
+                                                                        <strong>Odobril: </strong>#{nalog.approvedBy.name} #{nalog.approvedBy.surname}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><strong>Namen: </strong>#{nalog.purpose}</td>
+                                                                    <td><strong>Max stroški: </strong>#{nalog.zahtevek.costs}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <strong>Termin: </strong>#{messaging.getDate(nalog.fromDate)} - #{messaging.getDate(nalog.toDate)}
+                                                                    </td>
+                                                                    <td><strong>Opombe: </strong>#{nalog.notes}</td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group clear no-margin">
+                                                            <label for="purpose">Namen in opis:</label>
+                                                                    <textarea disabled="" class="form-control" rows="5"
+                                                                              id="purpose">#{nalog.content}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 content-table smaller no-overflow">
+                                                        <div class="form-group clear no-margin">
+                                                            <label for="purpose">Pregled:</label>
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>Tip storitve</th>
+                                                                    <th>Opombe</th>
+                                                                    <th>Cena (€)</th>
+                                                                    <th>Odobreno (€)</th>
+
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <ui:repeat value="#{nalog.services}" var="service">
+                                                                    <tr>
+                                                                        <td>#{service.type}</td>
+                                                                        <td>#{service.notes}</td>
+                                                                        <td>#{service.price}</td>
+                                                                        <td>#{service.approvedPrice}
+                                                                            <ui:fragment
+                                                                                    rendered="#{service.approvedPrice lt service.price}">
+                                                                                <i class="glyphicon glyphicon-arrow-down alert-danger"></i>
+                                                                            </ui:fragment>
+                                                                        </td>
+                                                                    </tr>
+                                                                </ui:repeat>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </ui:repeat>
+
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/span-->
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </h:body>
+</f:view>
