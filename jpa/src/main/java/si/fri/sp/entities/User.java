@@ -7,16 +7,18 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @Author Gasper Andrejc, created on 04/jan/2016
  */
 @Entity
-@NamedQueries({@NamedQuery(name="User.findAll", query="SELECT o FROM UserEntity o")
+@NamedQueries({@NamedQuery(name="User.findAll", query="SELECT o FROM User o")
 })
 @Table(name = "user")
-public class UserEntity extends BasicResource implements Serializable {
+public class User extends BasicResource implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -36,15 +38,21 @@ public class UserEntity extends BasicResource implements Serializable {
     private UserType type;
 
     @OneToMany(mappedBy = "reviewedBy", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    List<ZahtevekEntity> zahtevki;
+    Set<Zahtevek> reviewedZahtevki;
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    Set<Zahtevek> zahtevki;
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    Set<Nalog> nalogi;
 
     @OneToMany(mappedBy = "toUser", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    List<MessageEntity> messagesIncoming;
+    Set<MessageEntity> messagesIncoming;
 
     @OneToMany(mappedBy = "fromUser", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    List<MessageEntity> messagesOutgoing;
+    Set<MessageEntity> messagesOutgoing;
 
-    public UserEntity() {
+    public User() {
     }
 
     public int getId() {
@@ -79,24 +87,30 @@ public class UserEntity extends BasicResource implements Serializable {
         this.type = type;
     }
 
-    public List<ZahtevekEntity> getZahtevki() {
-        if(this.zahtevki == null){
-            this.zahtevki = new ArrayList<ZahtevekEntity>();
+    public Set<Zahtevek> getReviewedZahtevki() {
+        if(this.reviewedZahtevki == null){
+            this.reviewedZahtevki = new HashSet<>();
         }
-        return this.zahtevki;
+        return this.reviewedZahtevki;
     }
 
-    public List<MessageEntity> getMessagesIncoming() {
+    public Set<MessageEntity> getMessagesIncoming() {
         if(this.messagesIncoming == null){
-            this.messagesIncoming = new ArrayList<MessageEntity>();
+            this.messagesIncoming = new HashSet<MessageEntity>();
         }
         return messagesIncoming;
     }
 
-    public List<MessageEntity> getMessagesOutgoing() {
+    public Set<MessageEntity> getMessagesOutgoing() {
         if(this.messagesOutgoing == null){
-            this.messagesOutgoing = new ArrayList<MessageEntity>();
+            this.messagesOutgoing = new HashSet<MessageEntity>();
         }
         return messagesOutgoing;
+    }
+    public Set<Zahtevek> getZahtevki() {
+        if(this.zahtevki == null){
+            this.zahtevki = new HashSet<>();
+        }
+        return zahtevki;
     }
 }

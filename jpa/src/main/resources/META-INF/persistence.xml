@@ -5,10 +5,10 @@
     <persistence-unit name="expense-persistence" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/sp_vaje</jta-data-source>
         <class>si.fri.sp.entities.MessageEntity</class>
-        <class>si.fri.sp.entities.NalogEntity</class>
+        <class>si.fri.sp.entities.Nalog</class>
         <class>si.fri.sp.entities.ServiceEntity</class>
-        <class>si.fri.sp.entities.UserEntity</class>
-        <class>si.fri.sp.entities.ZahtevekEntity</class>
+        <class>si.fri.sp.entities.User</class>
+        <class>si.fri.sp.entities.Zahtevek</class>
         <!--<properties>-->
             <!--<property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/travel-expense"/>-->
             <!--<property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>-->

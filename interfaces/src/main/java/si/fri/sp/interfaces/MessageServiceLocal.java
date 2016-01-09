@@ -9,10 +9,10 @@ import java.util.List;
  * @Author Gasper Andrejc, created on 04/jan/2016
  */
 public interface MessageServiceLocal extends ServiceEntryPoint<MessageEntity> {
-    List<MessageEntity> getRelatedToNalog(int nalogId);
-    List<MessageEntity> getRelatedToZahtevek(int nalogId);
-    List<MessageEntity> getUsersOutgoing(int userId);
-    List<MessageEntity> getUsersIncoming(int userId);
+    List<MessageEntity> getRelatedToNalog(int nalogId, boolean archived);
+    List<MessageEntity> getRelatedToZahtevek(int nalogId, boolean archived);
+    List<MessageEntity> getUsersOutgoing(int userId, boolean archived);
+    List<MessageEntity> getUsersIncoming(int userId, boolean archived);
 
 
 }

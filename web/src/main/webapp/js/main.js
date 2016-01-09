@@ -78,11 +78,11 @@ var EXPENSE = {
             $("#connected-order").toggleClass("hidden");
 
         });
-        $(".open-request").click(function () {
-            $("#open-request-popup").load("../view-request.html");
-            $("#open-request-popup").toggleClass("hidden");
-
-        });
+        //$(".open-request").click(function () {
+        //    $("#open-request-popup").load("../view-request.html");
+        //    $("#open-request-popup").toggleClass("hidden");
+        //
+        //});
         $(".open-order").click(function () {
             $("#connected-order").load("../view-order.html");
             $("#connected-order").toggleClass("hidden");

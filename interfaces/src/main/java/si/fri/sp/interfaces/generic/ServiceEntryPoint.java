@@ -12,5 +12,5 @@ public interface ServiceEntryPoint<T extends BasicResource> {
     void update(T ent);
     void delete(T ent);
     T read(int entId);
-    List<T> readFromTo(int start, int end);
+    List<T> readFromTo(int start, int end, boolean archived);
 }

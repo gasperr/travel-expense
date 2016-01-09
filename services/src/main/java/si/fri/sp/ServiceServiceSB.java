@@ -52,8 +52,9 @@ public class ServiceServiceSB implements ServiceServiceLocal {
         return null;
     }
 
-    public List<ServiceEntity> readFromTo(int start, int end) {
+    public List<ServiceEntity> readFromTo(int start, int end, boolean archived) {
         Query q = em.createNamedQuery("Service.findAll");
+        q.setParameter("archived", archived);
         if (start != -1 && end != -1) {
             q.setFirstResult(start);
             q.setMaxResults(end);

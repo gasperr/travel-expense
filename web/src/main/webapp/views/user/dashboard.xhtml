@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <title>Travel e-Xpense</title>
+
+        <link href='../../css/bootstrap/bootstrap.min.css' rel='stylesheet'></link>
+        <link href='../../css/main.css' rel='stylesheet'></link>
+
+
+        <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+
+        <script type="text/javascript"
+                src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/html5-qrcode.min.js"></script>
+        <script src="../../js/main.js"></script>
+    </h:head>
+    <h:body>
+
+        <div class="main-container">
+            <div class="row main-navbar">
+                <nav class="menu navbar">
+                    <ul class="active">
+                        <li class="current-item"><a href="#" class="btn btn-lg btn-default" id="new-order">
+                            <div class="main-btn">Nov zahtevek</div>
+                        </a></li>
+                        <li><a href="list-all.html" class="btn btn-lg btn-default">
+                            <div class="main-btn">Moji nalogi</div>
+                        </a></li>
+                        <li><a href="../messages.html" class="btn btn-lg btn-default">
+                            <div class="main-btn">Sporočila</div>
+                        </a></li>
+                        <li><a href="../archive.html" class="btn btn-lg btn-default">
+                            <div class="main-btn">Arhiv</div>
+                        </a></li>
+                        <li><a data-toggle="tooltip" title="Pomoč na poti" class="btn btn-lg btn-default" id="globe"
+                               href="../map.html">
+                            <i class="glyphicon glyphicon-globe blue"></i>
+
+                        </a></li>
+
+                    </ul>
+
+
+                    <a class="toggle-nav" href="#">&#9776;</a>
+
+                    <div class="profile">
+                        <div class="logo"></div>
+                        <a href="../../index.html" class="btn btn-xs btn-default">
+                            <div class="edit-profile-btn">Odjava</div>
+                        </a>
+
+                    </div>
+                </nav>
+            </div>
+
+            <div class="row dashboard-content">
+                <div class=" col-md-7">
+                    <div class="dashboard-portlet left">
+                        <div class="content-inner">
+                            <div class="header">
+                                <div class="title">Trenutni nalog - #{userDashboard.currentNalog.id}</div>
+
+                                <div class="dropdown float-right">
+                                    <button class="btn btn-primary dropdown-toggle" type="button"
+                                            data-toggle="dropdown">Nemčija
+                                        <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Nova gorica</a></li>
+                                        <li><a href="#">Munchen</a></li>
+                                        <li><a href="#">Austrlija</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="section">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <td><strong>Lokacija: </strong>#{userDashboard.currentNalog.location}</td>
+                                        <td>
+                                            <strong>Odobril: </strong>#{userDashboard.currentNalog.approvedBy.name} #{userDashboard.currentNalog.approvedBy.surname}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Namen: </strong>#{userDashboard.currentNalog.purpose}</td>
+                                        <td>
+                                            <strong>Max stroški: </strong>#{userDashboard.currentNalog.zahtevek.costs}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Termin: </strong>#{userDashboard.getDate(userDashboard.currentNalog.fromDate)} - #{userDashboard.getDate(userDashboard.currentNalog.toDate)}
+                                        </td>
+                                        <td><strong>Opombe: </strong>#{userDashboard.currentNalog.notes}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="content-table section">
+                                <table class="table table-bordered" id="orderServices">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 50%">Tip storitve</th>
+                                        <th style="width: 20%">Cena</th>
+                                        <th style="width: 30%">Opombe</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <ui:repeat value="#{userDashboard.currentNalog.services}" var="service">
+                                        <tr>
+                                            <td>#{service.type}</td>
+                                            <td>#{service.price}</td>
+                                            <td>#{service.notes}</td>
+                                        </tr>
+                                    </ui:repeat>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="section float-right no-border no-margin">
+                                <button type="button" class="glyphicon glyphicon-qrcode btn btn-primary"
+                                        id="readqr"></button>
+                                <button type="button" class="btn btn-success glyphicon glyphicon-pencil add"
+                                        id="addNewService"></button>
+                            </div>
+
+                            <div class="section border-top footer">
+                                <div class="buttons">
+                                    <button type="button" class="btn btn-danger">Ponastavi</button>
+                                    <button type="button" class="btn btn-primary" id="editOrder">Uredi</button>
+                                    <button type="button" class="btn btn-success">Oddaj</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class=" col-md-5">
+                    <div class="dashboard-portlet right">
+                        <div class="content-inner">
+                            <div class="header">
+                                <div class="title">Status</div>
+                            </div>
+
+                            <div class="sub-header section border-top">
+                                <div class="float-left text"><strong>Zahtevki</strong></div>
+                                <div class="float-right table-filters">
+                                    <span class="check"><input class="checkbox-button request-filter-user" checked=""
+                                                               type="checkbox"/>Odobreni</span>
+                                    <span class="check"><input class="checkbox-button request-filter-user" checked=""
+                                                               type="checkbox"/>Zavrnjeni</span>
+                                    <span class="check"><input class="checkbox-button request-filter-user" checked=""
+                                                               type="checkbox"/>Čakajoči</span>
+                                </div>
+                            </div>
+
+                            <div class="content-table section status">
+                                <h:form>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>Opis</th>
+                                            <th>Termin</th>
+                                            <th>Status</th>
+                                            <th>Drugo</th>
+                                            <!-- todo chnage to css-->
+                                            <th style="text-align: center; width: 130px">Akcija</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <ui:repeat value="#{userDashboard.myZahtevki}" var="zahtevek">
+                                            <tr data-status="#{zahtevek.status.ordinal()}">
+                                                <td>#{zahtevek.location}</td>
+                                                <td>#{userDashboard.getDate(zahtevek.fromDate)} - #{userDashboard.getDate(zahtevek.toDate)}</td>
+                                                <td>#{zahtevek.status.getStringValue()}</td>
+                                                <td>N/A</td>
+                                                <td>
+                                                    <h:commandButton type="submit"
+                                                                     class="btn btn-primary open-request user float-left"
+                                                                     value="Odpri">
+                                                        <f:ajax render="open-request-popup"
+                                                                listener="#{userDashboard.openZahtevek(zahtevek)}"/>
+                                                    </h:commandButton>
+                                                    <a href="#" data-toggle="tooltip" title="Pošlji v arhiv"
+                                                       class="glyphicon glyphicon-new-window float-right trash-request"></a>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+                                        </tbody>
+
+                                    </table>
+                                </h:form>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--todo: responsive for popup-->
+        <!--todo: google autocomplete -->
+
+        <div class="background-popup hidden" id="add-new-popup">
+            <div class="floating-popup popup">
+                <div class="container">
+                    <div class="content-inner">
+                        <div class="row popup-header">
+                            <span class="title">Nov zahtevek</span>
+                            <a href="#" class="close-popup"><i
+                                    class="title glyphicon glyphicon-remove-sign float-right"></i></a>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <form>
+                                    <div class="form-group no-margin">
+                                        <label for="location">Lokacija:</label>
+                                        <input type="text" class="form-control add-new" id="location"
+                                               placeholder=""/>
+                                    </div>
+                                    <div class="form-group no-margin">
+                                        <div class="date-left">
+                                            <label for="date">Od<span class="datepicker-format"> (<abbr
+                                                    title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+                                            <input type="date" id="date" name="startdate"/>
+                                        </div>
+                                        <div class="date-right">
+                                            <label for="date2">Od<span class="datepicker-format"> (<abbr
+                                                    title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+                                            <input type="date" id="date2" name="enddate"/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <form>
+                                    <div class="form-group no-margin">
+                                        <label for="cost">Predviden strošek (€):</label>
+                                        <input type="number" class="form-control add-new" id="cost"/>
+                                    </div>
+                                    <div class="form-group no-margin">
+                                        <label for="dateandString">Datum, kraj in opis zadnjega odobrenega zahtevka:</label>
+                                        <input type="text" class="form-control add-new" id="dateandString"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group clear no-margin">
+                                    <label for="purpose">Opiši namen, razlog in kako lahko to koristi podjetju / tebi:</label>
+                                    <textarea class="form-control add-new" rows="7" id="purpose"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section footer">
+                            <div class="float-right no-margin">
+                                <button type="button" class="btn btn-danger">Ponastavi</button>
+                                <button type="button" class="btn btn-success" id="complete-new-request">Oddaj
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <h:panelGroup id="open-request-popup">
+            <h:panelGroup rendered="#{not empty userDashboard.selectedZahtevek}" styleClass="background-popup">
+                <ui:include src="../view-request.xhtml"/>
+            </h:panelGroup>
+        </h:panelGroup>
+
+        <div class="background-popup hidden" id="qr-camera-div">
+            <div class="qr-wrapper">
+                <div class="float-right no-margin"><i class="glyphicon glyphicon-remove alert-danger close-qr"></i>
+                </div>
+                <div id="qr-reader" class="qr-box">
+
+                </div>
+                <div class="qr-result"></div>
+                <div class="qr-button float-right">
+                    <button type="button" class="btn btn-success btn-xs">Dodaj</button>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </h:body>
+</f:view>

@@ -17,11 +17,13 @@
             <groupId>si.fri.sp</groupId>
             <artifactId>interfaces</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>si.fri.sp</groupId>
             <artifactId>services</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

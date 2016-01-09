@@ -1,6 +1,6 @@
 package si.fri.sp;
 
-import si.fri.sp.entities.NalogEntity;
+import si.fri.sp.entities.Nalog;
 import si.fri.sp.interfaces.NalogServiceLocal;
 
 import javax.ejb.Local;
@@ -21,7 +21,7 @@ public class NalogServiceSB implements NalogServiceLocal {
     @PersistenceContext(unitName = "expense-persistence")
     EntityManager em;
 
-    public void create(NalogEntity ent) {
+    public void create(Nalog ent) {
         if (ent != null) {
             em.persist(ent);
         } else {
@@ -29,7 +29,7 @@ public class NalogServiceSB implements NalogServiceLocal {
         }
     }
 
-    public void update(NalogEntity ent) {
+    public void update(Nalog ent) {
         if (ent != null) {
             em.merge(ent);
         } else {
@@ -37,7 +37,7 @@ public class NalogServiceSB implements NalogServiceLocal {
         }
     }
 
-    public void delete(NalogEntity ent) {
+    public void delete(Nalog ent) {
         if (ent != null) {
             em.remove(read(ent.getId()));
         } else {
@@ -45,26 +45,46 @@ public class NalogServiceSB implements NalogServiceLocal {
         }
     }
 
-    public NalogEntity read(int entId) {
-        NalogEntity ue = em.find(NalogEntity.class, entId);
+    public Nalog read(int entId) {
+        Nalog ue = em.find(Nalog.class, entId);
         if (ue != null) {
             return ue;
         }
         return null;
     }
 
-    public List<NalogEntity> readFromTo(int start, int end) {
+    public List<Nalog> readFromTo(int start, int end, boolean archived) {
         Query q = em.createNamedQuery("Nalog.findAll");
+        q.setParameter("archived", archived);
+
         if (start != -1 && end != -1) {
             q.setFirstResult(start);
             q.setMaxResults(end);
         }
-        return (List<NalogEntity>) q.getResultList();
+        return (List<Nalog>) q.getResultList();
     }
 
-    public List<NalogEntity> getAllByUserId(int uid) {
-        Query q = em.createNamedQuery("Nalog.byUserId");
+    public List<Nalog> getAllByApprovedUserId(int uid, boolean archived) {
+        Query q = em.createNamedQuery("Nalog.byApprovedUserId");
+        q.setParameter("archived", archived);
         q.setParameter("uid", uid);
-        return (List<NalogEntity>) q.getResultList();
+
+        return (List<Nalog>) q.getResultList();
+    }
+
+    public List<Nalog> getAllByUserId(int uid, boolean archived) {
+        Query q = em.createNamedQuery("Nalog.byUserId");
+        q.setParameter("archived", archived);
+        q.setParameter("uid", uid);
+
+        return (List<Nalog>) q.getResultList();
+    }
+
+    public Nalog findByZahtevek(int zid, boolean archived) {
+        Query q = em.createNamedQuery("Nalog.findByZahtevek");
+        q.setParameter("uid", zid);
+        q.setParameter("archived", archived);
+
+        return (Nalog)q.getSingleResult();
     }
 }

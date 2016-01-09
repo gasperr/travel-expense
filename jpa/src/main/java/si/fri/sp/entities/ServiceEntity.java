@@ -32,7 +32,7 @@ public class ServiceEntity extends BasicResource implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "nalog")
-    private NalogEntity nalog;
+    private Nalog nalog;
 
 
     public ServiceEntity() {
@@ -78,11 +78,11 @@ public class ServiceEntity extends BasicResource implements Serializable {
         this.approvedPrice = approvedPrice;
     }
 
-    public NalogEntity getNalog() {
+    public Nalog getNalog() {
         return nalog;
     }
 
-    public void setNalog(NalogEntity nalog) {
+    public void setNalog(Nalog nalog) {
         this.nalog = nalog;
     }
 }

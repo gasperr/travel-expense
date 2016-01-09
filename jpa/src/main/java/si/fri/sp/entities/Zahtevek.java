@@ -14,11 +14,13 @@ import java.util.List;
  * @Author Gasper Andrejc, created on 04/jan/2016
  */
 @Entity
-@NamedQueries({@NamedQuery(name="Zahtevek.findAll", query="SELECT o FROM ZahtevekEntity o"),
-        @NamedQuery(name="Zahtevek.byUserId", query = "SELECT z FROM ZahtevekEntity z JOIN z.reviewedBy u where u.id = :uid")
+@NamedQueries({@NamedQuery(name="Zahtevek.findAll", query="SELECT o FROM Zahtevek o where o.archived = :archived"),
+        @NamedQuery(name= "Zahtevek.byReviewedBy", query = "SELECT z FROM Zahtevek z JOIN z.reviewedBy u where u.id = :uid and z.archived = :archived"),
+        @NamedQuery(name= "Zahtevek.byUserId", query = "SELECT z FROM Zahtevek z JOIN z.owner u where u.id = :uid and z.archived = :archived"),
+        @NamedQuery(name="Zahtevek.findByNalog", query = "SELECT z FROM Zahtevek z JOIN z.nalog n where n.id = :nid and z.archived = :archived")
 })
 @Table(name = "zahtevek")
-public class ZahtevekEntity extends BasicResource implements Serializable {
+public class Zahtevek extends BasicResource implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -43,12 +45,22 @@ public class ZahtevekEntity extends BasicResource implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "reviewed_by")
-    private UserEntity reviewedBy;
+    private User reviewedBy;
+
+    @ManyToOne
+    @JoinColumn(name = "owned_by")
+    private User owner;
 
     @OneToMany(mappedBy = "zahtevekRelated", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<MessageEntity> relatedMessage;
 
-    public ZahtevekEntity() {
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "nalog")
+    private Nalog nalog;
+
+    private boolean archived;
+
+    public Zahtevek() {
     }
 
     public String getLocation() {
@@ -107,12 +119,36 @@ public class ZahtevekEntity extends BasicResource implements Serializable {
         this.status = status;
     }
 
-    public UserEntity getReviewedBy() {
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public User getReviewedBy() {
         return reviewedBy;
     }
 
-    public void setReviewedBy(UserEntity reviewedBy) {
+    public void setReviewedBy(User reviewedBy) {
         this.reviewedBy = reviewedBy;
+    }
+
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
+    }
+
+    public Nalog getNalog() {
+        return nalog;
+    }
+
+    public void setNalog(Nalog nalog) {
+        this.nalog = nalog;
     }
 
     public List<MessageEntity> getRelatedMessage() {

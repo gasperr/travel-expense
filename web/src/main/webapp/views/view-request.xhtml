@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <!--todo: if role == managment add Name Surname of user to here-->
+
+    <ui:param name="selected" value="#{userDashboard.selectedZahtevek}"/>
+    <!--@elvariable id="selected" type="si.fri.sp.entities.Zahtevek"-->
+    <h:form>
+        <div class="floating-popup popup">
+            <div class="container">
+                <div class="content-inner">
+                    <div class="row popup-header section no-border">
+                        <span class="title">Zahtevek - <span class="status">#{selected.status.stringValue}</span></span>
+                        <h:commandLink class="close-popup"><i
+                                class="title glyphicon glyphicon-remove-sign float-right"></i>
+                            <f:ajax render="open-request-popup" listener="#{userDashboard.closeZahtevek}"/>
+                        </h:commandLink>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="content-inner">
+                                <div class="content-table msgs-corr section no-border">
+                                    <table class="table">
+                                        <tbody>
+                                        <tr>
+                                            <td class="corresponding-info">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <table class="table">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td><strong>Lokacija: </strong>#{selected.location}</td>
+                                                                <td><strong>Pred. strošek: </strong>#{selected.costs} €
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <strong>Termin od: </strong>#{userDashboard.getDate(selected.fromDate)}
+                                                                </td>
+                                                                <td>
+                                                                    <strong>do: </strong>#{userDashboard.getDate(selected.toDate)}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <strong>Datum, kraj zadnjega zahtevka: </strong>TODO
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <strong>Opis: </strong> #{selected.content}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Pregledan dne: </strong>TODO</td>
+                                                                <td>
+                                                                    <strong>s strani: </strong>#{selected.reviewedBy.name} #{selected.reviewedBy.surname}
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="purpose">Odziv / opombe</label>
+                                                <textarea class="form-control" rows="2" id="purpose"></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <!-- todo make appropriate differences betweeen manager and user-->
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-danger float-left managment-request-btn">Zavrni
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-success managment-request-btn">Potrdi
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:form>
+
+</ui:composition>

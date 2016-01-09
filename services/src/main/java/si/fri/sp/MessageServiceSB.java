@@ -53,8 +53,9 @@ public class MessageServiceSB implements MessageServiceLocal {
         return null;
     }
 
-    public List<MessageEntity> readFromTo(int start, int end) {
+    public List<MessageEntity> readFromTo(int start, int end, boolean archived) {
         Query q = em.createNamedQuery("Message.findAll");
+        q.setParameter("archived", archived);
         if (start != -1 && end != -1) {
             q.setFirstResult(start);
             q.setMaxResults(end);
@@ -63,29 +64,33 @@ public class MessageServiceSB implements MessageServiceLocal {
     }
 
 
-    public List<MessageEntity> getRelatedToNalog(int nalogId) {
+    public List<MessageEntity> getRelatedToNalog(int nalogId, boolean archived) {
         Query q = em.createNamedQuery("Message.getByNalog");
+        q.setParameter("archived", archived);
         q.setParameter("uid", nalogId);
         return (List<MessageEntity>) q.getResultList();
     }
 
 
-    public List<MessageEntity> getRelatedToZahtevek(int zahtevekId) {
+    public List<MessageEntity> getRelatedToZahtevek(int zahtevekId, boolean archived) {
         Query q = em.createNamedQuery("Message.getByZahtevek");
+        q.setParameter("archived", archived);
         q.setParameter("uid", zahtevekId);
         List<MessageEntity> rtrns = q.getResultList();
         return (List<MessageEntity>) q.getResultList();
     }
 
-    public List<MessageEntity> getUsersOutgoing(int userId) {
+    public List<MessageEntity> getUsersOutgoing(int userId, boolean archived) {
         Query q = em.createNamedQuery("Message.getUserOutgoing");
+        q.setParameter("archived", archived);
         q.setParameter("uid", userId);
         return (List<MessageEntity>) q.getResultList();
     }
 
 
-    public List<MessageEntity> getUsersIncoming(int userId) {
+    public List<MessageEntity> getUsersIncoming(int userId, boolean archived) {
         Query q = em.createNamedQuery("Message.getUserIncoming");
+        q.setParameter("archived", archived);
         q.setParameter("uid", userId);
         return (List<MessageEntity>) q.getResultList();
     }

@@ -1,6 +1,6 @@
 package si.fri.sp;
 
-import si.fri.sp.entities.UserEntity;
+import si.fri.sp.entities.User;
 import si.fri.sp.interfaces.UserServiceLocal;
 
 import javax.ejb.Local;
@@ -21,7 +21,7 @@ public class UserServiceSB implements UserServiceLocal {
     @PersistenceContext(unitName = "expense-persistence")
     EntityManager em;
 
-    public void create(UserEntity ent) {
+    public void create(User ent) {
         if(ent != null){
             em.persist(ent);
         }else{
@@ -29,7 +29,7 @@ public class UserServiceSB implements UserServiceLocal {
         }
     }
 
-    public void update(UserEntity ent) {
+    public void update(User ent) {
         if(ent != null){
             em.merge(ent);
         }else{
@@ -37,7 +37,7 @@ public class UserServiceSB implements UserServiceLocal {
         }
     }
 
-    public void delete(UserEntity ent) {
+    public void delete(User ent) {
         if(ent != null){
             em.remove(read(ent.getId()));
         }else{
@@ -45,20 +45,20 @@ public class UserServiceSB implements UserServiceLocal {
         }
     }
 
-    public UserEntity read(int entId) {
-        UserEntity ue = em.find(UserEntity.class, entId);
+    public User read(int entId) {
+        User ue = em.find(User.class, entId);
         if(ue != null){
             return ue;
         }
         return null;
     }
 
-    public List<UserEntity> readFromTo(int start, int end) {
+    public List<User> readFromTo(int start, int end, boolean archived) {
         Query q = em.createNamedQuery("User.findAll");
         if (start != -1 && end != -1) {
             q.setFirstResult(start);
             q.setMaxResults(end);
         }
-        return (List<UserEntity>)q.getResultList();
+        return (List<User>)q.getResultList();
     }
 }
