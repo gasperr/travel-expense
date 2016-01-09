@@ -48,6 +48,25 @@ public class ApplicationCache implements Serializable {
     private Map<Integer, List<Zahtevek>> zahtevekUserCache = new HashMap<>();
 
     private Map<Integer, List<Message>> nalogMessageCache = new HashMap<>();
+    private Map<Integer, List<Message>> userMessageCache = new HashMap<>();
+
+    public List<Message> getMessagesByUser(User user) throws Exception{
+        if(user != null){
+            if(userMessageCache.containsKey(user.getId())){
+                return userMessageCache.get(user.getId());
+            }else{
+                List<Message> msgs = messageServiceLocal.getUsersIncoming(user.getId(), false);
+                msgs.addAll(messageServiceLocal.getUsersOutgoing(user.getId(), false));
+                if(!msgs.isEmpty()){
+                    userMessageCache.put(user.getId(), msgs);
+                }
+                return msgs;
+            }
+        }else{
+            throw new Exception("Wanting to access cache with null value");
+        }
+    }
+
 
     public List<Message> getMessageByNalog(Nalog nalog) throws Exception{
         if(nalog != null){
