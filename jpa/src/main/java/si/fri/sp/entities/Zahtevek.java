@@ -5,10 +5,11 @@ import si.fri.sp.entities.generic.BasicResource;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author Gasper Andrejc, created on 04/jan/2016
@@ -20,11 +21,14 @@ import java.util.List;
         @NamedQuery(name="Zahtevek.findByNalog", query = "SELECT z FROM Zahtevek z JOIN z.nalog n where n.id = :nid and z.archived = :archived")
 })
 @Table(name = "zahtevek")
+@XmlRootElement
 public class Zahtevek extends BasicResource implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @XmlID
+    @XmlElement
     private int id;
 
     @Column(length=50)
@@ -52,7 +56,7 @@ public class Zahtevek extends BasicResource implements Serializable {
     private User owner;
 
     @OneToMany(mappedBy = "zahtevekRelated", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private List<Message> relatedMessage;
+    private Set<Message> relatedMessage;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "nalog")
@@ -153,9 +157,11 @@ public class Zahtevek extends BasicResource implements Serializable {
 
     public List<Message> getRelatedMessage() {
         if(relatedMessage == null){
-            relatedMessage = new ArrayList<Message>();
+            relatedMessage = new HashSet<>();
         }
-        return relatedMessage;
+        List<Message> rtrn = new ArrayList<>();
+        rtrn.addAll(relatedMessage);
+        return rtrn;
     }
 
 

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <!--@elvariable id="selectedServices" type="java.util.List<si.fri.sp.entities.ServiceEntity>"-->
+    <!--@elvariable id="nalog" type="si.fri.sp.entities.Nalog"-->
+
+    <h:form>
+
+        <div class="floating-popup popup">
+            <div class="container">
+                <div class="content-inner">
+                    <div class="row popup-header section no-border">
+                        <span class="title">Pošlji nalog ##{nalog.id} v pregled #{nosilcu ? 'Nosilcu':nalog.approvedBy.surname}</span>
+                        <a><i class="title glyphicon glyphicon-remove-sign float-right"></i></a>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="section no-border">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <td colspan="3"><strong>Označene storitve</strong></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <ui:repeat value="#{selectedServices}" var="selected">
+                                        <tr>
+                                            <td>#{selected.type}</td>
+                                            <td>#{selected.notes}</td>
+                                            <td>
+                                                #{selected.approvedPrice}
+                                            </td>
+                                        </tr>
+                                    </ui:repeat>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group clear no-margin section no-border">
+                                <label for="purpose">Sporočilo:</label>
+                                <h:inputTextarea class="form-control" rows="5" id="purpose" value="#{financeDashboard.generalMessage}">
+                                    <f:ajax event="change" execute="@this" />
+                                </h:inputTextarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group clear section no-border">
+                                <h:commandButton type="button" styleClass="float-right btn btn-success stupid-button" value="Pošlji"></h:commandButton>
+                                <button class="float-right btn btn-danger">Ponastavi</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </h:form>
+
+    <script>
+        $("[class*='stupid-button']").click(function(){
+            $(".click-me-to-send").click();
+        })
+    </script>
+
+</ui:composition>

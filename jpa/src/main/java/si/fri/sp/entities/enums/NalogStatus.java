@@ -7,7 +7,8 @@ public enum NalogStatus {
     APPROVED("Odobren"),
     DECLINED("Zavrnjen"),
     EXECUTED("Izvršen"),
-    ACTIVE("Aktiven");
+    ACTIVE("Aktiven"),
+    FINISHED("Zaključen");
 
     private final String stringValue;
 

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <title>Travel e-Xpense</title>
+
+        <link href='../../css/bootstrap/bootstrap.min.css' rel='stylesheet'></link>
+        <link href='../../css/main.css' rel='stylesheet'></link>
+
+
+        <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+
+        <script type="text/javascript"
+                src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/html5-qrcode.min.js"></script>
+        <script src="../../js/main.js"></script>
+    </h:head>
+    <h:body>
+        <h:form>
+
+            <div class="main-container">
+                <div class="row main-navbar">
+                    <div class="row main-navbar">
+                        <nav class="menu navbar">
+                            <ul class="active">
+                                <li class="current-item"><a href="../statistics.html" class="btn btn-lg btn-default">
+                                    <div class="main-btn">Statistika</div>
+                                </a></li>
+                                <li><a href="../messages.html" class="btn btn-lg btn-default">
+                                    <div class="main-btn">Sporočila</div>
+                                </a></li>
+                                <li><a href="../archive.html" class="btn btn-lg btn-default">
+                                    <div class="main-btn">Arhiv</div>
+                                </a></li>
+                                <li><a data-toggle="tooltip" title="Pomoč na poti" class="btn btn-lg btn-default"
+                                       id="globe"
+                                       href="../map.html">
+                                    <i class="glyphicon glyphicon-globe blue"></i>
+
+                                </a></li>
+
+                            </ul>
+
+
+                            <a class="toggle-nav" href="#">&#9776;</a>
+
+                            <div class="profile">
+                                <div class="logo"></div>
+                                <a href="../../index.html" class="btn btn-xs btn-default">
+                                    <div class="edit-profile-btn">Odjava</div>
+                                </a>
+
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="row dashboard-content">
+                    <div>
+                        <div class="col-md-9 finance-head">
+                            <h1 class="float-left finance">V postopku...</h1>
+
+                            <div class="no-margin header-addition">
+                                ID: #{financeDashboard.inProgress.id}
+                            </div>
+
+                        </div>
+                        <div class="col-md-3 standing-header">
+                            <h1 class="float-left">Čakajoči</h1>
+                            <h2><h:commandLink styleClass="float-right glyphicon glyphicon-refresh">
+                                <f:ajax render="@form" listener="#{financeDashboard.refreshWaitingList()}" />
+                            </h:commandLink></h2>
+                        </div>
+                    </div>
+                    <h:panelGroup id="in-progress" class=" col-md-9">
+                        <div class="dashboard-portlet left finance">
+                            <div class="content-inner">
+                                <div class="section">
+                                    <table class="table">
+                                        <tbody>
+                                        <tr>
+                                            <td><strong>Lokacija: </strong>#{financeDashboard.inProgress.location}</td>
+                                            <td>
+                                                <strong>Odobril: </strong>#{financeDashboard.inProgress.approvedBy.name} #{financeDashboard.inProgress.approvedBy.surname}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Namen: </strong>#{financeDashboard.inProgress.purpose}</td>
+                                            <td>
+                                                <strong>Max stroški: </strong>#{financeDashboard.inProgress.zahtevek.costs}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Termin: </strong>#{financeDashboard.getDate(financeDashboard.inProgress.fromDate)} - #{financeDashboard.getDate(financeDashboard.inProgress.toDate)}
+                                            </td>
+                                            <td><strong>Opombe: </strong>#{financeDashboard.inProgress.notes}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                                <div class="content-table section">
+                                    <table class="table table-bordered finance">
+                                        <thead>
+                                        <tr>
+                                            <th>Tip storitve</th>
+                                            <th>Opombe</th>
+                                            <th>Cena</th>
+                                            <th>Označi</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <ui:repeat value="#{financeDashboard.inProgress.services}" var="service">
+                                            <tr>
+                                                <td>#{service.type}</td>
+                                                <td>#{service.notes}</td>
+                                                <td>
+                                                    <h:inputText value="#{service.approvedPrice}">
+                                                        <f:ajax event="change" execute="@this" />
+                                                    </h:inputText>
+                                                </td>
+                                                <td>
+                                                    <h:selectBooleanCheckbox class="checkbox-button" type="checkbox" value="#{service.selected}">
+                                                        <f:ajax event="change" execute="@this" immediate="true" listener="#{financeDashboard.addSelectedService(service)}" />
+                                                    </h:selectBooleanCheckbox>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                                <div class="row no-border">
+                                    <div class="col-md-8">
+                                    </div>
+                                    <div class="col-md-4">
+                            <span class="sum-price section no-border float-right">
+                             <strong>Skupaj: </strong> #{financeDashboard.calculate(financeDashboard.inProgress)} €
+                            </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="section no-border footer">
+
+
+                                <div class="row no-border footer">
+                                    <div class="col-md-8">
+                                        <div class="no-border float-left web-search">
+                                            <!--todo remove from inline-->
+                                            <input id="google-search" type="search"
+                                                   placeholder="Preveri ceno na spletu . . ."
+                                                   onkeydown="if (event.keyCode == 13 || event.which == 13) { window.open('http://www.google.com/search?q=' + encodeURIComponent(document.getElementById('google-search').value));}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="float-right">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-primary dropdown-toggle"
+                                                        data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                    Pošlji v pregled <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu send-to-review">
+                                                    <li><h:commandLink value="Potrjevalcu naloga">
+                                                            <f:ajax render="to-review" listener="#{financeDashboard.setToReviewPotrjevalcu(true)}"/>
+                                                        </h:commandLink>
+                                                    </li>
+                                                    <li><h:commandLink value="Nosilcu naloga">
+                                                        <f:ajax render="to-review" listener="#{financeDashboard.setToReviewNosilcu(true)}"/>
+                                                    </h:commandLink></li>
+                                                </ul>
+                                            </div>
+                                            <h:commandButton styleClass="btn btn-success btn-lg" value="Potrdi">
+                                                <f:ajax render="@form" listener="#{financeDashboard.executeNalog()}" />
+                                            </h:commandButton>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </h:panelGroup>
+
+                    <h:panelGroup id="waiting" class=" col-md-3">
+                        <div class="dashboard-portlet right finance">
+                            <div class="content-inner">
+                                <div class="content-table section standing">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>ID</th>
+                                            <th>Datum</th>
+                                            <th>Skupno</th>
+                                            <th>Status</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <ui:repeat value="#{financeDashboard.waitingNalogi}" var="waiting">
+                                            <tr class="#{waiting.id == financeDashboard.inProgress.id ? 'success':''}">
+                                                <td>
+                                                    <h:commandButton
+                                                            styleClass="glyphicon glyphicon-menu-left btn-primary btn-xs" value="*">
+                                                        <f:ajax render="@form"
+                                                                listener="#{financeDashboard.setInProgress(waiting)}"
+                                                                onevent="EXPENSE.financeInteractionHandler()"/>
+                                                    </h:commandButton>
+                                                </td>
+                                                <td>#{waiting.id}</td>
+                                                <td>#{waiting.toDate}</td>
+                                                <td>#{financeDashboard.calculate(waiting)} €</td>
+                                                <td></td>
+                                            </tr>
+                                        </ui:repeat>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </h:form>
+
+        <h:panelGroup id="to-review">
+            <h:panelGroup rendered="#{financeDashboard.toReviewNosilcu or financeDashboard.toReviewPotrjevalcu}" styleClass="background-popup">
+                <ui:include src="send-to-review.xhtml">
+                    <ui:param name="selectedServices" value="#{financeDashboard.selectedService}"/>
+                    <ui:param name="nalog" value="#{financeDashboard.inProgress}"/>
+                    <ui:param name="nosilcu" value="#{financeDashboard.toReviewNosilcu}"/>
+                </ui:include>
+            </h:panelGroup>
+        </h:panelGroup>
+
+        <h:commandButton style="display: none;" styleClass="click-me-to-send">
+            <f:ajax render="to-review" listener="#{financeDashboard.sendToReview()}"/>
+        </h:commandButton>
+
+    </h:body>
+</f:view>

@@ -5,10 +5,11 @@ import si.fri.sp.entities.generic.BasicResource;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author Gasper Andrejc, created on 04/jan/2016
@@ -20,11 +21,14 @@ import java.util.List;
         @NamedQuery(name="Nalog.findByZahtevek", query = "SELECT z FROM Nalog z JOIN z.zahtevek u where u.id = :uid and z.archived = :archived")
 })
 @Table(name = "nalog")
+@XmlRootElement
 public class Nalog extends BasicResource implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @XmlID
+    @XmlElement
     private int id;
 
     @NotNull
@@ -61,10 +65,10 @@ public class Nalog extends BasicResource implements Serializable {
     private User owner;
 
     @OneToMany(mappedBy = "nalogRelated", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private List<Message> relatedMessage;
+    private Set<Message> relatedMessage;
 
     @OneToMany(mappedBy = "nalog", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private List<ServiceEntity> services;
+    private Set<ServiceEntity> services;
 
     @OneToOne(mappedBy = "nalog", fetch = FetchType.LAZY)
     private Zahtevek zahtevek;
@@ -189,15 +193,19 @@ public class Nalog extends BasicResource implements Serializable {
 
     public List<Message> getRelatedMessage() {
         if(relatedMessage == null){
-            relatedMessage = new ArrayList<Message>();
+            relatedMessage = new HashSet<>();
         }
-        return relatedMessage;
+        List<Message> rtrn = new ArrayList<>();
+        rtrn.addAll(relatedMessage);
+        return rtrn;
     }
     public List<ServiceEntity> getServices() {
         if(services == null){
-            services = new ArrayList<ServiceEntity>();
+            services = new HashSet<>();
         }
-        return services;
+        List<ServiceEntity> rtrn = new ArrayList<>();
+        rtrn.addAll(services);
+        return rtrn;
     }
 
 }

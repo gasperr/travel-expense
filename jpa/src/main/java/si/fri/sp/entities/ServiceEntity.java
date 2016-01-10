@@ -3,6 +3,9 @@ package si.fri.sp.entities;
 import si.fri.sp.entities.generic.BasicResource;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
@@ -12,11 +15,14 @@ import java.io.Serializable;
 @NamedQueries({@NamedQuery(name="Service.findAll", query="SELECT o FROM ServiceEntity o")
 })
 @Table(name = "service")
+@XmlRootElement
 public class ServiceEntity extends BasicResource implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @XmlID
+    @XmlElement
     private int id;
 
     @Column(length = 50)
@@ -34,6 +40,16 @@ public class ServiceEntity extends BasicResource implements Serializable {
     @JoinColumn(name = "nalog")
     private Nalog nalog;
 
+    @Transient
+    private boolean selected;
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 
     public ServiceEntity() {
     }
@@ -71,6 +87,9 @@ public class ServiceEntity extends BasicResource implements Serializable {
     }
 
     public Double getApprovedPrice() {
+        if(approvedPrice == null){
+            return price;
+        }
         return approvedPrice;
     }
 
@@ -84,5 +103,10 @@ public class ServiceEntity extends BasicResource implements Serializable {
 
     public void setNalog(Nalog nalog) {
         this.nalog = nalog;
+    }
+
+    @Override
+    public String toString() {
+        return type +"; "+ notes+"; approved price: "+getApprovedPrice()+"; reported price: "+price;
     }
 }

@@ -178,6 +178,18 @@ public class ApplicationCache implements Serializable {
         nalogServiceLocal.create(nalog);
         nalogCache.put(nalog.getId(), nalog);
     }
+    public void addMessage(Message message){
+        messageServiceLocal.create(message);
+        if(userMessageCache.containsKey(message.getFromUser().getId())){
+            userMessageCache.get(message.getFromUser().getId()).add(message);
+        }else if(userMessageCache.containsKey(message.getToUser().getId())){
+            userMessageCache.get(message.getToUser().getId()).add(message);
+        }else{
+            List<Message> nm = new ArrayList<>();
+            nm.add(message);
+            userMessageCache.put(message.getFromUser().getId(), nm);
+        }
+    }
 
     public void clearAllCache(){
         nalogCache = new HashMap<>();

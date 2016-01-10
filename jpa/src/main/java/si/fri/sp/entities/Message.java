@@ -3,6 +3,9 @@ package si.fri.sp.entities;
 import si.fri.sp.entities.generic.BasicResource;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,12 +20,15 @@ import java.util.Date;
         @NamedQuery(name="Message.getByNalog", query = "SELECT m FROM Message m JOIN m.nalogRelated u where u.id = :uid and m.archived = :archived")
 })
 @Table(name = "message")
+@XmlRootElement
 public class Message extends BasicResource implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @XmlID
+    @XmlElement
     private int id;
 
     @Column(name = "content", length = 2048)
