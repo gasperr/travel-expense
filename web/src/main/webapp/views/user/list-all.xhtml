@@ -116,7 +116,7 @@
                                                 <td>#{nalog.location}</td>
                                                 <td>#{listAllNalogi.getDate(nalog.fromDate)} - #{listAllNalogi.getDate(nalog.toDate)}</td>
                                                 <td>#{nalog.status.stringValue}</td>
-                                                <td>#{nalog.spent} €</td>
+                                                <td>#{listAllNalogi.calculateSpent(nalog)} €</td>
                                                 <td>#{nalog.zahtevek.costs} €</td>
                                                 <td>#{listAllNalogi.getDate(nalog.executedOn)}</td>
                                                 <td><h:commandLink type="submit"
@@ -170,7 +170,9 @@
 
         <h:panelGroup id="open-nalog-popup">
             <h:panelGroup rendered="#{not empty listAllNalogi.selectedNalog}" styleClass="background-popup">
-                <ui:include src="../view-order.xhtml"/>
+                <ui:include src="../view-order.xhtml">
+                    <ui:param name="selected" value="#{listAllNalogi.selectedNalog}"/>
+                </ui:include>
             </h:panelGroup>
         </h:panelGroup>
         <h:panelGroup id="open-connected-nalog-popup">

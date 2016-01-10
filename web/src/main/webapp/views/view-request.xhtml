@@ -5,7 +5,7 @@
 
     <!--todo: if role == managment add Name Surname of user to here-->
 
-    <ui:param name="selected" value="#{userDashboard.selectedZahtevek}"/>
+
     <!--@elvariable id="selected" type="si.fri.sp.entities.Zahtevek"-->
     <h:form>
         <div class="floating-popup popup">
@@ -24,6 +24,7 @@
                                 <div class="content-table msgs-corr section no-border">
                                     <table class="table">
                                         <tbody>
+
                                         <tr>
                                             <td class="corresponding-info">
                                                 <div class="row">
@@ -31,8 +32,10 @@
                                                         <table class="table">
                                                             <tbody>
                                                             <tr>
-                                                                <td><strong>Lokacija: </strong>#{selected.location}</td>
-                                                                <td><strong>Pred. strošek: </strong>#{selected.costs} €
+                                                                <td><strong>Lokacija: </strong>#{selected.location}
+                                                                </td>
+                                                                <td>
+                                                                    <strong>Pred. strošek: </strong>#{selected.costs} €
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -69,20 +72,13 @@
                                         <tr>
                                             <td>
                                                 <label for="purpose">Odziv / opombe</label>
-                                                <textarea class="form-control" rows="2" id="purpose"></textarea>
+                                                <h:inputTextarea class="form-control" rows="2" id="purpose"
+                                                                 value="#{managmentDashboard.responseToZahtevek}">
+                                                    <f:ajax event="change" execute="@this"/>
+                                                </h:inputTextarea>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <!-- todo make appropriate differences betweeen manager and user-->
-                                            <td>
-                                                <button type="button"
-                                                        class="btn btn-danger float-left managment-request-btn">Zavrni
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-success managment-request-btn">Potrdi
-                                                </button>
-                                            </td>
-                                        </tr>
+
 
                                         </tbody>
                                     </table>

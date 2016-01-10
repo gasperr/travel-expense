@@ -98,6 +98,14 @@ public class ApplicationCache implements Serializable {
             }
         }
     }
+    public List<Nalog> getNalogi(){
+        List<Nalog> nalogi = nalogServiceLocal.readFromTo(-1, -1, false);
+        for(Nalog nlg : nalogi){
+            nalogCache.put(nlg.getId(), nlg);
+        }
+        return nalogi;
+
+    }
     public List<Nalog> getUserNalogs(User user, boolean archived) throws Exception{
         if(user != null){
             if(nalogUserCache.containsKey(user.getId())){
@@ -128,6 +136,26 @@ public class ApplicationCache implements Serializable {
             }
         }
     }
+    public List<Zahtevek> getZahtevki(){
+        if(zahtevekCache.isEmpty()){
+            List<Zahtevek> zahtevki = zahtevekServiceLocal.readFromTo(-1, -1, false);
+            for(Zahtevek zaht : zahtevki){
+                zahtevekCache.put(zaht.getId(), zaht);
+            }
+            return zahtevki;
+        }else{
+            ArrayList<Zahtevek> arList = new ArrayList<Zahtevek>();
+
+            for(Map.Entry<Integer,Zahtevek> map : zahtevekCache.entrySet()){
+
+                arList.add(map.getValue());
+
+            }
+            return arList;
+        }
+
+
+    }
     public List<Zahtevek> getUserZahtevek(User user, boolean archived) throws Exception{
         if(user != null){
             if(zahtevekUserCache.containsKey(user.getId())){
@@ -145,5 +173,23 @@ public class ApplicationCache implements Serializable {
             throw new Exception("Wanting to access cache with null value");
         }
     }
+
+    public void addNalog(Nalog nalog){
+        nalogServiceLocal.create(nalog);
+        nalogCache.put(nalog.getId(), nalog);
+    }
+
+    public void clearAllCache(){
+        nalogCache = new HashMap<>();
+        nalogUserCache = new HashMap<>();
+
+        zahtevekCache = new HashMap<>();
+        zahtevekUserCache = new HashMap<>();
+
+        nalogMessageCache = new HashMap<>();
+        userMessageCache = new HashMap<>();
+    }
+
+
 
 }

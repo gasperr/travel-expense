@@ -279,7 +279,9 @@
 
         <h:panelGroup id="open-request-popup">
             <h:panelGroup rendered="#{not empty userDashboard.selectedZahtevek}" styleClass="background-popup">
-                <ui:include src="../view-request.xhtml"/>
+                <ui:include src="../view-request.xhtml">
+                    <ui:param name="selected" value="#{userDashboard.selectedZahtevek}"/>
+                </ui:include>
             </h:panelGroup>
         </h:panelGroup>
 

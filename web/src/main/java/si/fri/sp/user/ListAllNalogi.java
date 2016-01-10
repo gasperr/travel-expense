@@ -54,6 +54,10 @@ public class ListAllNalogi implements Serializable {
         return cm;
     }
 
+    public double calculateSpent(Nalog nalog){
+        return Utils.calculateSpent(nalog);
+    }
+
     public void openNalog(Nalog nalog){
         selectedNalog = nalog;
     }

@@ -50,7 +50,6 @@ public class Nalog extends BasicResource implements Serializable {
     @Column(length = 2048)
     private String content;
 
-    private double spent;
     private double covered;
 
     @ManyToOne
@@ -82,14 +81,6 @@ public class Nalog extends BasicResource implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public double getSpent() {
-        return spent;
-    }
-
-    public void setSpent(double spent) {
-        this.spent = spent;
     }
 
     public double getCovered() {

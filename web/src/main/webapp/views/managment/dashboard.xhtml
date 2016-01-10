@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <title>Travel e-Xpense</title>
+
+        <link href='../../css/bootstrap/bootstrap.min.css' rel='stylesheet'></link>
+        <link href='../../css/main.css' rel='stylesheet'></link>
+
+
+        <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+
+        <script type="text/javascript"
+                src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/html5-qrcode.min.js"></script>
+        <script src="../../js/main.js"></script>
+    </h:head>
+    <h:body>
+
+
+        <div class="main-container">
+            <div class="row main-navbar">
+                <nav class="menu navbar">
+                    <ul class="active">
+                        <li class="current-item"><a href="../finance/dashboard.html" class="btn btn-lg btn-default"
+                                                    id="new-order">
+                            <div class="main-btn">Finance</div>
+                        </a></li>
+                        <li><a href="../messages.html" class="btn btn-lg btn-default">
+                            <div class="main-btn">Sporočila</div>
+                        </a></li>
+                        <li><a href="../statistics.html" class="btn btn-lg btn-default">
+                            <div class="main-btn">Statistika</div>
+                        </a></li>
+                        <li><a href="../archive.html" class="btn btn-lg btn-default">
+                            <div class="main-btn">Arhiv</div>
+                        </a></li>
+                        <li><a data-toggle="tooltip" title="Pomoč na poti" class="btn btn-lg btn-default" id="globe"
+                               href="../map.html">
+                            <i class="glyphicon glyphicon-globe blue"></i>
+
+                        </a></li>
+
+                    </ul>
+
+
+                    <a class="toggle-nav" href="#">&#9776;</a>
+
+                    <div class="profile">
+                        <div class="logo"></div>
+                        <a href="../../index.html" class="btn btn-xs btn-default">
+                            <div class="edit-profile-btn">Odjava</div>
+                        </a>
+
+                    </div>
+                </nav>
+            </div>
+
+            <div class="row dashboard-content">
+                <div class=" col-md-6">
+                    <div class="dashboard-portlet left">
+                        <div class="content-inner">
+                            <div class="header left">
+                                <div class="title">Čakajoči zahtevki</div>
+                            </div>
+
+                            <div class="no-border search">
+                                <input type="search" placeholder="Najdi specifičnega..." class="filterTableString"
+                                       id="requests"/>
+                            </div>
+
+                            <div class="content-table section status">
+                                <table class="table table-bordered requests">
+                                    <thead>
+                                    <tr>
+                                        <th> Opis</th>
+                                        <th> Termin</th>
+                                        <th> Uporabnik</th>
+                                        <th> Okvirno</th>
+                                        <th> Akcija</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <h:form>
+                                    <ui:repeat value="#{managmentDashboard.waitingZahtevki}" var="zahtevek">
+                                        <tr>
+                                            <td>#{zahtevek.location}</td>
+                                            <td>#{managmentDashboard.getDate(zahtevek.fromDate)} - #{managmentDashboard.getDate(zahtevek.toDate)}</td>
+                                            <td>#{zahtevek.owner.name} #{zahtevek.owner.surname}</td>
+                                            <td>#{zahtevek.costs} €</td>
+                                            <td>
+                                                <h:commandButton
+                                                               class="btn btn-primary open-request user float-left"
+                                                               value="Odpri">
+                                                    <f:ajax render="open-request-popup"
+                                                            listener="#{managmentDashboard.openZahtevek(zahtevek)}"/>
+                                                </h:commandButton>
+                                                <h:commandButton
+                                                        class="approve-mngmt btn btn-sm btn-default" value="Potrdi">
+                                                    <f:ajax listener="#{managmentDashboard.approveZahtevek(zahtevek)}" />
+                                                </h:commandButton>
+                                                <h:commandButton
+                                                        class="approve-mngmt btn btn-sm btn-warning" value="Zavrni">
+                                                    <f:ajax listener="#{managmentDashboard.declineZahtevek(zahtevek)}" />
+                                                </h:commandButton>
+
+                                            </td>
+                                        </tr>
+                                    </ui:repeat>
+                                    </h:form>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class=" col-md-6">
+                    <div class="dashboard-portlet right">
+                        <div class="content-inner">
+                            <div class="header left">
+                                <div class="title">Pregled nad trenutnimi nalogi</div>
+                            </div>
+
+                            <div class="no-border search">
+                                <input type="search" placeholder="Najdi med trenutnimi nalogi..."
+                                       class="filterTableString" id="orders"/>
+                            </div>
+
+                            <div class="content-table section status">
+                                <table class="table table-bordered currents orders">
+                                    <thead>
+                                    <tr>
+                                        <th> Opis</th>
+                                        <th>Termin</th>
+                                        <th>Uporabnik</th>
+                                        <th> Odobril</th>
+                                        <th>Tr. strošek</th>
+                                        <th> Akcija</th>
+                                    </tr>
+                                    </thead>
+                                    <h:form>
+                                        <tbody>
+                                        <ui:repeat value="#{managmentDashboard.currentNalogi}" var="nalog">
+                                            <tr>
+                                                <td>#{nalog.purpose}</td>
+                                                <td>#{managmentDashboard.getDate(nalog.fromDate)} - #{managmentDashboard.getDate(nalog.toDate)}</td>
+                                                <td>#{nalog.owner.name} #{nalog.owner.surname}</td>
+                                                <td>#{nalog.approvedBy.name} #{nalog.approvedBy.surname}</td>
+                                                <td>#{managmentDashboard.calculateSpent(nalog)} €</td>
+                                                <td>
+                                                    <h:commandLink type="submit"
+                                                                   class="btn btn-primary open-request user float-left"
+                                                                   value="Odpri">
+                                                        <f:ajax render="open-nalog-popup"
+                                                                listener="#{managmentDashboard.openNalog(nalog)}"/>
+                                                    </h:commandLink>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+
+
+                                        </tbody>
+                                    </h:form>
+                                </table>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h:panelGroup id="open-nalog-popup">
+            <h:panelGroup rendered="#{not empty managmentDashboard.selectedNalog}" styleClass="background-popup">
+                <ui:include src="../view-order.xhtml">
+                    <ui:param name="selected" value="#{managmentDashboard.selectedNalog}"/>
+                </ui:include>
+            </h:panelGroup>
+        </h:panelGroup>
+
+
+        <div class="background-popup hidden" id="connected-order">
+
+        </div>
+
+        <h:panelGroup id="open-request-popup">
+            <h:panelGroup rendered="#{not empty managmentDashboard.selectedZahtevek}" styleClass="background-popup">
+                <ui:include src="../view-request.xhtml">
+                    <ui:param name="selected" value="#{managmentDashboard.selectedZahtevek}"/>
+                </ui:include>
+            </h:panelGroup>
+        </h:panelGroup>
+
+
+    </h:body>
+</f:view>
