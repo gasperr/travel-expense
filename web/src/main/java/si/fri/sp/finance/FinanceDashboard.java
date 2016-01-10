@@ -149,7 +149,13 @@ public class FinanceDashboard implements Serializable {
 
     public void refreshWaitingList(){
         applicationCache.clearAllCache();
-        this.waitingNalogi = applicationCache.getNalogi();
+        initWaitingNalog();
+    }
+
+    public void closePopup(){
+        setToReviewNosilcu(false);
+        setToReviewPotrjevalcu(false);
+
     }
 
     public String getDate(Date date){

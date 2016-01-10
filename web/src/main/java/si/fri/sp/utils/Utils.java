@@ -15,6 +15,10 @@ import java.util.List;
  */
 public class Utils {
 
+    /**
+     * @param date
+     * @return human readable date
+     */
     public static String beautifyDate(Date date){
         if(date != null){
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -24,6 +28,18 @@ public class Utils {
         }
     }
 
+    /**
+     * @param nalog that we want to check if is active
+     * @return true if nalog is active
+     */
+    public static boolean nalogIsActive(Nalog nalog){
+        return (new Date().compareTo(nalog.getFromDate()) >= 0) && (new Date().compareTo(nalog.getToDate()) <= 0);
+    }
+
+    /**
+     * sort masages in ascending order by date of creation
+     * @param messages
+     */
     public static void sortMessages(List<Message> messages){
         Collections.sort(messages, new Comparator<Message>() {
             @Override
@@ -36,6 +52,11 @@ public class Utils {
         });
     }
 
+    /**
+     * calculates total amount of money spent by nalog's services
+     * @param nalog
+     * @return total amount of spent
+     */
     public static double calculateSpent(Nalog nalog){
         if(nalog == null){
             return 0;
@@ -47,6 +68,13 @@ public class Utils {
         return rtrn;
     }
 
+    /**
+     * creates nalog from zahtevek
+     * @param zahtevek - zahtevek
+     * @param approvedBy - by whom it has been approved
+     * @param notes - notes added by the one approving
+     * @return
+     */
     public static Nalog createNalogFromZahtevek(Zahtevek zahtevek, User approvedBy, String notes){
 
         Nalog nalog = new Nalog();

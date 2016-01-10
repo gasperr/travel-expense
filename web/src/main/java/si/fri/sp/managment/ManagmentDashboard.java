@@ -69,6 +69,7 @@ public class ManagmentDashboard implements Serializable {
     public void approveZahtevek(Zahtevek zahtevek){
 
         zahtevek.setStatus(ZahtevekStatus.APPROVED);
+        zahtevek.setNoteByManagment(this.responseToZahtevek);
         zahtevekServiceLocal.update(zahtevek);
 
         // create nalog
@@ -76,12 +77,22 @@ public class ManagmentDashboard implements Serializable {
         applicationCache.addNalog(nalog);
         zahtevek.setNalog(nalog);
 
+        selectedZahtevek = null;
+
+        applicationCache.clearZahtevekCache();
+        waitingZahtevki.remove(zahtevek);
+
     }
     public void declineZahtevek(Zahtevek zahtevek){
 
         zahtevek.setStatus(ZahtevekStatus.DECLINED);
+        zahtevek.setNoteByManagment(this.responseToZahtevek);
         zahtevekServiceLocal.update(zahtevek);
 
+        selectedZahtevek = null;
+
+        applicationCache.clearZahtevekCache();
+        waitingZahtevki.remove(zahtevek);
 
     }
 
@@ -104,7 +115,7 @@ public class ManagmentDashboard implements Serializable {
         try{
             nalogi = applicationCache.getNalogi();
             for(Nalog nalog : nalogi){
-                if(nalog.getStatus() == NalogStatus.ACTIVE){
+                if(Utils.nalogIsActive(nalog) && (nalog.getStatus() == NalogStatus.ACTIVE || nalog.getStatus() == NalogStatus.APPROVED)){
                     currentNalogi.add(nalog);
                 }
             }

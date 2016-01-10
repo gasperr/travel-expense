@@ -22,7 +22,6 @@
     </h:head>
     <h:body>
 
-
         <div class="main-container">
             <div class="row main-navbar">
                 <nav class="menu navbar">
@@ -62,67 +61,75 @@
             </div>
 
             <div class="row dashboard-content">
-                <div class=" col-md-6">
-                    <div class="dashboard-portlet left">
-                        <div class="content-inner">
-                            <div class="header left">
-                                <div class="title">Čakajoči zahtevki</div>
-                            </div>
+                <h:form>
+                    <h:panelGroup styleClass=" col-md-6" id="zahtevki" layout="block">
+                        <div class="dashboard-portlet left">
+                            <div class="content-inner">
+                                <div class="header left">
+                                    <div class="title">Čakajoči zahtevki</div>
+                                </div>
 
-                            <div class="no-border search">
-                                <input type="search" placeholder="Najdi specifičnega..." class="filterTableString"
-                                       id="requests"/>
-                            </div>
+                                <div class="no-border search">
+                                    <input type="search" placeholder="Najdi specifičnega..." class="filterTableString"
+                                           id="requests"/>
+                                </div>
 
-                            <div class="content-table section status">
-                                <table class="table table-bordered requests">
-                                    <thead>
-                                    <tr>
-                                        <th> Opis</th>
-                                        <th> Termin</th>
-                                        <th> Uporabnik</th>
-                                        <th> Okvirno</th>
-                                        <th> Akcija</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <h:form>
-                                    <ui:repeat value="#{managmentDashboard.waitingZahtevki}" var="zahtevek">
+                                <div class="content-table section status">
+                                    <table class="table table-bordered requests">
+                                        <thead>
                                         <tr>
-                                            <td>#{zahtevek.location}</td>
-                                            <td>#{managmentDashboard.getDate(zahtevek.fromDate)} - #{managmentDashboard.getDate(zahtevek.toDate)}</td>
-                                            <td>#{zahtevek.owner.name} #{zahtevek.owner.surname}</td>
-                                            <td>#{zahtevek.costs} €</td>
-                                            <td>
-                                                <h:commandButton
-                                                               class="btn btn-primary open-request user float-left"
-                                                               value="Odpri">
-                                                    <f:ajax render="open-request-popup"
-                                                            listener="#{managmentDashboard.openZahtevek(zahtevek)}"/>
-                                                </h:commandButton>
-                                                <h:commandButton
-                                                        class="approve-mngmt btn btn-sm btn-default" value="Potrdi">
-                                                    <f:ajax listener="#{managmentDashboard.approveZahtevek(zahtevek)}" />
-                                                </h:commandButton>
-                                                <h:commandButton
-                                                        class="approve-mngmt btn btn-sm btn-warning" value="Zavrni">
-                                                    <f:ajax listener="#{managmentDashboard.declineZahtevek(zahtevek)}" />
-                                                </h:commandButton>
-
-                                            </td>
+                                            <th> Opis</th>
+                                            <th> Termin</th>
+                                            <th> Uporabnik</th>
+                                            <th> Okvirno</th>
+                                            <th> Akcija</th>
                                         </tr>
-                                    </ui:repeat>
-                                    </h:form>
+                                        </thead>
+                                        <tbody>
 
-                                    </tbody>
-                                </table>
+                                        <ui:repeat value="#{managmentDashboard.waitingZahtevki}" var="zahtevek">
+                                            <tr>
+                                                <td>#{zahtevek.location}</td>
+                                                <td>#{managmentDashboard.getDate(zahtevek.fromDate)} - #{managmentDashboard.getDate(zahtevek.toDate)}</td>
+                                                <td>#{zahtevek.owner.name} #{zahtevek.owner.surname}</td>
+                                                <td>#{zahtevek.costs} €</td>
+                                                <td>
+                                                    <h:commandButton
+                                                            class="btn btn-primary open-request user float-left"
+                                                            value="Odpri">
+                                                        <f:ajax render="open-request-popup"
+                                                                listener="#{managmentDashboard.openZahtevek(zahtevek)}"/>
+                                                    </h:commandButton>
+                                                    <h:commandButton
+                                                            class="approve-mngmt btn btn-sm btn-default" value="Potrdi">
+                                                        <f:ajax listener="#{managmentDashboard.approveZahtevek(zahtevek)}"/>
+                                                    </h:commandButton>
 
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
                             </div>
+
+
                         </div>
+                    </h:panelGroup>
 
+                    <h:commandButton style="display: none;" styleClass="click-me-to-decline">
+                        <f:ajax render=":open-request-popup @form"
+                                listener="#{managmentDashboard.declineZahtevek(managmentDashboard.selectedZahtevek)}"/>
+                    </h:commandButton>
+                    <h:commandButton style="display: none;" styleClass="click-me-to-approve">
+                        <f:ajax render=":open-request-popup @form"
+                                listener="#{managmentDashboard.approveZahtevek(managmentDashboard.selectedZahtevek)}"/>
+                    </h:commandButton>
+                </h:form>
 
-                    </div>
-                </div>
                 <div class=" col-md-6">
                     <div class="dashboard-portlet right">
                         <div class="content-inner">
@@ -201,6 +208,7 @@
                 </ui:include>
             </h:panelGroup>
         </h:panelGroup>
+
 
 
     </h:body>

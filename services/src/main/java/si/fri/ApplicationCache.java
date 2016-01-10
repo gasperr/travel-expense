@@ -202,6 +202,16 @@ public class ApplicationCache implements Serializable {
         userMessageCache = new HashMap<>();
     }
 
+    public void clearNalogiCache(){
+        nalogCache = new HashMap<>();
+        nalogUserCache = new HashMap<>();
+    }
+
+    public void clearZahtevekCache(){
+        zahtevekCache = new HashMap<>();
+        zahtevekUserCache = new HashMap<>();
+    }
+
 
 
 }

@@ -70,14 +70,26 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <label for="purpose">Odziv / opombe</label>
-                                                <h:inputTextarea class="form-control" rows="2" id="purpose"
-                                                                 value="#{managmentDashboard.responseToZahtevek}">
-                                                    <f:ajax event="change" execute="@this"/>
-                                                </h:inputTextarea>
-                                            </td>
+                                                <td>
+                                                    <label for="purpose">Odziv / opombe</label>
+                                                    <h:inputTextarea class="form-control" rows="2" id="purpose" disabled="#{not permissionChecker.hasManagmentPermission()}"
+                                                                     value="#{managmentDashboard.responseToZahtevek}">
+                                                        <f:ajax event="change" execute="@form"/>
+                                                    </h:inputTextarea>
+                                                </td>
+
                                         </tr>
+                                        <ui:fragment rendered="#{permissionChecker.hasManagmentPermission()}">
+                                            <tr>
+                                                <!-- todo make appropriate differences betweeen manager and user-->
+                                                <td>
+                                                    <h:commandButton type="button" styleClass="btn btn-danger float-left managment-request-btn stupid-button-decline" value="Zavrni"></h:commandButton>
+
+                                                    <h:commandButton type="button" styleClass="btn btn-success managment-request-btn stupid-button-approve" value="Potrdi"></h:commandButton>
+
+                                                </td>
+                                            </tr>
+                                        </ui:fragment>
 
 
                                         </tbody>
@@ -93,4 +105,12 @@
         </div>
     </h:form>
 
+    <script>
+        $("[class*='stupid-button-decline']").click(function(){
+            $(".click-me-to-decline").click();
+        })
+        $("[class*='stupid-button-approve']").click(function(){
+            $(".click-me-to-approve").click();
+        })
+    </script>
 </ui:composition>

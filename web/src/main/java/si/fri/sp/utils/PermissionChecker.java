@@ -3,13 +3,16 @@ package si.fri.sp.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import si.fri.sp.entities.User;
+import si.fri.sp.entities.enums.UserType;
 import si.fri.sp.utils.aclImpl.AclEntryImpl;
 import si.fri.sp.utils.aclImpl.AclImpl;
 import si.fri.sp.utils.aclImpl.PermissionImpl;
 import si.fri.sp.utils.aclImpl.PrincipalImpl;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+
 import java.io.Serializable;
 import java.security.Principal;
 import java.security.acl.Acl;
@@ -19,7 +22,8 @@ import java.security.acl.NotOwnerException;
  * @Author Gasper Andrejc, created on 10/jan/2016
  */
 
-@ApplicationScoped
+@RequestScoped
+@Named
 public class PermissionChecker implements Serializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PermissionChecker.class);
@@ -30,9 +34,16 @@ public class PermissionChecker implements Serializable {
     private PermissionImpl managmentPermission;
     private PermissionImpl userPermission;
 
+    private User currentUser;
+
 
     @PostConstruct
     private void beanInit() {
+        currentUser = new User();
+        currentUser.setId(1);
+        //todo: change to be read from cookie
+        currentUser.setType(UserType.MANAGER);
+
         Principal owner = new PrincipalImpl("owner");
         accessList = new AclImpl(owner, "aclList");
 
@@ -60,18 +71,27 @@ public class PermissionChecker implements Serializable {
         }
     }
 
-    public boolean hasUserPermission(User user) {
-        Principal testRole = new PrincipalImpl(user.getType().getStringValue());
+    /**
+     * @return true if user is Driver
+     */
+    public boolean hasUserPermission() {
+        Principal testRole = new PrincipalImpl(currentUser.getType().getStringValue());
         return accessList.checkPermission(testRole, userPermission);
     }
 
-    public boolean hasFinancePermission(User user) {
-        Principal testRole = new PrincipalImpl(user.getType().getStringValue());
+    /**
+     * @return true if user is Finance member
+     */
+    public boolean hasFinancePermission() {
+        Principal testRole = new PrincipalImpl(currentUser.getType().getStringValue());
         return accessList.checkPermission(testRole, financePermission);
     }
 
-    public boolean hasManagmentPermission(User user) {
-        Principal testRole = new PrincipalImpl(user.getType().getStringValue());
+    /**
+     * @return true if user is Managment member
+     */
+    public boolean hasManagmentPermission() {
+        Principal testRole = new PrincipalImpl(currentUser.getType().getStringValue());
         return accessList.checkPermission(testRole, managmentPermission);
     }
 }

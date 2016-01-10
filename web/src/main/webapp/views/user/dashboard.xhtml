@@ -60,89 +60,120 @@
             </div>
 
             <div class="row dashboard-content">
-                <div class=" col-md-7">
-                    <div class="dashboard-portlet left">
-                        <div class="content-inner">
-                            <div class="header">
-                                <div class="title">Trenutni nalog - #{userDashboard.currentNalog.id}</div>
+                <h:form>
+                    <div class=" col-md-7">
+                        <div class="dashboard-portlet left">
+                            <div class="content-inner">
+                                <div class="header">
+                                    <div class="title">Trenutni nalog - #{userDashboard.currentNalog.id}</div>
 
-                                <div class="dropdown float-right">
-                                    <button class="btn btn-primary dropdown-toggle" type="button"
-                                            data-toggle="dropdown">Nemčija
-                                        <span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Nova gorica</a></li>
-                                        <li><a href="#">Munchen</a></li>
-                                        <li><a href="#">Austrlija</a></li>
-                                    </ul>
+                                    <div class="dropdown float-right">
+                                        <button class="btn btn-primary dropdown-toggle" type="button"
+                                                data-toggle="dropdown">#{userDashboard.currentNalog.location}
+                                            <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <ui:repeat value="#{userDashboard.activeNalogi}" var="nalog">
+                                                <li><h:commandLink value="#{nalog.location}">
+                                                    <f:ajax event="click" render="@form" execute="@this"
+                                                            listener="#{userDashboard.switchCurrent(nalog)}"/>
+                                                </h:commandLink></li>
+                                            </ui:repeat>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="section">
-                                <table class="table">
-                                    <tbody>
-                                    <tr>
-                                        <td><strong>Lokacija: </strong>#{userDashboard.currentNalog.location}</td>
-                                        <td>
-                                            <strong>Odobril: </strong>#{userDashboard.currentNalog.approvedBy.name} #{userDashboard.currentNalog.approvedBy.surname}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Namen: </strong>#{userDashboard.currentNalog.purpose}</td>
-                                        <td>
-                                            <strong>Max stroški: </strong>#{userDashboard.currentNalog.zahtevek.costs}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>Termin: </strong>#{userDashboard.getDate(userDashboard.currentNalog.fromDate)} - #{userDashboard.getDate(userDashboard.currentNalog.toDate)}
-                                        </td>
-                                        <td><strong>Opombe: </strong>#{userDashboard.currentNalog.notes}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="content-table section">
-                                <table class="table table-bordered" id="orderServices">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 50%">Tip storitve</th>
-                                        <th style="width: 20%">Cena</th>
-                                        <th style="width: 30%">Opombe</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <ui:repeat value="#{userDashboard.currentNalog.services}" var="service">
+                                <div class="section">
+                                    <table class="table">
+                                        <tbody>
                                         <tr>
-                                            <td>#{service.type}</td>
-                                            <td>#{service.price}</td>
-                                            <td>#{service.notes}</td>
+                                            <td><strong>Lokacija: </strong>#{userDashboard.currentNalog.location}</td>
+                                            <td>
+                                                <strong>Odobril: </strong>#{userDashboard.currentNalog.approvedBy.name} #{userDashboard.currentNalog.approvedBy.surname}
+                                            </td>
                                         </tr>
-                                    </ui:repeat>
-                                    </tbody>
-                                </table>
+                                        <tr>
+                                            <td><strong>Namen: </strong>#{userDashboard.currentNalog.purpose}</td>
+                                            <td>
+                                                <strong>Max stroški: </strong>#{userDashboard.currentNalog.zahtevek.costs}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Termin: </strong>#{userDashboard.getDate(userDashboard.currentNalog.fromDate)} - #{userDashboard.getDate(userDashboard.currentNalog.toDate)}
+                                            </td>
+                                            <td><strong>Opombe: </strong>#{userDashboard.currentNalog.notes}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                            </div>
-                            <div class="section float-right no-border no-margin">
-                                <button type="button" class="glyphicon glyphicon-qrcode btn btn-primary"
-                                        id="readqr"></button>
-                                <button type="button" class="btn btn-success glyphicon glyphicon-pencil add"
-                                        id="addNewService"></button>
-                            </div>
+                                <div class="content-table section">
 
-                            <div class="section border-top footer">
-                                <div class="buttons">
-                                    <button type="button" class="btn btn-danger">Ponastavi</button>
-                                    <button type="button" class="btn btn-primary" id="editOrder">Uredi</button>
-                                    <button type="button" class="btn btn-success">Oddaj</button>
+                                    <table class="table table-bordered" id="orderServices">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 50%">Tip storitve</th>
+                                            <th style="width: 20%">Cena</th>
+                                            <th style="width: 30%">Opombe</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <ui:repeat value="#{userDashboard.serviceEntityList}" var="service">
+                                            <tr>
+                                                <td>#{service.type}</td>
+                                                <td>#{service.price}</td>
+                                                <td>#{service.notes}</td>
+                                            </tr>
+                                        </ui:repeat>
+
+                                        <tr id="addingEntry">
+                                            <td><h:inputText value="#{userDashboard.addingNewType}"
+                                                             class="tableInput serviceInput">
+                                                <f:ajax event="change" execute="@this"/>
+                                            </h:inputText></td>
+
+                                            <td><h:inputText value="#{userDashboard.addingNewPrice}"
+                                                             class="tableInput priceInput">
+                                                <f:ajax event="change" execute="@this"/>
+                                            </h:inputText></td>
+
+                                            <td><h:inputText value="#{userDashboard.addingNewNotes}" class="noteInput">
+                                                <f:ajax event="change" execute="@this"/>
+                                            </h:inputText>
+                                                <h:commandButton
+                                                        styleClass="btn-xs btn-success glyphicon glyphicon-plus float-right"
+                                                        value="">
+                                                    <f:ajax render="@form" listener="#{userDashboard.addNewService}"/>
+                                                </h:commandButton></td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                                <div class="section float-right no-border no-margin">
+                                    <button type="button" class="glyphicon glyphicon-qrcode btn btn-primary"
+                                            id="readqr"></button>
+                                    <button type="button" class="btn btn-success glyphicon glyphicon-pencil add"
+                                            id="addNewService"></button>
+                                </div>
+
+                                <div class="section border-top footer">
+                                    <div class="buttons">
+                                        <h:commandButton class="btn btn-success float-right" value="Oddaj">
+                                            <f:ajax render="@form" execute="@form" listener="#{userDashboard.oddajNalog}" />
+                                        </h:commandButton>
+                                    </div>
                                 </div>
                             </div>
+
+
                         </div>
-
-
                     </div>
-                </div>
+                </h:form>
+
                 <div class=" col-md-5">
                     <div class="dashboard-portlet right">
                         <div class="content-inner">

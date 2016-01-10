@@ -43,6 +43,9 @@ public class Zahtevek extends BasicResource implements Serializable {
     @Column(length=1024)
     private String content;
 
+    @Column(name = "note_by_managment")
+    private String noteByManagment;
+
     @NotNull
     @Enumerated(EnumType.ORDINAL)
     private ZahtevekStatus status;
@@ -149,6 +152,14 @@ public class Zahtevek extends BasicResource implements Serializable {
 
     public Nalog getNalog() {
         return nalog;
+    }
+
+    public String getNoteByManagment() {
+        return noteByManagment;
+    }
+
+    public void setNoteByManagment(String noteByManagment) {
+        this.noteByManagment = noteByManagment;
     }
 
     public void setNalog(Nalog nalog) {

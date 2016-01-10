@@ -143,59 +143,30 @@ var EXPENSE = {
         });
     },
     userInteractionHandler: function () {
-        $("#addNewService").click(function () {
-            var table = $("#orderServices");
-            var inputService = "<input type='text' class='tableInput serviceInput' placeholder='Tip storitve'</input>";
-            var inputPrice = "<input type='number' class='tableInput priceInput' placeholder='Cena'</input>";
-            var inputNotes = "<input type='text' class='noteInput' placeholder='Opombe'</input>";
-            var addBtn = '<button type="button" class="btn-xs btn-success glyphicon glyphicon-plus float-right insertService"></button>'
-            var inputFieldsHtml = "<tr id='addingEntry'> <td>" + inputService + "</td> <td>" + inputPrice + "</td> <td>" + inputNotes + addBtn + "</td> </tr>";
-            table.append(inputFieldsHtml);
-        });
-        $("#orderServices").on("click", ".insertService", function () {
-            var table = $("#orderServices");
-            var service = $(".serviceInput").val();
-            var price = $(".priceInput").val();
-            var note = $(".noteInput").val();
 
-            var valid = true;
-            if (!service) {
-                valid = false;
-                $(".serviceInput").addClass("non-valid-input").attr("placeholder", "Obvezno polje");
-            }
-            if (!price) {
-                valid = false;
-                $(".priceInput").addClass("non-valid-input").attr("placeholder", "Obvezno polje");
-            }
-            if (valid) {
-                $("#addingEntry").remove();
-                var htmlEntry = '<tr> <td>' + service + '</td> <td>' + price + '</td> <td>' + note + '</td> </tr>'
-                table.append(htmlEntry);
-            }
-        });
-        $("#editOrder").click(function () {
-            $(this).toggleClass("disabled");
-            var addButtonTo = $("#orderServices").parent(".content-table.section");
-
-            $("#orderServices").find("td").each(function () {
-                var value = $(this).html();
-                if (isNaN(value)) {
-                    $(this).html('<input type="text" class="tableInput serviceInput adding" value="' + value + '"></input>');
-                } else {
-                    $(this).html('<input type="number" class="tableInput priceInput adding" value="' + value + '"></input>');
-                }
-            });
-
-            addButtonTo.append('<button type="button" class="btn-xs btn-info glyphicon glyphicon-ok completeEdit float-right"></button>');
-        });
-        $("#orderServices").parent(".content-table.section").on("click", ".completeEdit", function () {
-            $("#orderServices").find(".adding").each(function () {
-                var value = $(this).val();
-                $(this).parent().html(value);
-            });
-            $(".completeEdit").remove();
-            $("#editOrder").toggleClass("disabled");
-        });
+        ////$("#editOrder").click(function () {
+        ////    $(this).toggleClass("disabled");
+        ////    var addButtonTo = $("#orderServices").parent(".content-table.section");
+        ////
+        ////    $("#orderServices").find("td").each(function () {
+        ////        var value = $(this).html();
+        ////        if (isNaN(value)) {
+        ////            $(this).html('<input type="text" class="tableInput serviceInput adding" value="' + value + '"></input>');
+        ////        } else {
+        ////            $(this).html('<input type="number" class="tableInput priceInput adding" value="' + value + '"></input>');
+        ////        }
+        ////    });
+        ////
+        ////    addButtonTo.append('<button type="button" class="btn-xs btn-info glyphicon glyphicon-ok completeEdit float-right"></button>');
+        ////});
+        //$("#orderServices").parent(".content-table.section").on("click", ".completeEdit", function () {
+        //    $("#orderServices").find(".adding").each(function () {
+        //        var value = $(this).val();
+        //        $(this).parent().html(value);
+        //    });
+        //    $(".completeEdit").remove();
+        //    $("#editOrder").toggleClass("disabled");
+        //});
         $(".trash-request").click(function (e) {
             $(this).closest("tr").empty();
             e.preventDefault();
