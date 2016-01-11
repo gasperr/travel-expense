@@ -2,22 +2,17 @@ package si.fri;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import si.fri.sp.entities.Message;
-import si.fri.sp.entities.Nalog;
-import si.fri.sp.entities.User;
-import si.fri.sp.entities.Zahtevek;
-import si.fri.sp.interfaces.MessageServiceLocal;
-import si.fri.sp.interfaces.NalogServiceLocal;
-import si.fri.sp.interfaces.UserServiceLocal;
-import si.fri.sp.interfaces.ZahtevekServiceLocal;
+import si.fri.sp.LoggerService;
+import si.fri.sp.entities.*;
+import si.fri.sp.entities.enums.LogEnum;
+import si.fri.sp.interfaces.*;
 
+import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.util.*;
 
 /**
  * @Author Gasper Andrejc, created on 09/jan/2016
@@ -40,6 +35,9 @@ public class ApplicationCache implements Serializable {
     @EJB
     private MessageServiceLocal messageServiceLocal;
 
+    @EJB
+    private LoggerLocal loggerExpense;
+
 
     private Map<Integer, Nalog> nalogCache = new HashMap<>();
     private Map<Integer, List<Nalog>> nalogUserCache = new HashMap<>();
@@ -49,6 +47,29 @@ public class ApplicationCache implements Serializable {
 
     private Map<Integer, List<Message>> nalogMessageCache = new HashMap<>();
     private Map<Integer, List<Message>> userMessageCache = new HashMap<>();
+
+    private Set<Log> logSet = new HashSet<>();
+
+    @PreDestroy
+    private void preDestroy(){
+        persistLogs();
+    }
+
+    public void persistLogs(){
+        LOGGER.info("Started persisting logs...");
+        for (Log log : logSet){
+            loggerExpense.create(log);
+        }
+        logSet = new HashSet<>();
+        LOGGER.info("All logs successfully persisted...");
+    }
+
+    public void log(Log log){
+        logSet.add(log);
+    }
+
+
+
 
     public List<Message> getMessagesByUser(User user) throws Exception{
         if(user != null){
@@ -208,6 +229,7 @@ public class ApplicationCache implements Serializable {
 
         nalogMessageCache = new HashMap<>();
         userMessageCache = new HashMap<>();
+
     }
 
     public void clearNalogiCache(){

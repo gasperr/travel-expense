@@ -3,9 +3,11 @@ package si.fri.sp.managment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import si.fri.ApplicationCache;
+import si.fri.LoggerExpense;
 import si.fri.sp.entities.Nalog;
 import si.fri.sp.entities.User;
 import si.fri.sp.entities.Zahtevek;
+import si.fri.sp.entities.enums.LogEnum;
 import si.fri.sp.entities.enums.NalogStatus;
 import si.fri.sp.entities.enums.UserType;
 import si.fri.sp.entities.enums.ZahtevekStatus;
@@ -38,6 +40,9 @@ public class ManagmentDashboard implements Serializable {
 
     @Inject
     private PermissionChecker permissionChecker;
+
+    @Inject
+    private LoggerExpense loggerExpense;
 
     @EJB
     private ZahtevekServiceLocal zahtevekServiceLocal;
@@ -84,6 +89,8 @@ public class ManagmentDashboard implements Serializable {
         applicationCache.addNalog(nalog);
         zahtevek.setNalog(nalog);
 
+        loggerExpense.log("Nalog " + nalog.getId() + " created from zahtevek " + selectedZahtevek.getId() + " by user " + user.getId(), LogEnum.MANAGMENT_NALOG);
+
         selectedZahtevek = null;
 
         applicationCache.clearZahtevekCache();
@@ -95,6 +102,9 @@ public class ManagmentDashboard implements Serializable {
         zahtevek.setStatus(ZahtevekStatus.DECLINED);
         zahtevek.setNoteByManagment(this.responseToZahtevek);
         zahtevekServiceLocal.update(zahtevek);
+
+
+        loggerExpense.log("Zahtevek " + zahtevek.getId() + " declined by user " + user.getId() +" with reason: "+this.responseToZahtevek.substring(0, 20)+"...", LogEnum.MANAGMENT_ZAHTEVEK);
 
         selectedZahtevek = null;
 

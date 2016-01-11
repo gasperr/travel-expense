@@ -3,10 +3,12 @@ package si.fri.sp.user;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import si.fri.ApplicationCache;
+import si.fri.LoggerExpense;
 import si.fri.sp.entities.Nalog;
 import si.fri.sp.entities.ServiceEntity;
 import si.fri.sp.entities.User;
 import si.fri.sp.entities.Zahtevek;
+import si.fri.sp.entities.enums.LogEnum;
 import si.fri.sp.entities.enums.NalogStatus;
 import si.fri.sp.interfaces.NalogServiceLocal;
 import si.fri.sp.interfaces.ServiceServiceLocal;
@@ -40,6 +42,9 @@ public class UserDashboard implements Serializable {
 
     @Inject
     private PermissionChecker permissionChecker;
+
+    @Inject
+    private LoggerExpense loggerExpense;
 
     @EJB
     private ServiceServiceLocal serviceServiceLocal;
@@ -144,6 +149,8 @@ public class UserDashboard implements Serializable {
         Zahtevek zahtevek = new Zahtevek();
         zahtevek.setContent(this.newZahtevek.getContent());
 
+        loggerExpense.log("New zahtevek " + zahtevek.getId() + " created by user " + currentUser.getId(), LogEnum.USER_ZAHTEVEK);
+
     }
 
     /**
@@ -165,6 +172,8 @@ public class UserDashboard implements Serializable {
         addingNewPrice = 0;
         addingNewType = "";
 
+        loggerExpense.log("Service added to nalog "+this.currentNalog.getId(), LogEnum.USER_NALOG);
+
     }
 
     /**
@@ -174,6 +183,9 @@ public class UserDashboard implements Serializable {
         this.currentNalog.setStatus(NalogStatus.FINISHED);
         activeNalogi.remove(this.currentNalog);
         nalogServiceLocal.update(this.currentNalog);
+
+        loggerExpense.log("Nalog "+currentNalog.getId()+" finished and sent to finance", LogEnum.USER_NALOG);
+
         if(!activeNalogi.isEmpty()){
             this.currentNalog = activeNalogi.get(0);
             this.serviceEntityList = this.currentNalog.getServices();

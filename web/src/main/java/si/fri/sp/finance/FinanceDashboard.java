@@ -3,19 +3,19 @@ package si.fri.sp.finance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import si.fri.ApplicationCache;
+import si.fri.LoggerExpense;
 import si.fri.sp.entities.Message;
 import si.fri.sp.entities.Nalog;
 import si.fri.sp.entities.ServiceEntity;
 import si.fri.sp.entities.User;
+import si.fri.sp.entities.enums.LogEnum;
 import si.fri.sp.entities.enums.NalogStatus;
-import si.fri.sp.entities.enums.UserType;
 import si.fri.sp.interfaces.NalogServiceLocal;
 import si.fri.sp.utils.PermissionChecker;
 import si.fri.sp.utils.Utils;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -39,6 +39,9 @@ public class FinanceDashboard implements Serializable {
 
     @Inject
     private PermissionChecker permissionChecker;
+
+    @Inject
+    private LoggerExpense loggerExpense;
 
     @EJB
     private NalogServiceLocal nalogServiceLocal;
@@ -101,6 +104,9 @@ public class FinanceDashboard implements Serializable {
             message.setDate(new Date());
 
             applicationCache.addMessage(message);
+            loggerExpense.log("Nalog " + inProgress.getId() + " executed by user " + user.getId(), LogEnum.FINANCE);
+
+
 
             refreshWaitingList();
             initInProgress();
@@ -134,6 +140,8 @@ public class FinanceDashboard implements Serializable {
         message.setSubject("[Racunovodstvo] Please review");
         message.setNalogRelated(inProgress);
         message.setZahtevekRelated(inProgress.getZahtevek());
+
+        loggerExpense.log("Nalog " + inProgress.getId() + " sent to review to " + (toReviewNosilcu ? inProgress.getApprovedBy().getId() : inProgress.getOwner().getId()), LogEnum.FINANCE);
 
 
         StringBuilder sb = new StringBuilder();

@@ -60,4 +60,9 @@ public class Log implements Serializable {
     public void setType(LogEnum type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "[<i>"+date+"</i>] <strong>"+type.getString()+"</strong> - "+log+"<br />";
+    }
 }
