@@ -27,7 +27,7 @@ var EXPENSE = {
         EXPENSE.tableFiltering();
         EXPENSE.googleAutoComplete();
         EXPENSE.managmentInteractionHandler();
-        EXPENSE.homeRedirect();
+        //EXPENSE.homeRedirect();
         EXPENSE.financeInteractionHandler();
 
 
@@ -39,38 +39,38 @@ var EXPENSE = {
             $("#inputPassword3").val(podatki[1]);
         });
     },
-    homeRedirect: function () {
-        $("#home").click(function () {
-            var user_type = localStorage.getItem("user_type");
-            console.log(user_type);
-            window.location.href = user_type + "/dashboard.html";
-        })
-    },
+    //homeRedirect: function () {
+    //    $("#home").click(function () {
+    //        var user_type = localStorage.getItem("user_type");
+    //        console.log(user_type);
+    //        window.location.href = user_type + "/dashboard-dashboard-user.html";
+    //    })
+    //},
 
-    login: function () {
-        var username = $("#upime").val();
-        var password = $("#inputPassword3").val();
-
-        var upimena = ["Peter Demolis", "Rok Nerovac", "Ana Konda"];
-        var gesla = ["managment", "user", "finance"]
-
-
-        for (var i in upimena) {
-            if (upimena[i] === username && gesla[i] === password) {
-                window.location.href = "views/"+gesla[i] + "/dashboard.html";
-
-                localStorage.setItem('user_type', password);
-                return true;
-            }
-        }
-        $("#inputPassword3").val("");
-        $("#passGroup").removeClass("form-group").addClass("form-group has-error");
-        $("#usernameGroup").removeClass("form-group").addClass("form-group has-error");
-        $("#kreirajSporocilo").html("<span class='obvestilo label label-danger fade-in'>Uporabnisko ime in geslo se bodisi ne ujemaata ali pa uporabnik ne obstaja.</span>");
-
-        return false;
-
-    },
+    //login: function () {
+    //    var username = $("#upime").val();
+    //    var password = $("#inputPassword3").val();
+    //
+    //    var upimena = ["Peter Demolis", "Rok Nerovac", "Ana Konda"];
+    //    var gesla = ["managment", "user", "finance"]
+    //
+    //
+    //    for (var i in upimena) {
+    //        if (upimena[i] === username && gesla[i] === password) {
+    //            window.location.href = "views/"+gesla[i] + "/dashboard-dashboard-user.html";
+    //
+    //            localStorage.setItem('user_type', password);
+    //            return true;
+    //        }
+    //    }
+    //    $("#inputPassword3").val("");
+    //    $("#passGroup").removeClass("form-group").addClass("form-group has-error");
+    //    $("#usernameGroup").removeClass("form-group").addClass("form-group has-error");
+    //    $("#kreirajSporocilo").html("<span class='obvestilo label label-danger fade-in'>Uporabnisko ime in geslo se bodisi ne ujemaata ali pa uporabnik ne obstaja.</span>");
+    //
+    //    return false;
+    //
+    //},
 
     openPopup: function () {
         $(".open-connected-orders").click(function () {
@@ -91,9 +91,9 @@ var EXPENSE = {
             $("#connected").toggleClass("hidden");
         });
 
-        $("#new-order").click(function () {
-            $("#add-new-popup").toggleClass("hidden");
-        });
+        //$("#new-order").click(function () {
+        //    $("#add-new-popup").toggleClass("hidden");
+        //});
 
         $(".send-to-review li a").click(function(e){
             console.log(e);
@@ -167,20 +167,20 @@ var EXPENSE = {
         //    $(".completeEdit").remove();
         //    $("#editOrder").toggleClass("disabled");
         //});
-        $(".trash-request").click(function (e) {
-            $(this).closest("tr").empty();
-            e.preventDefault();
-        });
+        //$(".trash-request").click(function (e) {
+        //    $(this).closest("tr").empty();
+        //    e.preventDefault();
+        //});
 
-        $("#add-new-popup").on("click", "#complete-new-request", function () {
-            $(".add-new").each(function () {
-
-                if (!$(this).val()) {
-                    $(this).addClass("non-valid-input").attr("placeholder", "Obvezno polje");
-                }
-            })
-
-        });
+        //$("#add-new-popup").on("click", "#complete-new-request", function () {
+        //    $(".add-new").each(function () {
+        //
+        //        if (!$(this).val()) {
+        //            $(this).addClass("non-valid-input").attr("placeholder", "Obvezno polje");
+        //        }
+        //    })
+        //
+        //});
 
         $("#readqr").click(function(){
             //try with: https://www4.uwm.edu/sois/qrcode/images/qrcode_bsisit_large_1.gif

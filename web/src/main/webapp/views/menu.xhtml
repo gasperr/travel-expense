@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <div class="row main-navbar">
+        <nav class="menu navbar">
+            <h:form>
+                <ul class="active">
+                    <ui:fragment rendered="#{permissionChecker.hasUserPermission()}">
+                        <li class="current-item">
+                            <h:commandLink styleClass="btn btn-lg btn-default main-btn" value="Nov zahtevek">
+                                <f:ajax render="add-new-popup" listener="#{userDashboard.initNewZahtevek()}"/>
+                            </h:commandLink>
+                        </li>
+                        <li><a href="/views/user/list-all.xhtml" class="btn btn-lg btn-default">
+                            <div class="main-btn">Moji nalogi</div>
+                        </a></li>
+                    </ui:fragment>
+
+                    <ui:fragment rendered="#{permissionChecker.hasManagmentPermission()}">
+                        <li><a href="/views/finance/dashboard.xhtml" class="btn btn-lg btn-default"
+                               id="new-order">
+                            <div class="main-btn">Finance</div>
+                        </a></li>
+                    </ui:fragment>
+
+                    <ui:fragment
+                            rendered="#{permissionChecker.hasFinancePermission() or permissionChecker.hasManagmentPermission()}">
+                        <li><a href="/views/statistics.xhtml" class="btn btn-lg btn-default">
+                            <div class="main-btn">Statistika</div>
+                        </a></li>
+                    </ui:fragment>
+
+
+                    <li><a href="/views/messages.xhtml" class="btn btn-lg btn-default">
+                        <div class="main-btn">Sporočila</div>
+                    </a></li>
+
+                    <li><a href="/views/archive.xhtml" class="btn btn-lg btn-default">
+                        <div class="main-btn">Arhiv</div>
+                    </a></li>
+                    <li><a data-toggle="tooltip" title="Pomoč na poti" class="btn btn-lg btn-default" id="globe"
+                           href="/etc/html-files/map.html">
+                        <i class="glyphicon glyphicon-globe blue"></i>
+                    </a></li>
+
+                </ul>
+            </h:form>
+
+
+            <a class="toggle-nav" href="#">&#9776;</a>
+
+            <div class="profile">
+                <div class="logo"></div>
+                <a href="/index.html" class="btn btn-xs btn-default">
+                    <div class="edit-profile-btn">Odjava</div>
+                </a>
+
+            </div>
+        </nav>
+    </div>
+
+</ui:composition>

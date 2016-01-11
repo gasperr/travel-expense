@@ -10,14 +10,17 @@ import si.fri.sp.entities.Zahtevek;
 import si.fri.sp.entities.enums.NalogStatus;
 import si.fri.sp.interfaces.NalogServiceLocal;
 import si.fri.sp.interfaces.ServiceServiceLocal;
+import si.fri.sp.interfaces.ZahtevekServiceLocal;
 import si.fri.sp.utils.PermissionChecker;
 import si.fri.sp.utils.Utils;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.naming.NoPermissionException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,8 +38,14 @@ public class UserDashboard implements Serializable {
     @Inject
     private ApplicationCache applicationCache;
 
+    @Inject
+    private PermissionChecker permissionChecker;
+
     @EJB
     private ServiceServiceLocal serviceServiceLocal;
+
+    @EJB
+    private ZahtevekServiceLocal zahtevekServiceLocal;
 
     @EJB
     private NalogServiceLocal nalogServiceLocal;
@@ -55,16 +64,25 @@ public class UserDashboard implements Serializable {
     private double addingNewPrice;
     private String addingNewNotes;
 
+    private ZahtevekImpl newZahtevek;
+
+    private Zahtevek lastZahtevek;
+
 
 
     @PostConstruct
     private void dashboardInit(){
-        currentUser = new User();
-        currentUser.setId(1);
+        try {
+            currentUser = permissionChecker.getCurrentUser();
+        } catch (NoPermissionException e) {
+            LOGGER.error("User could not be determined!", e);
+        }
 
         initCurrentNalog();
         initZahtevki();
+
     }
+
 
     private void initCurrentNalog(){
         try {
@@ -87,6 +105,16 @@ public class UserDashboard implements Serializable {
         }
     }
 
+    /**
+     * sends selected zahtevek to archive
+     * @param zahtevek
+     */
+    public void toArchive(Zahtevek zahtevek){
+        zahtevek.setArchived(true);
+        zahtevekServiceLocal.update(zahtevek);
+        initZahtevki();
+    }
+
     public void switchCurrent(Nalog nalog){
         this.currentNalog = nalog;
         serviceEntityList = nalog.getServices();
@@ -95,9 +123,27 @@ public class UserDashboard implements Serializable {
     private void initZahtevki(){
         try {
             myZahtevki = applicationCache.getUserZahtevek(currentUser, false);
+            Utils.sortZahtevki(myZahtevki);
+            this.lastZahtevek = myZahtevki.get(0);
         } catch (Exception e) {
             LOGGER.error("Error trying to fetch user's zahtevki", e);
         }
+    }
+
+    /**
+     * inits new zahtevek so popup opens
+     */
+    public void initNewZahtevek(){
+        this.newZahtevek = new ZahtevekImpl();
+    }
+
+    /***
+     * creates new zahtevek from user's popup on dashboard
+     */
+    public void createNewZahtevek(){
+        Zahtevek zahtevek = new Zahtevek();
+        zahtevek.setContent(this.newZahtevek.getContent());
+
     }
 
     /**
@@ -206,4 +252,18 @@ public class UserDashboard implements Serializable {
     public void setServiceEntityList(List<ServiceEntity> serviceEntityList) {
         this.serviceEntityList = serviceEntityList;
     }
+
+    public ZahtevekImpl getNewZahtevek() {
+        return newZahtevek;
+    }
+
+    public void setNewZahtevek(ZahtevekImpl newZahtevek) {
+        this.newZahtevek = newZahtevek;
+    }
+
+    public String getLastZahtevek() {
+        return Utils.beautifyDate(lastZahtevek.getToDate()) + ", " + lastZahtevek.getLocation();
+    }
+
+
 }

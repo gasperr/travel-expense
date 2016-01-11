@@ -6,12 +6,14 @@ import si.fri.ApplicationCache;
 import si.fri.sp.entities.Message;
 import si.fri.sp.entities.Nalog;
 import si.fri.sp.entities.User;
+import si.fri.sp.utils.PermissionChecker;
 import si.fri.sp.utils.Utils;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.naming.NoPermissionException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +31,9 @@ public class ListAllNalogi implements Serializable {
     @Inject
     private ApplicationCache applicationCache;
 
+    @Inject
+    private PermissionChecker permissionChecker;
+
     private User user;
 
     private List<Nalog> allNalogi;
@@ -39,8 +44,11 @@ public class ListAllNalogi implements Serializable {
 
     @PostConstruct
     private void beanInit(){
-        user = new User();
-        user.setId(1);
+        try {
+            user = permissionChecker.getCurrentUser();
+        } catch (NoPermissionException e) {
+            LOGGER.error("User could not be determined!", e);
+        }
     }
 
     public List<Message> getConnectedMessages(){

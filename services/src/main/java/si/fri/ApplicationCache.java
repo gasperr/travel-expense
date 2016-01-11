@@ -158,9 +158,17 @@ public class ApplicationCache implements Serializable {
     }
     public List<Zahtevek> getUserZahtevek(User user, boolean archived) throws Exception{
         if(user != null){
-            if(zahtevekUserCache.containsKey(user.getId())){
-                return zahtevekUserCache.get(user.getId());
-            }else{
+            if (zahtevekUserCache.containsKey(user.getId())) {
+                List<Zahtevek> all = zahtevekUserCache.get(user.getId());
+                if (!archived) {
+                    for (Zahtevek zahtevek : all) {
+                        if (zahtevek.isArchived()) {
+                            all.remove(zahtevek);
+                        }
+                    }
+                }
+                return all;
+            } else {
                 List<Zahtevek> zahteveks = zahtevekServiceLocal.getAllByUserId(user.getId(), archived);
                 if(!zahteveks.isEmpty()){
                     zahtevekUserCache.put(user.getId(), zahteveks);

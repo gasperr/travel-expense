@@ -5,12 +5,14 @@ import org.slf4j.LoggerFactory;
 import si.fri.ApplicationCache;
 import si.fri.sp.entities.Message;
 import si.fri.sp.entities.User;
+import si.fri.sp.utils.PermissionChecker;
 import si.fri.sp.utils.Utils;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.naming.NoPermissionException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,14 +30,20 @@ public class Messaging implements Serializable {
     @Inject
     private ApplicationCache applicationCache;
 
+    @Inject
+    private PermissionChecker permissionChecker;
+
     private User user;
 
     private Message selectedMessage;
 
     @PostConstruct
-    private void beanInit(){
-        user = new User();
-        user.setId(1);
+    private void beanInit() {
+        try {
+            user = permissionChecker.getCurrentUser();
+        } catch (NoPermissionException e) {
+            LOGGER.error("User could not be determined!", e);
+        }
     }
 
 
@@ -50,16 +58,17 @@ public class Messaging implements Serializable {
         return rtrn;
     }
 
-    public void openConnected(Message message){
+    public void openConnected(Message message) {
         selectedMessage = message;
     }
+
     public void closeConnected() {
         if (this.selectedMessage != null) {
             this.selectedMessage = null;
         }
     }
 
-    public String getDate(Date date){
+    public String getDate(Date date) {
         return Utils.beautifyDate(date);
     }
 

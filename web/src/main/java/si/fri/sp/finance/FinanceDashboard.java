@@ -19,6 +19,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.naming.NoPermissionException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -61,9 +62,11 @@ public class FinanceDashboard implements Serializable {
 
     @PostConstruct
     private void beanInit(){
-        user = new User();
-        user.setId(1);
-        user.setType(UserType.FINANCE);
+        try {
+            user = permissionChecker.getCurrentUser();
+        } catch (NoPermissionException e) {
+            LOGGER.error("User could not be determined!", e);
+        }
 
         initWaitingNalog();
         initInProgress();
@@ -77,7 +80,9 @@ public class FinanceDashboard implements Serializable {
     }
 
 
-
+    /**
+     * finishes nalog and sends it to archive so user can see it there
+     */
     public void executeNalog(){
         if(this.inProgress != null){
             inProgress.setExecutedOn(new Date());

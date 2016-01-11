@@ -11,7 +11,9 @@ import si.fri.sp.utils.aclImpl.PrincipalImpl;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.naming.NoPermissionException;
 
 import java.io.Serializable;
 import java.security.Principal;
@@ -22,7 +24,7 @@ import java.security.acl.NotOwnerException;
  * @Author Gasper Andrejc, created on 10/jan/2016
  */
 
-@RequestScoped
+@SessionScoped
 @Named
 public class PermissionChecker implements Serializable {
 
@@ -39,11 +41,6 @@ public class PermissionChecker implements Serializable {
 
     @PostConstruct
     private void beanInit() {
-        currentUser = new User();
-        currentUser.setId(1);
-        //todo: change to be read from cookie
-        currentUser.setType(UserType.MANAGER);
-
         Principal owner = new PrincipalImpl("owner");
         accessList = new AclImpl(owner, "aclList");
 
@@ -74,24 +71,37 @@ public class PermissionChecker implements Serializable {
     /**
      * @return true if user is Driver
      */
-    public boolean hasUserPermission() {
-        Principal testRole = new PrincipalImpl(currentUser.getType().getStringValue());
+    public boolean hasUserPermission() throws NoPermissionException {
+        Principal testRole = new PrincipalImpl(getCurrentUser().getType().getStringValue());
         return accessList.checkPermission(testRole, userPermission);
     }
 
     /**
      * @return true if user is Finance member
      */
-    public boolean hasFinancePermission() {
-        Principal testRole = new PrincipalImpl(currentUser.getType().getStringValue());
+    public boolean hasFinancePermission() throws NoPermissionException {
+        Principal testRole = new PrincipalImpl(getCurrentUser().getType().getStringValue());
         return accessList.checkPermission(testRole, financePermission);
     }
 
     /**
      * @return true if user is Managment member
      */
-    public boolean hasManagmentPermission() {
-        Principal testRole = new PrincipalImpl(currentUser.getType().getStringValue());
+    public boolean hasManagmentPermission() throws NoPermissionException {
+        Principal testRole = new PrincipalImpl(getCurrentUser().getType().getStringValue());
         return accessList.checkPermission(testRole, managmentPermission);
+    }
+
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public User getCurrentUser() throws NoPermissionException {
+        if(currentUser != null){
+            return currentUser;
+        }else{
+            throw new NoPermissionException("No user can be found in session...");
+        }
     }
 }

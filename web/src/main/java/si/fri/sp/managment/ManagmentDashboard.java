@@ -10,6 +10,7 @@ import si.fri.sp.entities.enums.NalogStatus;
 import si.fri.sp.entities.enums.UserType;
 import si.fri.sp.entities.enums.ZahtevekStatus;
 import si.fri.sp.interfaces.ZahtevekServiceLocal;
+import si.fri.sp.utils.PermissionChecker;
 import si.fri.sp.utils.Utils;
 
 import javax.annotation.PostConstruct;
@@ -17,6 +18,7 @@ import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.naming.NoPermissionException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,6 +35,9 @@ public class ManagmentDashboard implements Serializable {
 
     @Inject
     private ApplicationCache applicationCache;
+
+    @Inject
+    private PermissionChecker permissionChecker;
 
     @EJB
     private ZahtevekServiceLocal zahtevekServiceLocal;
@@ -51,9 +56,11 @@ public class ManagmentDashboard implements Serializable {
 
     @PostConstruct
     private void beanInit(){
-        user = new User();
-        user.setId(1);
-        user.setType(UserType.MANAGER);
+        try {
+            user = permissionChecker.getCurrentUser();
+        } catch (NoPermissionException e) {
+            LOGGER.error("User could not be determined!", e);
+        }
         initZahtevki();
         initNalogi();
     }

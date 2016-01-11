@@ -52,6 +52,18 @@ public class Utils {
         });
     }
 
+    public static void sortZahtevki(List<Zahtevek> zahteveks){
+        Collections.sort(zahteveks, new Comparator<Zahtevek>() {
+            @Override
+            public int compare(Zahtevek d1, Zahtevek d2) {
+                Date date1 = d1.getToDate();
+                Date date2 = d2.getToDate();
+                return date2.compareTo(date1);
+
+            }
+        });
+    }
+
     /**
      * calculates total amount of money spent by nalog's services
      * @param nalog
