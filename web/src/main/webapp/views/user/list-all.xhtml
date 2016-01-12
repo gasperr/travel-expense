@@ -142,7 +142,10 @@
         </h:panelGroup>
         <h:panelGroup id="open-connected-nalog-popup">
             <h:panelGroup rendered="#{not empty listAllNalogi.connectedSelectedNalog}" styleClass="background-popup">
-                <ui:include src="connected-order.xhtml"/>
+                <ui:include src="connected-order.xhtml">
+                    <ui:param name="zahtevek" value="#{listAllNalogi.connectedSelectedNalog.zahtevek}"/>
+                    <ui:param name="selected" value="#{listAllNalogi.connectedSelectedNalog}"/>
+                </ui:include>
             </h:panelGroup>
         </h:panelGroup>
     </h:body>

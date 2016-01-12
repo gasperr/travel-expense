@@ -2,7 +2,10 @@ package si.fri.sp.security;
 
 import si.fri.sp.entities.User;
 import si.fri.sp.entities.enums.UserType;
+import si.fri.sp.utils.PermissionChecker;
 
+import javax.inject.Inject;
+import javax.naming.NoPermissionException;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +21,9 @@ import java.io.IOException;
 @WebFilter("/views/finance/*")
 public class FinanceFilter implements Filter {
 
+    @Inject
+    private PermissionChecker permissionChecker;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -25,19 +31,15 @@ public class FinanceFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain) throws IOException, ServletException {
-        User user = (User)((HttpServletRequest)req).getSession().getAttribute("user");
 
-        if(user != null){
-            if(user.getType() == UserType.DRIVER){
-                ((HttpServletResponse)resp).sendRedirect("/views/user/dashboard.xhtml");
-            }else if(user.getType() == UserType.FINANCE){
+        try {
+            if (permissionChecker.hasFinancePermission()) {
                 filterChain.doFilter(req, resp);
-            }else{
-                ((HttpServletResponse)resp).sendRedirect("/views/managment/dashboard.xhtml");
+            } else {
+                ((HttpServletResponse) resp).sendRedirect("/index.html");
             }
-
-        }else{
-            ((HttpServletResponse)resp).sendRedirect("/index.html");
+        } catch (NoPermissionException e) {
+            e.printStackTrace();
         }
     }
 

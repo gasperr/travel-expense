@@ -10,6 +10,7 @@ import si.fri.sp.entities.User;
 import si.fri.sp.entities.Zahtevek;
 import si.fri.sp.entities.enums.LogEnum;
 import si.fri.sp.entities.enums.NalogStatus;
+import si.fri.sp.entities.enums.ZahtevekStatus;
 import si.fri.sp.interfaces.NalogServiceLocal;
 import si.fri.sp.interfaces.ServiceServiceLocal;
 import si.fri.sp.interfaces.ZahtevekServiceLocal;
@@ -19,11 +20,15 @@ import si.fri.sp.utils.Utils;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.naming.NoPermissionException;
+import java.io.IOException;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -69,9 +74,11 @@ public class UserDashboard implements Serializable {
     private double addingNewPrice;
     private String addingNewNotes;
 
-    private ZahtevekImpl newZahtevek;
+    private ZahtevekImpl newZahtevek = new ZahtevekImpl();
 
     private Zahtevek lastZahtevek;
+
+    private SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd");
 
 
 
@@ -143,13 +150,30 @@ public class UserDashboard implements Serializable {
     }
 
     /***
-     * creates new zahtevek from user's popup on dashboard
+     * creates new zahtevek from user's popup on dashboard, puts it in cache and redirects back to dashboard
      */
     public void createNewZahtevek(){
-        Zahtevek zahtevek = new Zahtevek();
-        zahtevek.setContent(this.newZahtevek.getContent());
+        try{
+            Zahtevek zahtevek = new Zahtevek();
+            zahtevek.setContent(this.newZahtevek.getContent());
+            zahtevek.setArchived(false);
+            zahtevek.setCosts(Double.parseDouble(this.newZahtevek.getCost()));
+            zahtevek.setFromDate(SDF.parse(this.newZahtevek.getDateFrom()));
+            zahtevek.setToDate(SDF.parse(this.newZahtevek.getDateTo()));
+            zahtevek.setLocation(this.newZahtevek.getLocation());
+            zahtevek.setOwner(this.currentUser);
+            zahtevek.setStatus(ZahtevekStatus.IN_REVIEW);
 
-        loggerExpense.log("New zahtevek " + zahtevek.getId() + " created by user " + currentUser.getId(), LogEnum.USER_ZAHTEVEK);
+            applicationCache.addZahtevek(currentUser, zahtevek);
+
+            loggerExpense.log("New zahtevek " + zahtevek.getId() + " created by user " + currentUser.getId(), LogEnum.USER_ZAHTEVEK);
+
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/views/user/dashboard.xhtml");
+
+        }catch (ParseException | IOException e){
+            LOGGER.error("", e);
+        }
+
 
     }
 
@@ -162,8 +186,6 @@ public class UserDashboard implements Serializable {
         serviceEntity.setNotes(addingNewNotes);
         serviceEntity.setPrice(addingNewPrice);
         serviceEntity.setType(addingNewType);
-
-
 
         serviceServiceLocal.create(serviceEntity);
         serviceEntityList.add(serviceEntity);

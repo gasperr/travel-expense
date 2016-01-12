@@ -96,20 +96,22 @@
                                         </ui:repeat>
 
                                         <tr id="addingEntry">
-                                            <td><h:inputText value="#{userDashboard.addingNewType}"
-                                                             class="tableInput serviceInput">
-                                                <f:ajax event="change" execute="@this"/>
-                                            </h:inputText></td>
-
-                                            <td><h:inputText value="#{userDashboard.addingNewPrice}"
-                                                             class="tableInput priceInput">
-                                                <f:ajax event="change" execute="@this"/>
-                                            </h:inputText></td>
-
-                                            <td><h:inputText value="#{userDashboard.addingNewNotes}" class="noteInput">
+                                            <td><h:inputText value="#{userDashboard.addingNewType}" id="s_input" disabled="#{empty userDashboard.currentNalog}"
+                                                             class="tableInput serviceInput" required="true" requiredMessage="Obvezno polje">
                                                 <f:ajax event="change" execute="@this"/>
                                             </h:inputText>
-                                                <h:commandButton
+                                                <h:message for="s_input"></h:message></td>
+
+                                            <td><h:inputText disabled="#{empty userDashboard.addingNewType}" value="#{userDashboard.currentNalog}" id="s_cost" required="true" requiredMessage="Obvezno polje" validator="#{fieldValidator.validateNumber}"
+                                                             class="tableInput priceInput">
+                                                <f:ajax event="change" execute="@this"/>
+                                            </h:inputText>
+                                                <h:message for="s_cost"></h:message></td>
+
+                                            <td><h:inputText disabled="#{empty userDashboard.addingNewType}" value="#{userDashboard.currentNalog}" class="noteInput">
+                                                <f:ajax event="change" execute="@this"/>
+                                            </h:inputText>
+                                                <h:commandButton disabled="#{empty userDashboard.currentNalog}"
                                                         styleClass="btn-xs btn-success glyphicon glyphicon-plus float-right"
                                                         value="">
                                                     <f:ajax render="@form" listener="#{userDashboard.addNewService}"/>
@@ -216,82 +218,7 @@
         <!--todo: responsive for popup-->
         <!--todo: google autocomplete -->
 
-        <h:panelGroup class="background-popup #{empty userDashboard.newZahtevek ? 'hidden':''}" id="add-new-popup">
-            <div class="floating-popup popup">
-                <div class="container">
-                    <div class="content-inner">
-                        <h:form>
-                            <div class="row popup-header">
-                                <span class="title">Nov zahtevek</span>
-                                <a href="#" class="close-popup"><i
-                                        class="title glyphicon glyphicon-remove-sign float-right"></i></a>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group no-margin">
-                                        <label for="location">Lokacija:</label>
-                                        <h:inputText value="#{userDashboard.newZahtevek.location}"
-                                                     styleClass="form-control add-new" id="location">
-                                        </h:inputText>
-                                    </div>
-                                    <div class="form-group no-margin">
-                                        <div class="date-left">
-                                            <label for="date">Od<span class="datepicker-format"> (<abbr
-                                                    title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-                                            <h:inputText value="#{userDashboard.newZahtevek.dateFrom}" id="date">
-                                            </h:inputText>
-                                        </div>
-                                        <div class="date-right">
-                                            <label for="date2">Od<span class="datepicker-format"> (<abbr
-                                                    title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
-                                            <h:inputText value="#{userDashboard.newZahtevek.dateTo}" id="date2">
 
-                                            </h:inputText>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group no-margin">
-                                        <label for="cost">Predviden strošek (€):</label>
-                                        <h:inputText value="#{userDashboard.newZahtevek.cost}"
-                                                     styleClass="form-control add-new" id="cost">
-
-                                        </h:inputText>
-                                    </div>
-                                    <div class="form-group no-margin">
-                                        <label for="dateandString">Datum in kraj zadnjega odobrenega zahtevka:</label>
-                                        <h:inputText disabled="true" value="#{userDashboard.lastZahtevek}"
-                                                     styleClass="form-control add-new" id="dateandString">
-
-                                        </h:inputText>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group clear no-margin">
-                                        <label for="purpose">Opiši namen, razlog in kako lahko to koristi podjetju / tebi:</label>
-                                        <h:inputTextarea styleClass="form-control add-new" rows="7" id="purpose"
-                                                         value="#{userDashboard.newZahtevek.content}">
-
-                                        </h:inputTextarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="section footer">
-                                <div class="float-right no-margin">
-                                    <h:commandButton styleClass="btn btn-success" value="Kreiraj">
-                                        <f:ajax render="@form" execute="@form"
-                                                listener="#{userDashboard.createNewZahtevek()}"/>
-                                    </h:commandButton>
-                                </div>
-                            </div>
-                        </h:form>
-                    </div>
-                </div>
-
-            </div>
-        </h:panelGroup>
 
         <h:panelGroup id="open-request-popup">
             <h:panelGroup rendered="#{not empty userDashboard.selectedZahtevek}" styleClass="background-popup">

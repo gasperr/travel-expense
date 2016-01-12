@@ -4,13 +4,16 @@
 
     <div class="row main-navbar">
         <nav class="menu navbar">
-            <h:form>
+            <h:form style="display: initial">
                 <ul class="active">
+                    <li>
+                        <a href="#{permissionChecker.getDefaultUrl()}" class="btn btn-lg btn-default">
+                            <div class="main-btn">Domov</div>
+                        </a>
+                    </li>
                     <ui:fragment rendered="#{permissionChecker.hasUserPermission()}">
                         <li class="current-item">
-                            <h:commandLink styleClass="btn btn-lg btn-default main-btn" value="Nov zahtevek">
-                                <f:ajax render="add-new-popup" listener="#{userDashboard.initNewZahtevek()}"/>
-                            </h:commandLink>
+                            <a href="/views/user/add-new-view.xhtml" class="btn btn-lg btn-default main-btn">Nov zahtevek</a>
                         </li>
                         <li><a href="/views/user/list-all.xhtml" class="btn btn-lg btn-default">
                             <div class="main-btn">Moji nalogi</div>

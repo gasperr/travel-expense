@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <title>Travel e-Xpense</title>
+
+        <link href='../../css/bootstrap/bootstrap.min.css' rel='stylesheet'></link>
+        <link href='../../css/main.css' rel='stylesheet'></link>
+
+
+        <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+
+        <script type="text/javascript"
+                src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/html5-qrcode.min.js"></script>
+        <script src="../../js/main.js"></script>
+    </h:head>
+    <h:body>
+
+        <div class="main-container">
+
+            <ui:include src="../menu.xhtml"/>
+
+
+            <div class="row dashboard-content">
+                <h:panelGroup class="background-popup" id="add-new-popup">
+                    <div class="floating-popup popup">
+                        <div class="container">
+                            <div class="content-inner">
+                                <h:form>
+                                    <div class="row popup-header">
+                                        <span class="title">Nov zahtevek</span>
+                                        <a href="/views/user/dashboard.xhtml" class="close-popup"><i
+                                                class="title glyphicon glyphicon-remove-sign float-right"></i></a>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group no-margin">
+                                                <label for="location">Lokacija:</label>
+                                                <h:inputText value="#{userDashboard.newZahtevek.location}" required="true" requiredMessage="Polje je obvezno" validator="#{fieldValidator.validateText}"
+                                                             styleClass="form-control add-new" id="location">
+                                                    <f:ajax event="change" execute="@this" immediate="true"/>
+                                                </h:inputText>
+                                                <h:panelGroup rendered="#{fieldValidator.fieldHasError('location')}">
+                                                    <i class="ico-warning-orange ico-padded"></i>#{fieldValidator.getFieldErrorMessage('location')}
+                                                </h:panelGroup>
+                                                <h:message for="location"></h:message>
+                                            </div>
+                                            <div class="form-group no-margin">
+                                                <div class="date-left">
+                                                    <label for="date">Od<span class="datepicker-format"> (<abbr
+                                                            title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+                                                    <h:inputText value="#{userDashboard.newZahtevek.dateFrom}" id="date"  required="true" requiredMessage="Polje je obvezno" validator="#{fieldValidator.validateDate}">
+                                                        <f:ajax event="change" execute="@this" immediate="true"/>
+                                                    </h:inputText>
+                                                    <h:panelGroup rendered="#{fieldValidator.fieldHasError('date')}">
+                                                        <i class="ico-warning-orange ico-padded"></i>#{fieldValidator.getFieldErrorMessage('date')}
+                                                    </h:panelGroup>
+                                                    <h:message for="date"></h:message>
+                                                </div>
+                                                <div class="date-right">
+                                                    <label for="date2">Od<span class="datepicker-format"> (<abbr
+                                                            title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span></label>
+                                                    <h:inputText value="#{userDashboard.newZahtevek.dateTo}" id="date2" required="true" requiredMessage="Polje je obvezno" validator="#{fieldValidator.validateDate}">
+                                                        <f:ajax event="change" execute="@this" immediate="true"/>
+                                                    </h:inputText>
+                                                    <h:panelGroup rendered="#{fieldValidator.fieldHasError('date2')}">
+                                                        <i class="ico-warning-orange ico-padded"></i>#{fieldValidator.getFieldErrorMessage('date2')}
+                                                    </h:panelGroup>
+                                                    <h:message for="date2"></h:message>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group no-margin">
+                                                <label for="cost">Predviden strošek (€):</label>
+                                                <h:inputText value="#{userDashboard.newZahtevek.cost}" required="true" requiredMessage="Polje je obvezno" validator="#{fieldValidator.validateNumber}"
+                                                             styleClass="form-control add-new" id="cost">
+                                                    <f:ajax event="change" execute="@this" immediate="true"/>
+                                                </h:inputText>
+                                                <h:panelGroup rendered="#{fieldValidator.fieldHasError('cost')}">
+                                                    <i class="ico-warning-orange ico-padded"></i>#{fieldValidator.getFieldErrorMessage('cost')}
+                                                </h:panelGroup>
+                                                <h:message for="cost"></h:message>
+                                            </div>
+                                            <div class="form-group no-margin">
+                                                <label for="dateandString">Datum in kraj zadnjega odobrenega zahtevka:</label>
+                                                <h:inputText disabled="true" value="#{userDashboard.lastZahtevek}"
+                                                             styleClass="form-control add-new" id="dateandString">
+
+                                                </h:inputText>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group clear no-margin">
+                                                <label for="purpose">Opiši namen, razlog in kako lahko to koristi podjetju / tebi:</label>
+                                                <h:inputTextarea styleClass="form-control add-new" rows="7" id="purpose" required="true" requiredMessage="Polje je obvezno" validator="#{fieldValidator.validateText}"
+                                                                 value="#{userDashboard.newZahtevek.content}">
+                                                    <f:ajax event="change" execute="@this" immediate="true"/>
+                                                </h:inputTextarea>
+                                                <h:panelGroup rendered="#{fieldValidator.fieldHasError('purpose')}">
+                                                    <i class="ico-warning-orange ico-padded"></i>#{fieldValidator.getFieldErrorMessage('purpose')}
+                                                </h:panelGroup>
+                                                <h:message for="purpose"></h:message>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section footer">
+                                        <div class="float-right no-margin">
+                                            <h:commandButton styleClass="btn btn-success" value="Kreiraj">
+                                                <f:ajax render="@form" execute="@form" listener="#{userDashboard.createNewZahtevek()}"/>
+                                            </h:commandButton>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+
+                    </div>
+                </h:panelGroup>
+
+
+            </div>
+        </div>
+
+
+    </h:body>
+</f:view>

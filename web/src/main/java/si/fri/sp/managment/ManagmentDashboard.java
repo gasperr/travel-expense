@@ -78,25 +78,41 @@ public class ManagmentDashboard implements Serializable {
     }
 
 
+    /**
+     * approves zahtevek passed in parameter
+     * @param zahtevek
+     */
     public void approveZahtevek(Zahtevek zahtevek){
 
         zahtevek.setStatus(ZahtevekStatus.APPROVED);
         zahtevek.setNoteByManagment(this.responseToZahtevek);
-        zahtevekServiceLocal.update(zahtevek);
+        zahtevek.setReviewedBy(user);
+
 
         // create nalog
         Nalog nalog = Utils.createNalogFromZahtevek(zahtevek, user, responseToZahtevek == null ? "":responseToZahtevek);
         applicationCache.addNalog(nalog);
         zahtevek.setNalog(nalog);
 
-        loggerExpense.log("Nalog " + nalog.getId() + " created from zahtevek " + selectedZahtevek.getId() + " by user " + user.getId(), LogEnum.MANAGMENT_NALOG);
+
+        if(selectedZahtevek != null){
+            loggerExpense.log("Nalog " + nalog.getId() + " created from zahtevek " + selectedZahtevek.getId() + " by user " + user.getId(), LogEnum.MANAGMENT_NALOG);
+        }else{
+            loggerExpense.log("Nalog " + nalog.getId() + " created from zahtevek by user " + user.getId(), LogEnum.MANAGMENT_NALOG);
+        }
 
         selectedZahtevek = null;
 
+        zahtevekServiceLocal.update(zahtevek);
         applicationCache.clearZahtevekCache();
         waitingZahtevki.remove(zahtevek);
 
     }
+
+    /**
+     * declines zahtevek passed as parameter
+     * @param zahtevek
+     */
     public void declineZahtevek(Zahtevek zahtevek){
 
         zahtevek.setStatus(ZahtevekStatus.DECLINED);
@@ -104,7 +120,8 @@ public class ManagmentDashboard implements Serializable {
         zahtevekServiceLocal.update(zahtevek);
 
 
-        loggerExpense.log("Zahtevek " + zahtevek.getId() + " declined by user " + user.getId() +" with reason: "+this.responseToZahtevek.substring(0, 20)+"...", LogEnum.MANAGMENT_ZAHTEVEK);
+        //loggerExpense.log("Zahtevek " + zahtevek.getId() + " declined by user " + user.getId() +" with reason: "+this.responseToZahtevek.substring(0, 20)+"...", LogEnum.MANAGMENT_ZAHTEVEK);
+        loggerExpense.log("Zahtevek " + zahtevek.getId() + " declined by user " + user.getId() +" with reason: N/A ...", LogEnum.MANAGMENT_ZAHTEVEK);
 
         selectedZahtevek = null;
 
@@ -113,6 +130,28 @@ public class ManagmentDashboard implements Serializable {
 
     }
 
+    /**
+     * finds User's last zahtevek
+     * TODO: move to Utils
+     * @param ownedBy
+     * @return
+     */
+    public String findUsersLastZahtevek(User ownedBy){
+        try {
+            List<Zahtevek> lastZahteveks = applicationCache.getUserZahtevek(ownedBy, false);
+            Utils.sortZahtevki(lastZahteveks);
+            Zahtevek lastZahtevek = lastZahteveks.get(0);
+            return Utils.beautifyDate(lastZahtevek.getToDate()) + ", " + lastZahtevek.getLocation();
+        } catch (Exception e) {
+            LOGGER.error("", e);
+        }
+        return "N/A";
+
+    }
+
+    /**
+     * inits all zahtevki that need to be reviewed for the dashboard
+     */
     private void initZahtevki(){
         List<Zahtevek> zahtevki = null;
         try{
@@ -127,6 +166,9 @@ public class ManagmentDashboard implements Serializable {
         }
     }
 
+    /**
+     * inits all nalogi that are currently on going, determined with date span
+     */
     private void initNalogi(){
         List<Nalog> nalogi = null;
         try{

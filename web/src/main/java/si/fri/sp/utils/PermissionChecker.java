@@ -92,6 +92,23 @@ public class PermissionChecker implements Serializable {
         return accessList.checkPermission(testRole, managmentPermission);
     }
 
+    /**
+     * returns dashboard url for user
+     * @return
+     */
+    public String getDefaultUrl() throws NoPermissionException{
+        String role = "";
+        if(hasUserPermission()){
+            role = "user";
+        }else if(hasFinancePermission()){
+            role = "finance";
+        }else if(hasManagmentPermission()){
+            role = "managment";
+        }
+
+        return "/views/"+role+"/dashboard.xhtml";
+    }
+
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
