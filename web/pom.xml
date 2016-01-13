@@ -27,4 +27,53 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.samaxes.maven</groupId>
+                <artifactId>minify-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-minify</id>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <charset>UTF-8</charset>
+                            <jsSourceFiles>
+
+                                <jsSourceFile>/jquery/jquery.js</jsSourceFile>
+                                <jsSourceFile>main.js</jsSourceFile>
+                                <!--<jsSourceFile>map.js</jsSourceFile>-->
+                                <jsSourceFile>popups.js</jsSourceFile>
+
+                            </jsSourceFiles>
+                            <jsFinalFile>prebundle.js</jsFinalFile>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
+                    <!-- needed to prevent minification errors -->
+                    <execution>
+                        <id>final-merge</id>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <charset>UTF-8</charset>
+                            <skipMinify>true</skipMinify>
+                            <webappSourceDir>${project.build.directory}/${project.build.finalName}</webappSourceDir>
+                            <jsSourceFiles>
+                                <jsSourceFile>/prebundle.min.js</jsSourceFile>
+                            </jsSourceFiles>
+                            <jsFinalFile>bundle.min.js</jsFinalFile>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
 </project>
