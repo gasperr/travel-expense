@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <!--todo: if role == managment add Name Surname of user to here-->
+
+
+    <!--@elvariable id="selected" type="si.fri.sp.entities.Zahtevek"-->
+    <h:form>
+        <div class="floating-popup popup">
+            <div class="container">
+                <div class="content-inner">
+                    <div class="row popup-header section no-border">
+                        <span class="title">Zahtevek - <span class="status">#{selected.status.stringValue}</span></span>
+                        <h:commandLink class="close-popup"><i
+                                class="title glyphicon glyphicon-remove-sign float-right"></i>
+                            <f:ajax render="open-request-popup" listener="#{userDashboard.closeZahtevek}"/>
+                        </h:commandLink>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="content-inner">
+                                <div class="content-table msgs-corr section no-border">
+                                    <table class="table">
+                                        <tbody>
+
+                                        <tr>
+                                            <td class="corresponding-info">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <table class="table">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td><strong>Lokacija: </strong>#{selected.location}
+                                                                </td>
+                                                                <td>
+                                                                    <strong>Pred. strošek: </strong>#{selected.costs} €
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <strong>Termin od: </strong>#{userDashboard.getDate(selected.fromDate)}
+                                                                </td>
+                                                                <td>
+                                                                    <strong>do: </strong>#{userDashboard.getDate(selected.toDate)}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <strong>Datum, kraj zadnjega zahtevka: </strong>#{managmentDashboard.findUsersLastZahtevek(selected.owner)}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <strong>Opis: </strong> #{selected.content}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Pregledan dne: </strong></td>
+                                                                <td>
+                                                                    <strong>s strani: </strong>#{selected.reviewedBy.name} #{selected.reviewedBy.surname}
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>
+                                                    <label for="purpose">Odziv / opombe</label>
+                                                    <h:inputTextarea class="form-control" rows="2" id="purpose" disabled="#{not permissionChecker.hasManagmentPermission()}"
+                                                                     value="#{managmentDashboard.responseToZahtevek}">
+                                                        <f:ajax event="change" execute="@form"/>
+                                                    </h:inputTextarea>
+                                                </td>
+
+                                        </tr>
+                                        <ui:fragment rendered="#{permissionChecker.hasManagmentPermission()}">
+                                            <tr>
+                                                <!-- todo make appropriate differences betweeen manager and user-->
+                                                <td>
+                                                    <h:commandButton type="button" styleClass="btn btn-danger float-left managment-request-btn stupid-button-decline" value="Zavrni"></h:commandButton>
+
+                                                    <h:commandButton type="button" styleClass="btn btn-success managment-request-btn stupid-button-approve" value="Potrdi"></h:commandButton>
+
+                                                </td>
+                                            </tr>
+                                        </ui:fragment>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:form>
+
+    <script>
+        $("[class*='stupid-button-decline']").click(function(){
+            $(".click-me-to-decline").click();
+        })
+        $("[class*='stupid-button-approve']").click(function(){
+            $(".click-me-to-approve").click();
+        })
+    </script>
+</ui:composition>

@@ -1,0 +1,7 @@
+si\fri\sp\interfaces\ServiceServiceLocal.class
+si\fri\sp\interfaces\MessageServiceLocal.class
+si\fri\sp\interfaces\UserServiceLocal.class
+si\fri\sp\interfaces\LoggerLocal.class
+si\fri\sp\interfaces\generic\ServiceEntryPoint.class
+si\fri\sp\interfaces\ZahtevekServiceLocal.class
+si\fri\sp\interfaces\NalogServiceLocal.class

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <title>Travel e-Xpense</title>
+
+        <link href='../css/bootstrap/bootstrap.min.css' rel='stylesheet'></link>
+        <link href='../css/main.css' rel='stylesheet'></link>
+
+
+        <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+
+        <script type="text/javascript"
+                src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/html5-qrcode.min.js"></script>
+        <script src="../js/main.js"></script>
+    </h:head>
+    <h:body>
+
+        <div class="main-container">
+            <div class="row main-navbar">
+                <ui:include src="menu.xhtml" />
+            </div>
+
+            <div class="row dashboard-content">
+                <div class="col-md-12 col-sd-12">
+                    <div class="dashboard-portlet">
+                        <div class="content-inner">
+                            <div class="content-table section msgs">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 30%;">Pošiljatelj</th>
+                                        <th style="width: 30%;">Prejemnik</th>
+                                        <th style="width: 10%;">Zadeva</th>
+                                        <th style="width: 20%;">Datum</th>
+                                        <th style="width: 5%;"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <h:form>
+                                        <ui:repeat value="#{messaging.messageList}" var="msg">
+                                            <tr class="collapsable">
+                                                <td>
+                                                    <i class="glyphicon glyphicon-chevron-up small"></i>#{msg.fromUser.name} #{msg.fromUser.surname}
+                                                </td>
+                                                <td>#{msg.toUser.name} #{msg.toUser.surname}</td>
+                                                <td>#{msg.subject}</td>
+                                                <td>#{messaging.getDate(msg.date)}</td>
+                                                <td>
+                                                    <h:commandLink type="submit"
+                                                                   class="btn btn-primary btn-sm"
+                                                                   value="Odpri povezano">
+                                                        <f:ajax render="open-connected-popup"
+                                                                listener="#{messaging.openConnected(msg)}"/>
+                                                    </h:commandLink>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" class="msg-content"><p>#{msg.content}</p></td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </h:form>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h:panelGroup id="open-connected-popup">
+
+            <h:form>
+            <h:panelGroup rendered="#{not empty messaging.selectedMessage}" styleClass="background-popup"
+                          id="connected">
+
+                <ui:param name="nalog" value="#{messaging.selectedMessage.nalogRelated}" />
+                <ui:param name="zahtevek" value="#{messaging.selectedMessage.zahtevekRelated}" />
+
+                <!--@elvariable id="zahtevek" type="si.fri.sp.entities.Zahtevek"-->
+                <!--@elvariable id="nalog" type="si.fri.sp.entities.Nalog"-->
+
+                <div class="floating-popup popup medium">
+                    <div class="container">
+                        <div class="content-inner">
+                            <div class="row popup-header">
+                                <span class="title">Povezano - #{msg.subject}</span>
+                                <h:commandLink class="close-popup"><i
+                                    class="title glyphicon glyphicon-remove-sign float-right"></i>
+                                <f:ajax render="open-connected-popup" listener="#{messaging.closeConnected}"/>
+                            </h:commandLink>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="content-inner">
+                                        <div class="content-table section msgs-corr">
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                <tr class="collapsable">
+                                                    <th><i class="glyphicon glyphicon-chevron-down small"></i> Zahtevek
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <td class="corresponding-info">
+                                                        <div class="row">
+                                                            <div class="col-md-12 col-sm-12">
+                                                                <div class="section">
+                                                                    <table class="table">
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td><strong>Lokacija: </strong>#{zahtevek.location}</td>
+                                                                            <td><strong>Pred. strošek: </strong>#{zahtevek.costs} €
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><strong>Termin od: </strong>#{messaging.getDate(zahtevek.fromDate)}
+                                                                            </td>
+                                                                            <td><strong>do: </strong>#{messaging.getDate(zahtevek.toDate)}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td colspan="2">
+                                                                                <strong>Datum, kraj zadnjega
+                                                                                    zaht.: </strong>TODO
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td colspan="2">
+                                                                                <strong>Opis: </strong>#{zahtevek.content}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><strong>Pregledan s strani: </strong>#{zahtevek.reviewedBy.name} #{zahtevek.reviewedBy.surname}
+                                                                            </td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr class="collapsable">
+                                                    <th><i class="glyphicon glyphicon-chevron-down small"></i> Nalog
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <td class="corresponding-info">
+                                                        <div class="row">
+                                                            <div class="col-md-12 col-sm-12">
+                                                                <div class="section">
+                                                                    <table class="table">
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td><strong>Lokacija: </strong>#{nalog.location}</td>
+                                                                            <td><strong>Odobril: </strong>#{nalog.approvedBy.name} #{nalog.approvedBy.surname}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><strong>Namen: </strong>#{nalog.purpose}</td>
+                                                                            <td><strong>Max stroški: </strong>#{zahtevek.costs}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <strong>Termin: </strong>#{messaging.getDate(nalog.fromDate)} - #{messaging.getDate(nalog.toDate)}
+                                                                            </td>
+                                                                            <td><strong>Opombe: </strong>#{nalog.notes}</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group clear no-margin">
+                                                                    <label for="purpose">Namen in opis:</label>
+                                                                    <textarea disabled="" class="form-control" rows="5"
+                                                                              id="purpose">#{nalog.content}</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12 content-table smaller no-overflow">
+                                                                <div class="form-group clear no-margin">
+                                                                    <label for="purpose">Pregled:</label>
+                                                                    <table class="table table-bordered">
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th>Tip storitve</th>
+                                                                            <th>Opombe</th>
+                                                                            <th>Cena (€)</th>
+                                                                            <th>Odobreno (€)</th>
+
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <ui:repeat value="#{nalog.services}" var="service">
+                                                                            <tr>
+                                                                                <td>#{service.type}</td>
+                                                                                <td>#{service.notes}</td>
+                                                                                <td>#{service.price}</td>
+                                                                                <td>#{service.approvedPrice}
+                                                                                    <ui:fragment rendered="#{service.approvedPrice lt service.price}">
+                                                                                        <i class="glyphicon glyphicon-arrow-down alert-danger"></i>
+                                                                                    </ui:fragment>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </ui:repeat>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <script>
+                    $("#open-connected-popup").on("click", "tr", function () {
+                        var $target = $(event.target);
+                        var closesTr = $target.closest("tr[class*='collapsable']");
+                        closesTr.toggleClass("info");
+                        closesTr.find("i[class*='glyphicon']").toggleClass("glyphicon-chevron-down glyphicon-chevron-up");
+                        closesTr.next().slideToggle();
+                    });
+                </script>
+            </h:panelGroup>
+            </h:form>
+        </h:panelGroup>
+
+    </h:body>
+</f:view>

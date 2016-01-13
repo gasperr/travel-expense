@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <title>Travel e-Xpense</title>
+
+        <link href='../../css/bootstrap/bootstrap.min.css' rel='stylesheet'></link>
+        <link href='../../css/main.css' rel='stylesheet'></link>
+
+
+        <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+
+        <script type="text/javascript"
+                src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/html5-qrcode.min.js"></script>
+        <script src="../../js/main.js"></script>
+    </h:head>
+    <h:body>
+        <div class="main-container">
+            <ui:include src="../menu.xhtml" />
+            <div class="row dashboard-content">
+                <div class=" col-md-12 col-sm-12">
+                    <div class="dashboard-portlet">
+                        <div class="content-inner">
+                            <div class="header">
+                                <div class="title">Vso moji nalogi</div>
+                            </div>
+
+                            <!-- TODO: add clickable stuff-->
+                            <div class="sub-header section border-top">
+                                <div class="float-left table-filters">
+                                    <input class="checkbox-button hidden order-filter-user" type="checkbox" id="odobren"
+                                           checked=""/>
+                                    <label for="odobren"
+                                           class="check glyphicon glyphicon-ok alert-success">Odobreni</label>
+
+                                    <input class="checkbox-button hidden order-filter-user" type="checkbox"
+                                           id="zavrnjen"
+                                           checked=""/>
+                                    <label for="zavrnjen"
+                                           class="check glyphicon glyphicon-remove alert-danger">Zavrnjeni</label>
+
+                                    <input class="checkbox-button hidden order-filter-user" type="checkbox" id="izrvsen"
+                                           checked=""/>
+                                    <label for="izrvsen"
+                                           class="check glyphicon glyphicon-euro alert-info">Izvršeni</label>
+
+                                    <input class="checkbox-button hidden order-filter-user" type="checkbox"
+                                           id="aktivnen"
+                                           checked=""/>
+                                    <label for="aktivnen"
+                                           class="check glyphicon glyphicon-road alert-warning">Aktivni</label>
+
+                                </div>
+                            </div>
+
+                            <div class="content-table section status">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Opis</th>
+                                        <th>Termin</th>
+                                        <th>Status</th>
+                                        <th>Zapravljeno</th>
+                                        <th>Max</th>
+                                        <th>Izvršeno dne:</th>
+                                        <th class="action-th"></th>
+                                    </tr>
+                                    </thead>
+                                    <h:form>
+                                        <tbody>
+                                        <ui:repeat value="#{listAllNalogi.allNalogi}" var="nalog">
+                                            <tr data-status="#{nalog.status.ordinal()}">
+                                                <td>#{nalog.id}</td>
+                                                <td>#{nalog.location}</td>
+                                                <td>#{listAllNalogi.getDate(nalog.fromDate)} - #{listAllNalogi.getDate(nalog.toDate)}</td>
+                                                <td>#{nalog.status.stringValue}</td>
+                                                <td>#{listAllNalogi.calculateSpent(nalog)} €</td>
+                                                <td>#{nalog.zahtevek.costs} €</td>
+                                                <td>#{listAllNalogi.getDate(nalog.executedOn)}</td>
+                                                <td><h:commandLink type="submit"
+                                                                   class="btn btn-primary open-request user float-left"
+                                                                   value="Odpri">
+                                                    <f:ajax render="open-nalog-popup"
+                                                            listener="#{listAllNalogi.openNalog(nalog)}"/>
+                                                </h:commandLink>
+                                                <h:commandLink type="submit"
+                                                               class="btn btn-default open-request user float-right no-margin"
+                                                               value="Odpri povezano">
+                                                    <f:ajax render="open-connected-nalog-popup"
+                                                            listener="#{listAllNalogi.openConnectedSelectedNalog(nalog)}"/>
+                                                </h:commandLink>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+                                        </tbody>
+                                    </h:form>
+                                </table>
+
+                            </div>
+                            <div class="legend small">
+                                <div class="float-left">
+                                    <div class="sub-legend">
+                                        <span class="check glyphicon glyphicon-ok alert-success legend">Odobreni</span>
+                                        Nalog odobren a še ni v izvajanju
+                                    </div>
+                                    <div class="sub-legend">
+                                        <span class="check glyphicon glyphicon-remove alert-danger legend">Zavrnjeni</span>
+                                        Nalog oz. zahtevek zavrnjen
+                                    </div>
+                                    <div class="sub-legend">
+                                        <span class="check glyphicon glyphicon-euro alert-info legend">Izvršeni</span> Nalog
+                                        izvšren s strani računovodstva
+                                    </div>
+                                    <div class="sub-legend">
+                                        <span class="check glyphicon glyphicon-road alert-warning legend">Aktivni</span>
+                                        Nalog je trenutno v izvajanju
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h:panelGroup id="open-nalog-popup">
+            <h:panelGroup rendered="#{not empty listAllNalogi.selectedNalog}" styleClass="background-popup">
+                <ui:include src="../view-order.xhtml">
+                    <ui:param name="selected" value="#{listAllNalogi.selectedNalog}"/>
+                </ui:include>
+            </h:panelGroup>
+        </h:panelGroup>
+        <h:panelGroup id="open-connected-nalog-popup">
+            <h:panelGroup rendered="#{not empty listAllNalogi.connectedSelectedNalog}" styleClass="background-popup">
+                <ui:include src="connected-order.xhtml">
+                    <ui:param name="zahtevek" value="#{listAllNalogi.connectedSelectedNalog.zahtevek}"/>
+                    <ui:param name="selected" value="#{listAllNalogi.connectedSelectedNalog}"/>
+                </ui:include>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:body>
+</f:view>
