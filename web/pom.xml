@@ -41,8 +41,9 @@
                             <jsSourceFiles>
 
                                 <jsSourceFile>/jquery/jquery.js</jsSourceFile>
+                                <jsSourceFile>bootstrap.js</jsSourceFile>
+                                <jsSourceFile>html5-qrcode.min.js</jsSourceFile>
                                 <jsSourceFile>main.js</jsSourceFile>
-                                <!--<jsSourceFile>map.js</jsSourceFile>-->
                                 <jsSourceFile>popups.js</jsSourceFile>
 
                             </jsSourceFiles>

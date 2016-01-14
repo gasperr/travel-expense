@@ -182,11 +182,15 @@ public class ApplicationCache implements Serializable {
             if (zahtevekUserCache.containsKey(user.getId())) {
                 List<Zahtevek> all = zahtevekUserCache.get(user.getId());
                 if (!archived) {
-                    for (Zahtevek zahtevek : all) {
-                        if (zahtevek.isArchived()) {
-                            all.remove(zahtevek);
+
+                    Iterator<Zahtevek> iter = all.iterator();
+                    while (iter.hasNext()) {
+                        Zahtevek zahtevek = iter.next();
+                        if (zahtevek.isArchived()){
+                            iter.remove();
                         }
                     }
+
                 }
                 return all;
             } else {
@@ -201,6 +205,10 @@ public class ApplicationCache implements Serializable {
         }else{
             throw new Exception("Wanting to access cache with null value");
         }
+    }
+
+    public List<Zahtevek> getReviewedByZahtevki(User user){
+        return zahtevekServiceLocal.getAllByReviewedBy(user.getId(), true);
     }
 
     public void addNalog(Nalog nalog){

@@ -15,10 +15,12 @@
         <script type="text/javascript"
                 src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="../../js/bootstrap.min.js"></script>
-        <script src="../../js/html5-qrcode.min.js"></script>
-        <script src="../../js/main.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+        <!--<script src="../../js/bootstrap.min.js"></script>-->
+        <!--<script src="../../js/html5-qrcode.min.js"></script>-->
+        <!--<script src="../../js/main.js"></script>-->
+
+        <script src="../../js/bundle.min.js"></script>
     </h:head>
     <h:body>
 
@@ -102,20 +104,20 @@
                                             </h:inputText>
                                                 <h:message for="s_input"></h:message></td>
 
-                                            <td><h:inputText disabled="#{empty userDashboard.addingNewType}" value="#{userDashboard.currentNalog}" id="s_cost" required="true" requiredMessage="Obvezno polje" validator="#{fieldValidator.validateNumber}"
+                                            <td><h:inputText disabled="#{empty userDashboard.currentNalog}" value="#{userDashboard.addingNewPrice}" id="s_cost" required="true" requiredMessage="Obvezno polje" validator="#{fieldValidator.validateNumberSlo}"
                                                              class="tableInput priceInput">
-                                                <f:ajax event="change" execute="@this"/>
+                                                <f:ajax event="change" execute="@this" immediate="true"/>
                                             </h:inputText>
                                                 <h:message for="s_cost"></h:message></td>
 
-                                            <td><h:inputText disabled="#{empty userDashboard.addingNewType}" value="#{userDashboard.currentNalog}" class="noteInput">
+                                            <td><h:inputText disabled="#{empty userDashboard.currentNalog}" value="#{userDashboard.addingNewNotes}" class="noteInput">
                                                 <f:ajax event="change" execute="@this"/>
                                             </h:inputText>
-                                                <h:commandButton disabled="#{empty userDashboard.currentNalog}"
+                                                <h:commandLink disabled="#{empty userDashboard.currentNalog}"
                                                         styleClass="btn-xs btn-success glyphicon glyphicon-plus float-right"
                                                         value="">
                                                     <f:ajax render="@form" listener="#{userDashboard.addNewService}"/>
-                                                </h:commandButton></td>
+                                                </h:commandLink></td>
                                         </tr>
 
                                         </tbody>
@@ -133,7 +135,7 @@
                                 <div class="section border-top footer">
                                     <div class="buttons">
                                         <h:commandButton class="btn btn-success float-right" value="Oddaj">
-                                            <f:ajax render="@form" execute="@form"
+                                            <f:ajax render="@form"
                                                     listener="#{userDashboard.oddajNalog}"/>
                                         </h:commandButton>
                                     </div>

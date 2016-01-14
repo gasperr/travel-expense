@@ -105,6 +105,7 @@ public class ManagmentDashboard implements Serializable {
 
         zahtevekServiceLocal.update(zahtevek);
         applicationCache.clearZahtevekCache();
+        applicationCache.clearNalogiCache();
         waitingZahtevki.remove(zahtevek);
 
     }

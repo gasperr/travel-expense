@@ -71,7 +71,7 @@ public class UserDashboard implements Serializable {
     private Zahtevek selectedZahtevek;
 
     private String addingNewType;
-    private double addingNewPrice;
+    private String addingNewPrice;
     private String addingNewNotes;
 
     private ZahtevekImpl newZahtevek = new ZahtevekImpl();
@@ -101,7 +101,7 @@ public class UserDashboard implements Serializable {
             List<Nalog> allNalogi = applicationCache.getUserNalogs(currentUser, false);
             if(!allNalogi.isEmpty()){
                 for(Nalog nalog : allNalogi){
-                    if(Utils.nalogIsActive(nalog) && nalog.getStatus() == NalogStatus.APPROVED){
+                    if(Utils.nalogIsActive(nalog) && nalog.getStatus() == NalogStatus.ACTIVE){
                         nalog.setStatus(NalogStatus.ACTIVE);
                         nalogServiceLocal.update(nalog);
                         activeNalogi.add(nalog);
@@ -135,8 +135,10 @@ public class UserDashboard implements Serializable {
     private void initZahtevki(){
         try {
             myZahtevki = applicationCache.getUserZahtevek(currentUser, false);
-            Utils.sortZahtevki(myZahtevki);
-            this.lastZahtevek = myZahtevki.get(0);
+            if(myZahtevki != null && !myZahtevki.isEmpty()){
+                Utils.sortZahtevki(myZahtevki);
+                this.lastZahtevek = myZahtevki.get(0);
+            }
         } catch (Exception e) {
             LOGGER.error("Error trying to fetch user's zahtevki", e);
         }
@@ -165,6 +167,7 @@ public class UserDashboard implements Serializable {
             zahtevek.setStatus(ZahtevekStatus.IN_REVIEW);
 
             applicationCache.addZahtevek(currentUser, zahtevek);
+            applicationCache.clearZahtevekCache();
 
             loggerExpense.log("New zahtevek " + zahtevek.getId() + " created by user " + currentUser.getId(), LogEnum.USER_ZAHTEVEK);
 
@@ -184,14 +187,14 @@ public class UserDashboard implements Serializable {
         ServiceEntity serviceEntity = new ServiceEntity();
         serviceEntity.setNalog(this.currentNalog);
         serviceEntity.setNotes(addingNewNotes);
-        serviceEntity.setPrice(addingNewPrice);
+        serviceEntity.setPrice(Double.parseDouble(addingNewPrice));
         serviceEntity.setType(addingNewType);
 
         serviceServiceLocal.create(serviceEntity);
         serviceEntityList.add(serviceEntity);
 
         addingNewNotes = "";
-        addingNewPrice = 0;
+        addingNewPrice = "";
         addingNewType = "";
 
         loggerExpense.log("Service added to nalog "+this.currentNalog.getId(), LogEnum.USER_NALOG);
@@ -263,11 +266,11 @@ public class UserDashboard implements Serializable {
         this.addingNewType = addingNewType;
     }
 
-    public double getAddingNewPrice() {
+    public String getAddingNewPrice() {
         return addingNewPrice;
     }
 
-    public void setAddingNewPrice(double addingNewPrice) {
+    public void setAddingNewPrice(String addingNewPrice) {
         this.addingNewPrice = addingNewPrice;
     }
 
@@ -296,7 +299,11 @@ public class UserDashboard implements Serializable {
     }
 
     public String getLastZahtevek() {
-        return Utils.beautifyDate(lastZahtevek.getToDate()) + ", " + lastZahtevek.getLocation();
+        if(lastZahtevek != null){
+            return Utils.beautifyDate(lastZahtevek.getToDate()) + ", " + lastZahtevek.getLocation();
+        }else{
+            return "";
+        }
     }
 
 

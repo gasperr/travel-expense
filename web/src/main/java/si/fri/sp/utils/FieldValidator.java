@@ -41,7 +41,7 @@ public class FieldValidator implements Serializable {
         }
     }
 
-    public static void validateNumber(final FacesContext ctx, final UIComponent component, final Object value) {
+    public static void validateNumberSlo(final FacesContext ctx, final UIComponent component, final Object value) {
         String postNumber = (String) value;
         if (postNumber == null || postNumber.isEmpty()) {
             // required field validator will handle this

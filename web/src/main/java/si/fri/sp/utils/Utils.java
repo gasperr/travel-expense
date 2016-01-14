@@ -46,7 +46,7 @@ public class Utils {
             public int compare(Message d1, Message d2) {
                 Date date1 = d1.getDate();
                 Date date2 = d2.getDate();
-                return date2.compareTo(date1);
+                return date1.compareTo(date2);
 
             }
         });

@@ -66,6 +66,7 @@ public class Archive implements Serializable {
         List<Zahtevek> rtrn = new ArrayList<>();
         try {
             rtrn = applicationCache.getUserZahtevek(user, true);
+            rtrn.addAll(applicationCache.getReviewedByZahtevki(user));
         } catch (Exception e) {
             LOGGER.error("Error trying to fetch archived messages", e);
         }
