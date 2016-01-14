@@ -102,7 +102,7 @@
                                                              class="tableInput serviceInput" required="true" requiredMessage="Obvezno polje">
                                                 <f:ajax event="change" execute="@this"/>
                                             </h:inputText>
-                                                <h:message for="s_input"></h:message></td>
+                                                <h:message for="s_input" id="err_msg"></h:message></td>
 
                                             <td><h:inputText disabled="#{empty userDashboard.currentNalog}" value="#{userDashboard.addingNewPrice}" id="s_cost" required="true" requiredMessage="Obvezno polje" validator="#{fieldValidator.validateNumberSlo}"
                                                              class="tableInput priceInput">
@@ -116,7 +116,7 @@
                                                 <h:commandLink disabled="#{empty userDashboard.currentNalog}"
                                                         styleClass="btn-xs btn-success glyphicon glyphicon-plus float-right"
                                                         value="">
-                                                    <f:ajax render="@form" listener="#{userDashboard.addNewService}"/>
+                                                    <f:ajax render="@form" execute="@form" listener="#{userDashboard.addNewService}"/>
                                                 </h:commandLink></td>
                                         </tr>
 

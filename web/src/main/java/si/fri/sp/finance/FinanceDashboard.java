@@ -136,7 +136,7 @@ public class FinanceDashboard implements Serializable {
     public void sendToReview(){
         Message message = new Message();
         message.setFromUser(user);
-        message.setToUser(toReviewNosilcu ? inProgress.getApprovedBy() : inProgress.getOwner());
+        message.setToUser(toReviewNosilcu ? inProgress.getOwner() : inProgress.getApprovedBy());
         message.setSubject("[Racunovodstvo] Please review");
         message.setNalogRelated(inProgress);
         message.setZahtevekRelated(inProgress.getZahtevek());

@@ -33,7 +33,11 @@ public class Utils {
      * @return true if nalog is active
      */
     public static boolean nalogIsActive(Nalog nalog){
-        return (new Date().compareTo(nalog.getFromDate()) >= 0) && (new Date().compareTo(nalog.getToDate()) <= 0);
+        if((new Date().compareTo(nalog.getFromDate()) >= 0) && (new Date().compareTo(nalog.getToDate()) <= 0) && (nalog.getStatus() != NalogStatus.FINISHED)){
+            nalog.setStatus(NalogStatus.ACTIVE);
+            return true;
+        }
+        return false;
     }
 
     /**
